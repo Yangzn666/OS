@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 文件管理 - 习题练习</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>第4章 文件管理</h1>
+            <p>习题练习</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="chapter1.html">第1章</a></li>
+                <li><a href="chapter2.html">第2章</a></li>
+                <li><a href="chapter3.html">第3章</a></li>
+                <li><a href="chapter4.html">第4章</a></li>
+                <li><a href="exercises4.html">第4章习题</a></li>
+                <li><a href="chapter5.html">第5章</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="exercises4" class="chapter">
+            <h2>第4章 文件管理 - 习题练习</h2>
+            
+            <div class="content">
+                <h3>4.1 单项选择题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong>从用户的观点看，操作系统中引入<strong>文件系统</strong>的目的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 保护用户数据</li>
+                            <li>B. 实现对文件的按名存取</li>
+                            <li>C. 实现虚拟存储</li>
+                            <li>D. 保存用户和系统文档及数据</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-1-answer')">查看答案</button>
+                            <div id="q4-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：从用户角度看，最核心的需求是"通过文件名访问文件"，即按名存取。其他选项属于系统功能或次要目标：A 是安全机制的一部分；C 是内存管理范畴；D 是存储目的，但不是"引入文件系统"的直接目的。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>逻辑<strong>文件系统</strong>的功能有（ ）。</strong></p>
+                        <p><strong>I. 文件按名存取</strong></p>
+                        <p><strong>II. 文件目录组织管理</strong></p>
+                        <p><strong>III. 把文件名转换为文件描述符或文件句柄</strong></p>
+                        <p><strong>IV. 存储保护</strong></p>
+                        <ul>
+                            <li>A. 仅 I、II</li>
+                            <li>B. 仅 I、III</li>
+                            <li>C. 仅 II、III、IV</li>
+                            <li>D. I、II、III 和 IV</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-2-answer')">查看答案</button>
+                            <div id="q4-2-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：I 正确：用户通过文件名操作文件；II 正确：目录结构用于组织文件；III 正确：打开文件时将文件名映射为内核中的描述符（如 fd）；IV 正确：提供权限控制，实现存储保护。四项都是逻辑文件系统的基本功能。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目3：</h4>
+                        <p><strong>下列关于<strong>文件系统</strong>的说法中，正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 一个<strong>文件系统</strong>可以存放的文件数量受限于<strong>文件控制块</strong>的数量</li>
+                            <li>B. 一个文件系统的容量一定等于承载该文件系统的磁盘容量</li>
+                            <li>C. 一个文件系统中单个文件的大小只受磁盘剩余空间大小的限制</li>
+                            <li>D. 一个文件系统不能将数据存放在多个磁盘上</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-3-answer')">查看答案</button>
+                            <div id="q4-3-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：A 正确：每个文件对应一个 FCB（文件控制块），FCB 数量有限 → 可创建文件数受限；B 错误：一个磁盘可划分为多个分区，每个分区可建不同文件系统，且文件系统可能不占满整个磁盘；C 错误：文件大小还受限于文件系统结构（如 FAT 表长度、inode 大小等）；D 错误：支持跨磁盘存储，例如 RAID、分布式文件系统。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目4：</h4>
+                        <p><strong>UNIX 操作系统中，文件的索引结构放在（ ）。</strong></p>
+                        <ul>
+                            <li>A. 超级块</li>
+                            <li>B. 索引节点</li>
+                            <li>C. 目录项</li>
+                            <li>D. 空闲块</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-4-answer')">查看答案</button>
+                            <div id="q4-4-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：在 UNIX 中，索引节点（inode） 存储文件的元信息（如权限、大小、时间戳、指针指向数据块）；超级块 描述整个文件系统的信息；目录项 包含文件名和 inode 号；空闲块 用于记录空闲空间。所以文件的索引结构（即数据块指针数组）位于 索引节点 中。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目5：</h4>
+                        <p><strong><strong>文件</strong>的存储空间管理实质上是对（ ）的组织和管理。</strong></p>
+                        <ul>
+                            <li>A. 文件目录</li>
+                            <li>B. 外存已占用区域</li>
+                            <li>C. 外存空闲区</li>
+                            <li>D. 文件控制块</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-5-answer')">查看答案</button>
+                            <div id="q4-5-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：文件系统需要知道哪些磁盘块可用、哪些已被使用；因此，外存空闲区 的管理是核心任务；常见方法包括：位示图、空闲链表、成组链接法等。A 是目录结构；B 是已用部分；D 是文件元信息。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目6：</h4>
+                        <p><strong>对外存<strong>文件区</strong>的管理应以（ ）为主要目标。</strong></p>
+                        <ul>
+                            <li>A. 提高系统吞吐量</li>
+                            <li>B. 提高换入换出速度</li>
+                            <li>C. 降低存储费用</li>
+                            <li>D. 提高存储空间的利用率</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-6-answer')">查看答案</button>
+                            <div id="q4-6-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：外存文件区长期驻留，访问频率低；主要目标是高效利用磁盘空间，避免浪费；吞吐量、换入换出速度更多涉及内存管理；存储费用由硬件决定，非管理目标。所以选 D：提高存储空间利用率。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目7：</h4>
+                        <p><strong><strong>位示图</strong>可用于（ ）。</strong></p>
+                        <ul>
+                            <li>A. 文件目录的查找</li>
+                            <li>B. 磁盘空间的管理</li>
+                            <li>C. 主存空间的管理</li>
+                            <li>D. 文件的保密</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-7-answer')">查看答案</button>
+                            <div id="q4-7-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：位示图（Bitmap） 是一种记录磁盘块是否空闲的数据结构；每一位表示一个磁盘块的状态（0=空闲，1=已分配）；适用于磁盘空间管理；主存空间管理通常用页表或段表；文件目录查找靠目录结构；文件保密靠权限机制。故选 B。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目8：</h4>
+                        <p><strong>下列各种<strong>文件存储空间</strong>的管理方法中，（ ）需要使用空间盘块栈。</strong></p>
+                        <ul>
+                            <li>A. 空间表法</li>
+                            <li>B. 空间链表法</li>
+                            <li>C. 位示图法</li>
+                            <li>D. 成组链接法</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-8-answer')">查看答案</button>
+                            <div id="q4-8-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：成组链接法 将空闲块分组，每组第一个块记录本组块数和下一组的首块号；这些信息存放在内存中的专用栈中，称为"空闲盘块栈"；当分配/回收块时，需维护这个栈；其他方法不需要栈结构。所以选 D。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目9：</h4>
+                        <p><strong>硬盘的<strong>主引导扇区</strong>由（ ）组成。</strong></p>
+                        <ul>
+                            <li>A. 包含引导记录</li>
+                            <li>B. 包含分区表和主引导程序</li>
+                            <li>C. 只包含分区表</li>
+                            <li>D. 只包含引导记录</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-9-answer')">查看答案</button>
+                            <div id="q4-9-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：主引导扇区（MBR）位于磁盘第0扇区；包括：主引导程序（MBR code）：负责加载活动分区的引导程序；分区表：记录4个主分区信息；结束标志（AA55H）；所以 B 正确。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目10：</h4>
+                        <p><strong>若用 8 字长（字长 32 位）组成的<strong>位示图</strong>管理内存，行号和列号均从 1 开始，假定用户归还一个块号为 100 的内存块时，则它对应<strong>位示图</strong>的位置为（ ）。</strong></p>
+                        <ul>
+                            <li>A. 字号为 3，位号为 5</li>
+                            <li>B. 字号为 4，位号为 4</li>
+                            <li>C. 字号为 3，位号为 4</li>
+                            <li>D. 字号为 4，位号为 5</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-10-answer')">查看答案</button>
+                            <div id="q4-10-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：每字 32 位 → 每行 32 个块；块号 100 对应：行号（字号） = (100 - 1) ÷ 32 + 1 = 99 ÷ 32 + 1 = 3 + 1 = 4；列号（位号） = (100 - 1) mod 32 + 1 = 99 mod 32 + 1 = 3 + 1 = 4；所以是 字号 4，位号 4。选 B。注意：如果行号从 0 开始，结果会不同，但题干明确说"从 1 开始"。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目11：</h4>
+                        <p><strong>比较难得到连续空间的空间管理方式是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 空间链表法</li>
+                            <li>B. 空间表法</li>
+                            <li>C. 位示图法</li>
+                            <li>D. 成组链接法</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-11-answer')">查看答案</button>
+                            <div id="q4-11-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：空间链表法：空闲块以链表形式连接，容易导致碎片化，难以找到大块连续空间；空间表法：按地址顺序排列，容易找连续块；位示图法：可快速扫描连续空闲位；成组链接法：适合连续分配，效率较高。所以最难得到连续空间的是 A：空间链表法。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目12：</h4>
+                        <p><strong>下列选项中，（ ）不是 Linux 实现<strong>虚拟文件系统</strong> VFS 所定义的对象类型。</strong></p>
+                        <ul>
+                            <li>A. 超级块（superblock）对象</li>
+                            <li>B. 目录项（inode）对象</li>
+                            <li>C. 文件（file）对象</li>
+                            <li>D. 数据（data）对象</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-12-answer')">查看答案</button>
+                            <div id="q4-12-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：VFS 抽象了四种核心对象：超级块：描述文件系统整体信息；索引节点（inode）：描述文件属性和数据块；目录项（dentry）：文件名到 inode 的映射；文件（file）：表示打开的文件对象；数据（data）对象 不是 VFS 定义的标准对象。所以选 D。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目13：</h4>
+                        <p><strong>[2014 统考真题] 现有一个容量为 10GB 的磁盘分区，磁盘空间以簇为单位进行分配，簇的大小为 4KB，若采用<strong>位图法</strong>管理该分区的空间空间，即用一位来标识一个簇是否被分配，则存放该<strong>位图</strong>所需的簇数为（ ）。</strong></p>
+                        <ul>
+                            <li>A. 80</li>
+                            <li>B. 320</li>
+                            <li>C. 80K</li>
+                            <li>D. 320K</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-13-answer')">查看答案</button>
+                            <div id="q4-13-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：总簇数 = 10GB / 4KB = 10 × 1024 × 1024 KB / 4KB = 2.5M 个簇；每个簇对应 1 位 → 共需 2.5M 位；1 字节 = 8 位 → 需要 2.5M / 8 = 320KB 字节；每个簇 4KB → 所需簇数 = 320KB / 4KB = 80 个簇；选 A</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目14：</h4>
+                        <p><strong>[2014 统考真题] <strong>文件系统</strong>用<strong>位图法</strong>表示磁盘空间的分配情况，<strong>位图</strong>存于磁盘的 32～127 号块中，每个盘块占 1024B，盘块和块内字节均从 0 开始编号。假设要释放的盘块号为 409612，则<strong>位图</strong>中要修改的位所在的盘块号和块内字节序号分别是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 81, 1</li>
+                            <li>B. 81, 2</li>
+                            <li>C. 82, 1</li>
+                            <li>D. 82, 2</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-14-answer')">查看答案</button>
+                            <div id="q4-14-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：位图起始于块号 32；每个块 1024 字节 = 8192 位；盘块号 409612 对应的位在位图中的偏移量：偏移 = 409612 - 32 = 409580；找到所在块号：块号 = 409580 ÷ 8192 = 50 （整除）；实际位图块号 = 32 + 50 = 82；块内偏移 = 409580 % 8192 = 409580 - 50×8192 = 409580 - 409600 = -20？错误！更正计算：位图总共覆盖块 32 到 127 → 共 96 个块；每块 8192 位 → 总共 96 × 8192 = 786,432 位 → 可表示最多 786,432 个块；盘块号 409612 > 786,432？不对！重新理解题意：位图从块32开始，每个块存储位图数据，每个块1024B=8192位，因此每个块可表示8192个盘块。盘块号 409612 对应的位图位置：偏移 = 409612 - 32 = 409580；所在块号 = 32 + floor(409580 / 8192) = 32 + 50 = 82；块内偏移 = 409580 % 8192 = 409580 - 50×8192 = 409580 - 409600 = -20？不可能。正确做法：实际应为：位图块号 = 32 + (409612 // 8192)；409612 ÷ 8192 ≈ 50.0 → 50 个完整块 → 块号 = 32 + 50 = 82；块内偏移 = 409612 % 8192 = 409612 - 50×8192 = 409612 - 409600 = 12；字节偏移 = 12 ÷ 8 = 1.5 → 不对。再检查：每个块 1024 字节 = 8192 位，所以：块内位偏移 = 409612 % 8192 = 12；字节偏移 = 12 // 8 = 1，位偏移 = 12 % 8 = 4。但题目问的是块号和块内字节序号。正确答案是：位图块号 = 32 + (409612 // 8192) = 32 + 50 = 82；块内字节序号 = (409612 % 8192) // 8 = 12 // 8 = 1。所以答案是 C. 82, 1</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目15：</h4>
+                        <p><strong>[2019 统考真题] 下列选项中，可用于<strong>文件系统</strong>管理空闲磁盘块的数据结构是（ ）。</strong></p>
+                        <p><strong>I. 位示图</strong></p>
+                        <p><strong>II. 索引节点</strong></p>
+                        <p><strong>III. 空闲磁盘块链</strong></p>
+                        <p><strong>IV. 文件分配表（FAT）</strong></p>
+                        <ul>
+                            <li>A. 仅 I、II</li>
+                            <li>B. 仅 I、III、IV</li>
+                            <li>C. 仅 I、III</li>
+                            <li>D. 仅 II、III、IV</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-15-answer')">查看答案</button>
+                            <div id="q4-15-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：I. 位示图：用于标记空闲块，✅ 正确；II. 索引节点：存储文件信息，❌ 不用于空闲块管理；III. 空闲磁盘块链：链表连接空闲块，✅ 正确；IV. FAT：记录每个簇的下一个簇，也可用于空闲块管理（FAT值为0表示空闲），✅ 正确；所以选 B. 仅 I、III、IV</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目16：</h4>
+                        <p><strong>[2023 统考真题] 某系统采用页式存储管理，用<strong>位图</strong>管理空闲页框。若页大小为 4KB，物理内存大小为 16GB，则<strong>位图</strong>所占空间的大小是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 128B</li>
+                            <li>B. 128KB</li>
+                            <li>C. 512KB</li>
+                            <li>D. 4MB</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-16-answer')">查看答案</button>
+                            <div id="q4-16-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：物理内存 = 16GB = 16 × 1024 × 1024 KB；页大小 = 4KB；总页框数 = 16GB / 4KB = 4M = 2^22；每个页框用 1 位表示 → 共需 2^22 位；字节数 = 2^22 / 8 = 2^19 B = 512KB；所以选 C</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>4.2 填空题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p>在分页存储管理中，页面的大小是<strong>____</strong>的，而段的长度是<strong>____</strong>的。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-1-fill-answer')">查看答案</button>
+                            <div id="q4-1-fill-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：固定、可变</strong></p>
+                                <p>解析：页面大小固定，段的长度可变。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p>在<strong>请求分页存储管理</strong>中，页面置换算法包括<strong>____</strong>、<strong>____</strong>和<strong>____</strong>等。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-2-fill-answer')">查看答案</button>
+                            <div id="q4-2-fill-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：最佳置换算法(OPT)、先进先出置换算法(FIFO)、最近最久未使用置换算法(LRU)</strong></p>
+                                <p>解析：常见的页面置换算法。</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>4.3 简答题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong>简述程序<strong>局部性原理</strong>及其表现形式。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-1-short-answer')">查看答案</button>
+                            <div id="q4-1-short-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p>程序局部性原理是指程序在执行时呈现出局部性规律，即在一段时间内，程序的执行仅局限于程序的某一部分。</p>
+                                <p><strong>表现形式：</strong></p>
+                                <ol>
+                                    <li><strong>时间局部性：</strong>如果程序中的某条指令一旦执行，则不久之后该指令可能再次执行；如果某数据被访问，则不久之后该数据可能再次被访问。</li>
+                                    <li><strong>空间局部性：</strong>一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问。</li>
+                                </ol>
+                                <p>局部性原理是虚拟存储器得以实现的理论基础。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>什么是<strong>抖动现象</strong>？产生的原因是什么？</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-2-short-answer')">查看答案</button>
+                            <div id="q4-2-short-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p><strong>抖动现象：</strong>在请求分页存储管理中，如果分配给进程的物理页面数太少，不能满足进程正常运行的要求，致使进程在运行过程中频繁地发生缺页中断，这种现象称为抖动或颠簸。</p>
+                                <p><strong>产生原因：</strong></p>
+                                <ul>
+                                    <li>分配给进程的物理页面数太少</li>
+                                    <li>页面置换算法不合理</li>
+                                    <li>进程数量太多，导致每个进程分配的页面数过少</li>
+                                </ul>
+                                <p>解决方法包括增加物理内存、改进页面置换算法、控制并发进程数量等。</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>4.4 应用题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong>在一个<strong>请求分页系统</strong>中，假如一个作业的页面走向为4, 3, 2, 1, 4, 3, 5, 4, 3, 2, 1, 5，目前它还没有任何页装入内存，当分配给该作业的物理块数为3时，请分别计算采用<strong>FIFO</strong>和<strong>LRU</strong>算法的<strong>缺页次数</strong>和<strong>缺页率</strong>。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-1-long-answer')">查看答案</button>
+                            <div id="q4-1-long-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p><strong>FIFO算法：</strong></p>
+                                <pre><code>页面走向: 4  3  2  1  4  3  5  4  3  2  1  5
+物理块1: 4  4  4  1  1  1  5  5  5  2  2  2
+物理块2: -  3  3  3  4  4  4  4  4  4  1  1
+物理块3: -  -  2  2  2  3  3  3  3  3  3  5
+缺页中断: Y  Y  Y  Y  Y  Y  Y  -  -  Y  Y  Y</code></pre>
+                                <p>缺页次数：9次，缺页率 = 9/12 = 75%</p>
+                                
+                                <p><strong>LRU算法：</strong></p>
+                                <pre><code>页面走向: 4  3  2  1  4  3  5  4  3  2  1  5
+物理块1: 4  4  4  1  1  1  5  5  5  2  2  2
+物理块2: -  3  3  3  4  4  4  4  4  4  1  1
+物理块3: -  -  2  2  2  3  3  3  3  3  3  5
+缺页中断: Y  Y  Y  Y  Y  Y  Y  -  -  Y  Y  Y</code></pre>
+                                <p>缺页次数：9次，缺页率 = 9/12 = 75%</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="key-points">
+                <h3>重点回顾</h3>
+                <ul>
+                    <li>文件和文件系统的基本概念</li>
+                    <li>文件的逻辑结构和物理结构</li>
+                    <li>目录管理</li>
+                    <li>文件存储空间管理</li>
+                    <li>文件共享与保护</li>
+                </ul>
+                
+                <h4>核心内容</h4>
+                <ul>
+                    <li><strong>文件系统</strong>目的：<strong>按名存取</strong>，方便用户</li>
+                    <li><strong>逻辑文件系统</strong>：<strong>文件命名</strong>、<strong>目录管理</strong>、<strong>名称转描述符</strong>、<strong>存储保护</strong></li>
+                    <li><strong>文件控制块</strong>（FCB）：存储<strong>文件元信息</strong>，数量限制文件总数</li>
+                    <li><strong>空闲空间管理</strong>：<strong>位示图</strong>、<strong>空闲链表</strong>、<strong>成组链接</strong>、<strong>FAT</strong></li>
+                    <li><strong>位示图</strong>：用位表示块状态，适合<strong>磁盘管理</strong></li>
+                    <li><strong>成组链接法</strong>：分组管理<strong>空闲块</strong>，需<strong>空闲块栈</strong></li>
+                    <li><strong>VFS</strong>：<strong>Linux</strong> 抽象层，定义 superblock、inode、dentry、file</li>
+                    <li><strong>MBR</strong>：<strong>主引导记录</strong> + <strong>分区表</strong></li>
+                    <li><strong>索引节点</strong>（inode）：存放<strong>文件数据块</strong>指针，独立于<strong>文件名</strong></li>
+                </ul>
+                
+                <h4>建议复习方法</h4>
+                <ul>
+                    <li>掌握 <strong>位示图计算公式</strong>：<strong>块号</strong> = <strong>起始块号</strong> + (<strong>目标块号</strong> // <strong>每块位数</strong>)</li>
+                    <li>理解 <strong>空闲空间管理</strong>方法对比（<strong>连续</strong> vs <strong>非连续</strong>）</li>
+                    <li>熟悉 <strong>UNIX 文件系统</strong>结构（<strong>inode</strong>、<strong>超级块</strong>）</li>
+                    <li>多做历年真题（特别是 2014、2019、2023 年）</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 王道操作系统考研复习指导 - 习题练习</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 文件管理 - 2025王道操作系统考研复习指导</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>第4章 文件管理</h1>
+            <p>2025王道操作系统考研复习指导</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="chapter1.html">第1章</a></li>
+                <li><a href="chapter2.html">第2章</a></li>
+                <li><a href="chapter3.html">第3章</a></li>
+                <li><a href="chapter4.html">第4章</a></li>
+                <li><a href="exercises4.html">第4章习题</a></li>
+                <li><a href="chapter5.html">第5章</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="chapter4" class="chapter">
+            <h2>第4章 文件管理</h2>
+            
+            <!-- 添加章节思维导图 -->
+            <div class="mermaid-container">
+                <div class="mermaid">
+mindmap
+  root((第4章<br/>文件管理))
+    4.1 文件系统概述
+      文件的基本概念
+        文件定义
+        文件属性
+        文件分类
+      文件控制块和索引节点
+        FCB
+        inode
+        关系对比
+      文件的逻辑结构
+        顺序文件
+        索引文件
+        直接文件
+        散列文件
+    4.2 文件的物理结构
+      连续分配
+      链接分配
+        隐式链接
+        显式链接
+      索引分配
+        单级索引
+        多级索引
+    4.3 目录管理
+      目录的基本概念
+      树形目录结构
+      文件共享与保护
+        文件共享
+          硬链接
+          软链接
+        文件保护
+    4.4 文件系统实现
+      文件系统结构
+      文件系统挂载
+      文件系统一致性
+      空闲存储空间管理
+        空闲表法
+        空闲链表法
+        位示图法
+        成组链接法
+    4.5 磁盘组织与管理
+      磁盘结构
+      磁盘调度算法
+        FCFS
+        SSTF
+        SCAN
+        C-SCAN
+        LOOK
+      磁盘管理
+        磁盘初始化
+        引导块
+        坏块处理
+                </div>
+            </div>
+            
+            <div class="content">
+                <details>
+                    <summary>4.1 文件系统概述</summary>
+                    <div>
+                        <h4>4.1.1 <strong>文件</strong>的基本概念</h4>
+                        <p><strong><strong>文件</strong>定义：</strong><strong>文件</strong>是具有名称的、在逻辑上具有完整意义的信息集合，是<strong>操作系统</strong>管理的最小单位</p>
+                        <p><strong>实例：</strong>就像图书馆里的书籍，每本书都有书名、作者、出版社等信息，文件也有文件名、创建者、大小等属性。</p>
+                        
+                        <p><strong><strong>文件</strong>属性：</strong></p>
+                        <ul>
+                            <li>文件名：用于标识文件的字符串</li>
+                            <li>类型：普通文件、目录文件、设备文件等</li>
+                            <li>大小：文件的字节数</li>
+                            <li>权限：读、写、执行权限</li>
+                            <li>创建时间、修改时间、访问时间</li>
+                            <li>文件所有者</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像身份证包含姓名、性别、出生日期等个人信息，文件也有对应的属性信息。</p>
+                        
+                        <p><strong><strong>文件</strong>分类：</strong></p>
+                        <ul>
+                            <li>普通文件：用户数据文件</li>
+                            <li>目录文件：包含文件名和文件控制块地址的特殊文件</li>
+                            <li>设备文件：用于与硬件设备交互的特殊文件</li>
+                            <li>符号链接文件：指向另一个文件的链接文件</li>
+                        </ul>
+                        <p><strong>实例：</strong>普通文件像文档和图片；目录文件像文件夹；设备文件像/dev/sda（硬盘设备）；符号链接文件像快捷方式。</p>
+                        
+                        <h4>4.1.2 <strong>文件控制块</strong>（FCB）和<strong>索引节点</strong>（inode）</h4>
+                        <p><strong><strong>文件控制块</strong>（FCB）：</strong></p>
+                        <p><strong>定义：</strong>操作系统用来管理文件的内部数据结构</p>
+                        <p><strong>作用：</strong>存储文件的元信息，是文件存在的唯一标识</p>
+                        <p><strong>实例：</strong>就像户口本记录家庭成员的基本信息，FCB记录文件的基本信息。</p>
+                        
+                        <p><strong>包含内容：</strong></p>
+                        <ul>
+                            <li>文件名</li>
+                            <li>文件类型</li>
+                            <li>文件大小</li>
+                            <li>文件的物理地址</li>
+                            <li>文件权限</li>
+                            <li>文件所有者</li>
+                            <li>时间戳（创建、修改、访问时间）</li>
+                            <li>文件的链接数</li>
+                        </ul>
+                        <p><strong>实例：</strong>ls -l命令显示的详细信息就是FCB的部分内容。</p>
+                        
+                        <p><strong><strong>索引节点</strong>（inode）：</strong></p>
+                        <p><strong>定义：</strong>类Unix系统中用于存储文件元信息的数据结构</p>
+                        <p><strong>实例：</strong>Linux系统中的inode机制，每个文件都有唯一的inode号。</p>
+                        
+                        <p><strong>与FCB的区别：</strong></p>
+                        <ul>
+                            <li>FCB是通用概念，inode是类Unix系统中FCB的具体实现</li>
+                            <li>inode不包含文件名，文件名存储在目录项中</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像人的身份信息和姓名分开存储，inode存储文件的身份信息，目录项存储文件名。</p>
+                        
+                        <p><strong>inode包含内容：</strong></p>
+                        <ul>
+                            <li>文件类型</li>
+                            <li>文件权限</li>
+                            <li>文件所有者</li>
+                            <li>文件大小</li>
+                            <li>时间戳</li>
+                            <li>文件的物理地址（块号）</li>
+                            <li>链接数</li>
+                        </ul>
+                        <p><strong>实例：</strong>stat命令可以查看文件的inode信息。</p>
+                        
+                        <p><strong>FCB与inode的关系：</strong></p>
+                        <ul>
+                            <li>每个文件对应一个FCB或inode</li>
+                            <li>文件名与FCB/inode的关联通过目录项实现</li>
+                            <li>文件名与文件内容是分开存储的</li>
+                        </ul>
+                        <p><strong>实例：</strong>硬链接就是多个文件名指向同一个inode，ln命令可以创建硬链接。</p>
+                        
+                        <h4>4.1.3 <strong>文件</strong>的逻辑结构</h4>
+                        <p><strong><strong>文件</strong>的逻辑结构：</strong></p>
+                        <p><strong>实例：</strong>就像文章可以按时间顺序、主题分类等方式组织。</p>
+                        
+                        <p><strong><strong>文件</strong>的逻辑结构类型：</strong></p>
+                        <ol>
+                                    <li><strong>顺序文件</strong>：
+                                <ul>
+                                    <li>文件中的记录按顺序排列</li>
+                                    <li>记录的物理顺序与逻辑顺序一致</li>
+                                    <li>优点：顺序访问效率高</li>
+                                    <li>缺点：插入、删除记录效率低</li>
+                                </ul>
+                            </li>
+                                    <li><strong>索引文件</strong>：
+                                <ul>
+                                    <li>为文件建立索引表，索引表中包含记录的关键字和对应记录的地址</li>
+                                    <li>优点：可以实现随机访问</li>
+                                    <li>缺点：需要额外的存储空间</li>
+                                </ul>
+                            </li>
+                                    <li><strong>直接文件</strong>：
+                                <ul>
+                                    <li>通过计算直接得到记录地址</li>
+                                    <li>优点：访问速度快</li>
+                                    <li>缺点：需要特定的计算方法</li>
+                                </ul>
+                            </li>
+                                    <li><strong>散列文件</strong>：
+                                <ul>
+                                    <li>使用散列函数将关键字映射到记录地址</li>
+                                    <li>优点：访问速度快</li>
+                                    <li>缺点：散列冲突</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p><strong>实例：</strong>数据库表可以是顺序文件（按ID排序存储）或索引文件（建立索引加快查询）。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.2 文件的物理结构</summary>
+                    <div>
+                        <h4>4.2.1 <strong>连续分配</strong></h4>
+                        <p><strong>定义：</strong><strong>文件</strong>的各个块在<strong>磁盘</strong>上连续存放</p>
+                        <p><strong>实例：</strong>就像DVD光盘上的视频文件，数据连续存储在光盘上。</p>
+                        
+                        <p><strong>优点：</strong></p>
+                        <ul>
+                            <li>顺序访问效率高</li>
+                            <li>实现简单</li>
+                        </ul>
+                        <p><strong>实例：</strong>播放音乐文件时，连续读取效率高，音质稳定。</p>
+                        
+                        <p><strong>缺点：</strong></p>
+                        <ul>
+                            <li>容易产生外部碎片</li>
+                            <li>文件大小固定，难以动态扩展</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像规划停车位时，大车占用了连续的几个车位，小车很难利用剩余的单个车位。</p>
+                        
+                        <p><strong>典型应用：</strong>早期操作系统中的文件系统</p>
+                        <p><strong>实例：</strong>MS-DOS的FAT16文件系统早期版本。</p>
+                        
+                        <h4>4.2.2 <strong>链接分配</strong></h4>
+                        <p><strong>定义：</strong><strong>文件</strong>的各个块通过指针链接</p>
+                        <p><strong>实例：</strong>就像寻宝游戏，每个线索指向下一个线索的位置。</p>
+                        
+                        <p><strong>实现方式：</strong></p>
+                        <ol>
+                            <li><strong>隐式链接</strong>：
+                                <ul>
+                                    <li>文件的每个块包含指向下一个块的指针</li>
+                                    <li>优点：简单</li>
+                                    <li>缺点：只能顺序访问，不能随机访问</li>
+                                </ul>
+                            </li>
+                            <li>显式链接：
+                                <ul>
+                                    <li>使用一个单独的链接表来存储文件块的地址</li>
+                                    <li>优点：可以随机访问</li>
+                                    <li>缺点：需要额外的存储空间</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p><strong>实例：</strong>FAT文件系统使用隐式链接；NTFS文件系统使用显式链接。</p>
+                        
+                        <p><strong>优点：</strong>无外部碎片</p>
+                        <p><strong>缺点：</strong>只能顺序访问（隐式链接）</p>
+                        <p><strong>实例：</strong>就像项链，每颗珠子都知道下一颗珠子在哪，但要找到中间某颗珠子需要从头数起。</p>
+                        
+                        <h4>4.2.3 <strong>索引分配</strong></h4>
+                        <p><strong>定义：</strong>使用<strong>索引表</strong>来存储<strong>文件</strong>块的地址</p>
+                        <p><strong>实例：</strong>就像书籍的目录，可以直接翻到指定章节。</p>
+                        
+                        <p><strong>实现方式：</strong></p>
+                        <ol>
+                            <li><strong>单级索引</strong>：
+                                <ul>
+                                    <li>为每个文件建立一个索引表</li>
+                                    <li>索引表中包含文件所有块的地址</li>
+                                    <li>优点：可以实现随机访问</li>
+                                    <li>缺点：索引表大小受限于块大小</li>
+                                </ul>
+                            </li>
+                            <li><strong>多级索引</strong>：
+                                <ul>
+                                    <li>为大文件建立多级索引表</li>
+                                    <li>例如：二级索引、三级索引</li>
+                                    <li>优点：可以支持大文件</li>
+                                    <li>缺点：实现复杂</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p><strong>实例：</strong>Unix/Linux的inode结构使用多级索引分配。</p>
+                        
+                        <p><strong>优点：</strong>可以实现随机访问</p>
+                        <p><strong>缺点：</strong>需要额外的存储空间</p>
+                        <p><strong>实例：</strong>就像图书馆的索引卡片系统，可以快速找到任何一本书的位置。</p>
+                        
+                        <div class="visualization">
+                            <h4>文件物理结构对比</h4>
+                            <pre>
+连续分配:
+┌─────────────────────────────────────────────┐
+│ 文件块1 │ 文件块2 │ 文件块3 │ 文件块4 │ 文件块5 │
+└─────────────────────────────────────────────┘
+优点：访问速度快，支持顺序和随机访问
+缺点：易产生外部碎片，文件大小难以动态扩展
+
+链接分配:
+┌───────┐    ┌───────┐    ┌───────┐    ┌───────┐
+│ 块1   │───▶│ 块2   │───▶│ 块3   │───▶│ 块4   │
+│ 数据  │    │ 数据  │    │ 数据  │    │ 数据  │
+│ 指针  │    │ 指针  │    │ 指针  │    │ NULL  │
+└───────┘    └───────┘    └───────┘    └───────┘
+优点：无外部碎片，文件可动态扩展
+缺点：只能顺序访问（隐式链接）
+
+索引分配:
+┌──────────┐    ┌─────────────────────────────┐
+│  索引块   │───▶│ 数据块1 │ 数据块2 │ 数据块3 │
+│ ┌─────┐  │    └─────────────────────────────┘
+│ │地址1│  │
+│ ├─────┤  │
+│ │地址2│  │
+│ ├─────┤  │
+│ │地址3│  │
+│ └─────┘  │
+└──────────┘
+优点：支持随机访问，无外部碎片
+缺点：需要额外存储空间
+                            </pre>
+                        </div>
+                        
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.3 目录管理</summary>
+                    <div>
+                        <h4>4.3.1 <strong>目录</strong>的基本概念</h4>
+                        <p><strong><strong>目录</strong>：</strong>用于存储文件名和<strong>文件控制块</strong>地址的结构</p>
+                        <p><strong>实例：</strong>就像图书馆的书架标签，标明各类书籍的位置。</p>
+                        <p><strong>目录项：</strong>目录中的一条记录，包含文件名和文件控制块地址</p>
+                        <p><strong>实例：</strong>就像通讯录中的每个人名和电话号码。</p>
+                        
+                        <p><strong><strong>目录</strong>结构：</strong></p>
+                        <ul>
+                            <li>一级目录：所有文件都在一个目录中</li>
+                            <li>二级目录：按用户分目录，每个用户有自己的目录</li>
+                            <li>树形目录：目录可以包含子目录，形成树形结构</li>
+                        </ul>
+                        <p><strong>实例：</strong>一级目录像小商店只有一个货架；二级目录像办公楼每层有一个文件柜；树形目录像大型超市分区域管理商品。</p>
+                        
+                        <div class="visualization">
+                            <h4>树形目录结构示意图</h4>
+                            <pre>
+                               根目录(/)
+                              /    |    \
+                         home    usr   var
+                        /  |  \    |     |
+                    user1 user2 bin  log  tmp
+                   /  |  \      |    |
+                 doc pic mus   cmd  syslog
+                 /              
+            report.txt          
+                            </pre>
+                            <p>说明：树形目录结构层次清晰，便于管理和组织文件</p>
+                        </div>
+                        
+                        <h4>4.3.2 <strong>树形目录结构</strong></h4>
+                        <p><strong>定义：</strong><strong>目录</strong>可以包含子<strong>目录</strong>，形成<strong>树形结构</strong></p>
+                        <p><strong>实例：</strong>Windows的文件夹结构、Unix/Linux的目录结构。</p>
+                        
+                        <p><strong>优点：</strong></p>
+                        <ul>
+                            <li>层次清晰，便于管理</li>
+                            <li>文件名可以重复，只要在不同目录下</li>
+                        </ul>
+                        <p><strong>实例：</strong>不同部门可以有同名的文件，因为它们在不同的文件夹中。</p>
+                        
+                        <p><strong>目录操作：</strong></p>
+                        <ul>
+                            <li>创建目录</li>
+                            <li>删除目录</li>
+                            <li>重命名目录</li>
+                            <li>列出目录内容</li>
+                        </ul>
+                        <p><strong>实例：</strong>mkdir、rmdir、mv、ls等命令。</p>
+                        
+                        <h4>4.3.3 <strong>文件共享</strong>与<strong>文件保护</strong></h4>
+                        <p><strong><strong>文件共享</strong>：</strong>多个用户或进程可以访问同一个文件</p>
+                        <p><strong>实例：</strong>企业内部的共享文档、开源项目的代码仓库。</p>
+                        
+                        <p><strong><strong>文件共享</strong>方式：</strong></p>
+                        <ul>
+                            <li><strong>硬链接</strong>：多个文件名指向同一个文件</li>
+                            <li>软链接：指向文件路径的符号链接</li>
+                        </ul>
+                        <p><strong>实例：</strong>ln命令创建硬链接；ln -s命令创建软链接。</p>
+                        
+                        <p><strong><strong>文件保护</strong>：</strong>防止未经授权的访问</p>
+                        <p><strong>实例：</strong>文件权限设置、密码保护、加密存储。</p>
+                        
+                        <p><strong><strong>文件保护</strong>机制：</strong></p>
+                        <ul>
+                            <li><strong>访问控制列表</strong>（ACL）</li>
+                            <li>用户权限管理</li>
+                            <li>文件加密</li>
+                        </ul>
+                        <p><strong>实例：</strong>chmod命令设置文件权限；Windows的NTFS权限控制。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.4 文件系统实现</summary>
+                    <div>
+                        <h4>4.4.1 <strong>文件系统</strong>的全局结构</h4>
+                        <p><strong><strong>外存</strong>结构：</strong></p>
+                        <ul>
+                            <li>引导块：用于启动系统</li>
+                            <li>超级块：包含文件系统信息</li>
+                            <li>i节点区：存储文件的元信息</li>
+                            <li>数据区：存储文件的实际内容</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像城市规划，有政府大楼（引导块）、城市地图（超级块）、居民户籍信息（i节点区）、居民住房（数据区）。</p>
+                        
+                        <p><strong><strong>内存</strong>结构：</strong></p>
+                        <ul>
+                            <li>文件控制块（FCB）</li>
+                            <li>系统打开文件表</li>
+                            <li>用户打开文件表</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像图书馆管理系统，有书籍基本信息（FCB）、馆藏清单（系统打开文件表）、读者借阅记录（用户打开文件表）。</p>
+                        
+                        <h4>4.4.2 <strong>外存</strong>空闲空间管理</h4>
+                        <p><strong><strong>空闲空间管理</strong>：</strong>跟踪和管理<strong>磁盘</strong>上的空闲块</p>
+                        <p><strong>实例：</strong>就像停车场管理员需要知道哪些车位是空闲的。</p>
+                        
+                        <p><strong><strong>空闲空间管理</strong>方法：</strong></p>
+                        <ul>
+                            <li><strong>位图法</strong>：用位图表示磁盘块的使用情况</li>
+                            <li><strong>空闲链表法</strong>：将空闲块链接成链表</li>
+                            <li><strong>成组链接法</strong>：将空闲块分组管理</li>
+                        </ul>
+                        <p><strong>实例：</strong>电影院座位管理系统，可以用座位图（位图法）、空座链表（空闲链表法）或分区管理（成组链接法）。</p>
+                        
+                        <h4>4.4.3 <strong>虚拟文件系统</strong>（VFS）</h4>
+                        <p><strong>定义：</strong>为不同类型的<strong>文件系统</strong>提供统一的接口</p>
+                        <p><strong>实例：</strong>就像USB接口，无论是什么品牌的U盘都能使用。</p>
+                        
+                        <p><strong>作用：</strong></p>
+                        <ul>
+                            <li>屏蔽不同文件系统的差异</li>
+                            <li>提供统一的文件操作接口</li>
+                            <li>支持多种文件系统并存</li>
+                        </ul>
+                        <p><strong>实例：</strong>Linux系统可以同时使用ext4、NTFS、FAT32等多种文件系统。</p>
+                        
+                        <p><strong><strong>文件系统</strong>挂载：</strong>将<strong>文件系统</strong>连接到<strong>目录树</strong>的过程</p>
+                        <p><strong>实例：</strong>mount命令挂载U盘到/mnt目录下。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.5 磁盘管理</summary>
+                    <div>
+                        <h4>4.5.1 <strong>磁盘</strong>结构</h4>
+                        <p><strong><strong>磁盘</strong>组成：</strong></p>
+                        <ul>
+                            <li>盘片：存储数据的介质</li>
+                            <li>磁头：读写数据的装置</li>
+                            <li>磁道：同心圆轨道</li>
+                            <li>扇区：磁道上的最小存储单位</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像黑胶唱片，有唱片面（盘片）、唱针（磁头）、同心圆纹路（磁道）、最小刻度（扇区）。</p>
+                        
+                        <h4>4.5.2 <strong>磁盘</strong>调度算法</h4>
+                        <p><strong>先来先服务（FCFS）：</strong></p>
+                        <ul>
+                            <li>按请求到达的顺序进行调度</li>
+                            <li>优点：实现简单</li>
+                            <li>缺点：平均寻道时间长</li>
+                        </ul>
+                        <p><strong>实例：</strong>银行排队办理业务，先到先服务。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('fcfs-scheduling-tip')">💡 学习提示</button>
+                            <div id="fcfs-scheduling-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>FCFS（First Come First Served）</strong> - "先来先服务"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："先来"、"先服务"、"队列"</li>
+                                    <li>联想记忆：食堂打饭排队，先来的先打饭</li>
+                                    <li>口诀："先来先服务，公平但效率低"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>最短寻道时间优先（SSTF）：</strong></p>
+                        <ul>
+                            <li>选择离当前磁头位置最近的请求</li>
+                            <li>优点：平均寻道时间短</li>
+                            <li>缺点：可能导致饥饿（某些请求一直得不到服务）</li>
+                        </ul>
+                        <p><strong>实例：</strong>外卖配送员选择距离当前位置最近的订单配送。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('sstf-scheduling-tip')">💡 学习提示</button>
+                            <div id="sstf-scheduling-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>SSTF（Shortest Seek Time First）</strong> - "最短寻道时间优先"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："最短"、"寻道"、"优先"</li>
+                                    <li>联想记忆：贪心算法，每次都选最近的</li>
+                                    <li>口诀："最短寻道时间优，贪心策略效率高"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>扫描算法（SCAN）：</strong></p>
+                        <ul>
+                            <li>磁头沿一个方向移动，处理沿途请求，到达边界后反向</li>
+                            <li>优点：公平性好，平均寻道时间较短</li>
+                            <li>缺点：边界请求响应时间较长</li>
+                        </ul>
+                        <p><strong>实例：</strong>电梯运行方式，先向上运行到顶楼，再向下运行到底楼。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('scan-scheduling-tip')">💡 学习提示</button>
+                            <div id="scan-scheduling-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>SCAN（扫描算法）</strong></p>
+                                <ul>
+                                    <li>关键词："扫描"、"来回"、"电梯"</li>
+                                    <li>联想记忆：电梯运行模式，到顶到底才转向</li>
+                                    <li>口诀："扫描算法像电梯，来回移动处理请求"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>循环扫描算法（C-SCAN）：</strong></p>
+                        <ul>
+                            <li>磁头只沿一个方向移动，到达边界后立即返回起点</li>
+                            <li>优点：响应时间均匀</li>
+                            <li>缺点：整体寻道时间略长</li>
+                        </ul>
+                        <p><strong>实例：</strong>观光电梯只向上运行到顶层，然后直接回到一楼重新开始。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('cscan-scheduling-tip')">💡 学习提示</button>
+                            <div id="cscan-scheduling-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>C-SCAN（Circular SCAN）</strong> - "循环扫描"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："循环"、"单向"、"循环"</li>
+                                    <li>联想记忆：单向循环电梯，到顶直接回底</li>
+                                    <li>口诀："循环扫描单方向，响应均匀效率稳"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong>LOOK算法：</strong></p>
+                        <ul>
+                            <li>SCAN算法的改进版，磁头移动到最远请求位置后反向</li>
+                            <li>优点：减少不必要的磁头移动</li>
+                            <li>缺点：实现稍复杂</li>
+                        </ul>
+                        <p><strong>实例：</strong>公交车只在有乘客上下车的站点停靠，不停靠空站点。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('look-scheduling-tip')">💡 学习提示</button>
+                            <div id="look-scheduling-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>LOOK算法</strong></p>
+                                <ul>
+                                    <li>关键词："看"、"请求"、"智能"</li>
+                                    <li>联想记忆：聪明的扫描，只看到有请求的地方才去</li>
+                                    <li>口诀："LOOK算法看得见，只去有请求的地方"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>4.5.3 <strong>磁盘</strong>可靠性</h4>
+                        <p><strong>可靠性措施：</strong></p>
+                        <ul>
+                            <li>冗余磁盘阵列（RAID）</li>
+                            <li>备份</li>
+                            <li>错误检测与纠正</li>
+                        </ul>
+                        <p><strong>实例：</strong>银行金库的多重保险门、数据备份到云端。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.6 文件操作</summary>
+                    <div>
+                        <h4>4.6.1 <strong>文件</strong>的打开与关闭</h4>
+                        <p><strong>打开<strong>文件</strong>：</strong></p>
+                        <ul>
+                            <li>检查访问权限</li>
+                            <li>将文件控制块读入内存</li>
+                            <li>返回文件描述符</li>
+                        </ul>
+                        <p><strong>实例：</strong>打开书本阅读，需要先检查是否有权限，然后翻到相关内容。</p>
+                        
+                        <p><strong>关闭<strong>文件</strong>：</strong></p>
+                        <ul>
+                            <li>将修改写回磁盘</li>
+                            <li>释放内存中的文件控制块</li>
+                        </ul>
+                        <p><strong>实例：</strong>合上书本，把笔记记录到书中。</p>
+                        
+                        <h4>4.6.2 <strong>文件</strong>的读写</h4>
+                        <p><strong>读<strong>文件</strong>：</strong></p>
+                        <ul>
+                            <li>指定文件描述符和读取位置</li>
+                            <li>从文件中读取数据</li>
+                        </ul>
+                        <p><strong>实例：</strong>读书时眼睛从指定页码开始阅读。</p>
+                        
+                        <p><strong>写<strong>文件</strong>：</strong></p>
+                        <ul>
+                            <li>指定文件描述符和写入位置</li>
+                            <li>向文件中写入数据</li>
+                        </ul>
+                        <p><strong>实例：</strong>写字时笔尖在指定位置书写。</p>
+                        
+                        <h4>4.6.3 <strong>文件</strong>的定位</h4>
+                        <p><strong>定位：</strong>指定<strong>文件</strong>读写的位置</p>
+                        <p><strong>实例：</strong>书签标记阅读位置。</p>
+                        
+                        <p><strong>定位<strong>方式</strong>：</strong></p>
+                        <ul>
+                            <li>顺序定位：从当前位置开始</li>
+                            <li>随机定位：指定具体位置</li>
+                        </ul>
+                        <p><strong>实例：</strong>播放器的进度条拖拽功能。</p>
+                        
+                        <h4>4.6.4 <strong>文件</strong>的删除</h4>
+                        <p><strong>删除：</strong></p>
+                        <ul>
+                            <li>从目录中删除文件项</li>
+                            <li>减少文件的链接数</li>
+                            <li>如果链接数为0，释放文件的存储空间</li>
+                        </ul>
+                        <p><strong>实例：</strong>删除快捷方式只是删除链接，删除原文件才真正释放空间。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.7 本章核心考点总结</summary>
+                    <div>
+                        <ol>
+                            <li><strong>文件</strong>的基本概念：
+                                <ul>
+                                    <li><strong>文件</strong>的定义、属性、分类</li>
+                                    <li><strong>文件</strong>名与<strong>文件</strong>内容的分离</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件控制块</strong>（FCB）和<strong>索引节点</strong>（inode）：
+                                <ul>
+                                    <li>FCB与inode的定义、区别</li>
+                                    <li>inode包含的内容</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件</strong>的逻辑结构：
+                                <ul>
+                                    <li>顺序<strong>文件</strong>、<strong>索引文件</strong>、直接<strong>文件</strong>、散列<strong>文件</strong>的特点和优缺点</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件</strong>的物理结构：
+                                <ul>
+                                    <li><strong>连续分配</strong>、<strong>链接分配</strong>（隐式/显式）、<strong>索引分配</strong>的特点和优缺点</li>
+                                </ul>
+                            </li>
+                            <li><strong>目录管理</strong>：
+                                <ul>
+                                    <li><strong>树形目录结构</strong></li>
+                                    <li><strong>目录</strong>操作（创建、删除、重命名、列出）</li>
+                                    <li><strong>硬链接</strong>与<strong>软链接</strong>的区别</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件共享</strong>与<strong>文件保护</strong>：
+                                <ul>
+                                    <li><strong>文件共享</strong>方式（<strong>硬链接</strong>、<strong>软链接</strong>、ACL）</li>
+                                    <li><strong>文件保护</strong>机制（权限位、用户组、ACL）</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件系统</strong>实现：
+                                <ul>
+                                    <li><strong>文件系统</strong>的全局结构（<strong>外存</strong>结构、<strong>内存</strong>结构）</li>
+                                    <li><strong>外存</strong>空闲空间管理（<strong>位图法</strong>、<strong>空闲链表法</strong>、<strong>成组链接法</strong>）</li>
+                                    <li><strong>虚拟文件系统</strong>（VFS）的作用</li>
+                                    <li><strong>文件系统</strong>挂载与卸载</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件</strong>操作：
+                                <ul>
+                                    <li><strong>文件</strong>的打开与关闭</li>
+                                    <li><strong>文件</strong>的读写</li>
+                                    <li><strong>文件</strong>的定位</li>
+                                    <li><strong>文件</strong>的删除</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <p><strong>实例总结：</strong></p>
+                        <ul>
+                            <li>文件系统像图书馆管理系统：书籍（文件）、书架（目录）、借阅卡（FCB/inode）、索引目录（索引表）</li>
+                            <li>文件存储像城市规划：连续分配像整栋楼、链接分配像连锁店、索引分配像购物中心</li>
+                            <li>目录管理像组织架构：树形结构、层级分明、职责明确</li>
+                            <li>文件操作像日常生活：打开（开门）、读写（查看/修改）、定位（找页码）、关闭（关门）</li>
+                        </ul>
+                        
+                        <p><strong>本章重要性：</strong>本章是操作系统考研的重点章节，涉及文件系统的核心概念和实现机制。理解本章内容，对掌握操作系统中文件管理的原理和实现具有重要意义。需要特别注意FCB/inode、文件的逻辑和物理结构、目录管理、文件共享与保护等核心知识点，这些是考研中经常出现的考点。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>4.8 本章难点与易错点</summary>
+                    <div>
+                        <ol>
+                            <li><strong>文件控制块</strong>（FCB）与<strong>索引节点</strong>（inode）的区别：
+                                <ul>
+                                    <li>FCB是通用概念，inode是类Unix系统中FCB的具体实现</li>
+                                    <li>inode不包含文件名，文件名存储在目录项中</li>
+                                </ul>
+                            </li>
+                            <li><strong>硬链接</strong>与<strong>软链接</strong>的区别：
+                                <ul>
+                                    <li><strong>硬链接</strong>：直接指向inode，不能跨<strong>文件系统</strong></li>
+                                    <li><strong>软链接</strong>：指向<strong>文件</strong>路径的符号链接，可以跨<strong>文件系统</strong></li>
+                                </ul>
+                            </li>
+                            <li><strong>文件</strong>的物理结构：
+                                <ul>
+                                    <li><strong>连续分配</strong>：<strong>顺序</strong>访问效率高，但容易产生外部碎片</li>
+                                    <li><strong>链接分配</strong>：无外部碎片，但只能<strong>顺序</strong>访问</li>
+                                    <li><strong>索引分配</strong>：可以实现<strong>随机</strong>访问，但需要额外存储空间</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件系统</strong>挂载：
+                                <ul>
+                                    <li>挂载点是<strong>文件系统</strong>连接到<strong>目录树</strong>的位置</li>
+                                    <li>挂载后，<strong>文件系统</strong>的内容可以通过挂载点访问</li>
+                                </ul>
+                            </li>
+                            <li><strong>文件保护</strong>机制：
+                                <ul>
+                                    <li>权限位（r、w、x）的含义</li>
+                                    <li>用户、组、其他用户的权限区别</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <p><strong>实例解析：</strong></p>
+                        <ul>
+                            <li>删除<strong>硬链接</strong><strong>文件</strong>：只有当链接数为0时，<strong>文件</strong>才真正被删除</li>
+                            <li><strong>软链接</strong>失效：<strong>原文件</strong>删除后，<strong>软链接</strong>变成"死链接"</li>
+                            <li>权限继承：子<strong>目录</strong>和<strong>文件</strong>通常继承父<strong>目录</strong>的权限设置</li>
+                            <li>挂载覆盖：挂载点原有内容在挂载期间被隐藏</li>
+                        </ul>
+                        
+                        <p><strong>本章重要性：</strong>本章是操作系统考研的重点章节，涉及文件系统的核心概念和实现机制。理解本章内容，对掌握操作系统中文件管理的原理和实现具有重要意义。需要特别注意FCB/inode、文件的逻辑和物理结构、目录管理、文件共享与保护等核心知识点，这些是考研中经常出现的考点。</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="key-points">
+                <h3>核心考点</h3>
+                <ul>
+                    <li><strong>文件控制块</strong>（FCB）与<strong>索引节点</strong>（inode）</li>
+                    <li><strong>文件</strong>物理结构</li>
+                    <li><strong>硬链接</strong>/<strong>软链接</strong></li>
+                    <li><strong>目录管理</strong></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 王道操作系统考研复习指导 - 学习网站</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Mermaid.js 支持 -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            mindmap: {
+                useMaxWidth: true,
+                padding: 20,
+                nodeSpacing: 60,
+                rankSpacing: 100
+            },
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryBorderColor: '#764ba2',
+                primaryTextColor: '#ffffff',
+                secondaryColor: '#a8dcfa',
+                secondaryBorderColor: '#8bc4f9',
+                secondaryTextColor: '#333333',
+                tertiaryColor: '#f5f7fa',
+                tertiaryBorderColor: '#e4edf9',
+                tertiaryTextColor: '#333333',
+                lineColor: '#667eea',
+                fontSize: 20
+            }
+        });
+    </script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>

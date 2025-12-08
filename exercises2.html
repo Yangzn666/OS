@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2章 进程管理 - 习题练习</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>第2章 进程管理</h1>
+            <p>习题练习</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="chapter1.html">第1章</a></li>
+                <li><a href="chapter2.html">第2章</a></li>
+                <li><a href="exercises2.html">第2章习题</a></li>
+                <li><a href="chapter3.html">第3章</a></li>
+                <li><a href="chapter4.html">第4章</a></li>
+                <li><a href="chapter5.html">第5章</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="exercises2" class="chapter">
+            <h2>第2章 进程管理 - 习题练习</h2>
+            
+            <div class="content">
+                <h3>2.1 单项选择题</h3>
+                <div>
+                    <div>
+                        <h4>题目1：</h4>
+                        <p><strong>下列情况中，可能导致<strong>死锁</strong>的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 进程释放资源</li>
+                            <li>B. 一个进程进入死循环</li>
+                            <li>C. 多个进程竞争资源出现了<strong>循环等待</strong></li>
+                            <li>D. 多个进程竞争使用共享型的设备</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-1-answer')">查看答案</button>
+                            <div id="q2-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：引起<strong>死锁</strong>的四个必要条件是：<strong>互斥</strong>、占有并等待、<strong>非剥夺</strong>和<strong>循环等待</strong>。本题中出现了<strong>循环等待</strong>现象，意味着可能导致<strong>死锁</strong>。进程释放资源不会导致<strong>死锁</strong>，进程自己进入死循环只能产生"饥饿"，不涉及其他进程。共享型设备允许多个进程申请使用，因此不会造成<strong>死锁</strong>。再次提醒，<strong>死锁</strong>一定要有两个或两个以上的进程才会导致，而饥饿可能由一个进程导致。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>在哲学家进餐问题中，若所有哲学家同时拿起左筷子，则会发生<strong>死锁</strong>，因为他们都需要右筷子才能用餐。为了让尽可能多的哲学家可以同时用餐，并且不发生<strong>死锁</strong>，可以利用信号量PV操作实现同步<strong>互斥</strong>。下列说法中正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 使用信号量进行控制的方法一定可以<strong>避免</strong><strong>死锁</strong></li>
+                            <li>B. 同时检查两支筷子是否可用的方法可以<strong>预防</strong><strong>死锁</strong>，但是会导致饥饿问题</li>
+                            <li>C. 限制允许拿起筷子的哲学家数量可以<strong>预防</strong><strong>死锁</strong>，它<strong>破坏</strong>了"<strong>循环等待</strong>"条件</li>
+                            <li>D. 对哲学家顺序编号，奇数号哲学家先拿左筷子，然后拿右筷子，而偶数号哲学家刚好相反，可以<strong>预防</strong><strong>死锁</strong>，它<strong>破坏</strong>了"<strong>互斥</strong>"条件</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-2-answer')">查看答案</button>
+                            <div id="q2-2-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：信号量机制能确保临界资源的<strong>互斥</strong>访问，不能完全<strong>避免</strong><strong>死锁</strong>，A错误。同时检查两支筷子是否可用的方法可以<strong>预防</strong><strong>死锁</strong>，但是会导致资源浪费，因为可能有一些空闲的筷子无法使用，但拿到筷子的哲学家用完餐后，释放筷子，其他哲学家就可以正常用餐，因此不会导致饥饿现象，B错误。若限制允许拿起筷子的哲学家数量，则不被允许的哲学家左边的哲学家一定可以拿到两边的筷子，从而<strong>破坏</strong>"<strong>循环等待</strong>"条件，C正确。对哲学家顺序编号，奇数号哲学家先拿左筷子，然后拿右筷子，而偶数号哲学家刚好相反，则相邻的哲学家总有一个可以拿起两边的筷子，但这<strong>破坏</strong>的是"<strong>循环等待</strong>"条件，而不是"<strong>互斥</strong>条件"，D错误。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目3：</h4>
+                        <p><strong>下列关于进程<strong>死锁</strong>的描述中，错误的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 如果每个进程只能同时申请或拥有一个资源，就不会发生<strong>死锁</strong></li>
+                            <li>B. 如果多个进程可以无冲突地共享访问所有资源，就不会发生<strong>死锁</strong></li>
+                            <li>C. 如果所有进程的执行严格区分优先级，就不会发生<strong>死锁</strong></li>
+                            <li>D. 如果进程资源请求之间不存在<strong>循环等待</strong>，就不会发生<strong>死锁</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-3-answer')">查看答案</button>
+                            <div id="q2-3-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：进程的执行优先级并不能<strong>破坏</strong><strong>死锁</strong>的四个必要条件。即使有高优先级和低优先级的进程，如果它们都请求或占有了不可抢占的资源，且形成了环路等待，那么<strong>死锁</strong>仍可能发生。A项可以<strong>破坏</strong><strong>请求并保持</strong>条件，B项可以<strong>破坏</strong><strong>互斥</strong>条件，D项可以<strong>破坏</strong><strong>循环等待</strong>条件。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目4：</h4>
+                        <p><strong>一次分配所有资源的方法可以<strong>预防</strong><strong>死锁</strong>的发生，它<strong>破坏</strong><strong>死锁</strong> 4 个必要条件中的（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>互斥</strong></li>
+                            <li>B. 占有并请求</li>
+                            <li>C. <strong>非剥夺</strong></li>
+                            <li>D. <strong>循环等待</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-4-answer')">查看答案</button>
+                            <div id="q2-4-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：发生<strong>死锁</strong>的4个必要条件：<strong>互斥</strong>、占有并请求、<strong>非剥夺</strong>和<strong>循环等待</strong>。一次分配所有资源的方法是当进程需要资源时，一次性提出所有的请求。若请求的所有资源均满足则分配，只要有一项不满足，就不分配任何资源，该进程阻塞，直到所有的资源空闲后，满足进程的所有需求时再分配。这种分配方式不会部分地占有资源，因此打破了<strong>死锁</strong>的4个必要条件之一，实现了对<strong>死锁预防</strong>。但是，这种分配方式需要事先知道所有资源，因此当一个进程所需的资源较多时，资源的利用率较低，甚至会造成进程"饥饿"。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目5：</h4>
+                        <p><strong>系统产生<strong>死锁</strong>的可能原因是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 独占资源分配不当</li>
+                            <li>B. 系统资源不足</li>
+                            <li>C. 进程运行太快</li>
+                            <li>D. CPU 内核太多</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-5-answer')">查看答案</button>
+                            <div id="q2-5-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：系统<strong>死锁</strong>的可能原因主要是时间上和空间上的。时间上由于进程运行中推进顺序不当，即调度时机不合适，不该切换进程时进行了切换，可能会造成<strong>死锁</strong>；空间上的原因是对独占资源分配不当，<strong>互斥</strong>资源部分分配又不可剥夺，极易造成<strong>死锁</strong>。那么，为什么系统资源不足只会是造成<strong>死锁</strong>的原因呢？系统资源不足只会让进程造成"饥饿"。例如，某系统只有三台打印机，若进程运行中要申请四台，显然不能满足，该进程会永远等待下去。若该进程在创建时便声明需要四台打印机，则操作系统立即就会拒绝，这实际上是资源分配不当的一种表现。不能以系统资源不足来描述剩余资源不足的情形。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目6：</h4>
+                        <p><strong><strong>死锁避免</strong>是根据（ ）采取措施实现的。</strong></p>
+                        <ul>
+                            <li>A. 配置足够的系统资源</li>
+                            <li>B. 使进程的推进顺序合理</li>
+                            <li>C. <strong>破坏</strong><strong>死锁</strong>的四个必要条件之一</li>
+                            <li>D. 防止系统进入不<strong>安全状态</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-6-answer')">查看答案</button>
+                            <div id="q2-6-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：<strong>死锁避免</strong>是指在资源动态分配过程中用某些算法加以限制，防止系统进入不<strong>安全状态</strong>从而<strong>避免</strong><strong>死锁</strong>的发生。选项B是<strong>避免</strong><strong>死锁</strong>后的结果，而不是措施的原理。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目7：</h4>
+                        <p><strong><strong>死锁预防</strong>是保证系统不进入<strong>死锁</strong>状态的静态策略，其解决办法是<strong>破坏</strong>系统产生<strong>死锁</strong>的四个必要条件之一。下列方法中<strong>破坏</strong>了"<strong>循环等待</strong>"条件的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>银行家算法</strong></li>
+                            <li>B. 剥夺资源法</li>
+                            <li>C. 资源有序分配策略</li>
+                            <li>D. <strong>资源分配图</strong>化简法</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-7-answer')">查看答案</button>
+                            <div id="q2-7-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：资源有序分配策略可以限制<strong>循环等待</strong>条件的发生。选项A判断是否为不<strong>安全状态</strong>；选项B<strong>破坏</strong>了占有并请求条件；选项C<strong>破坏</strong>了<strong>循环等待</strong>条件。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目8：</h4>
+                        <p><strong>可以防止系统出现<strong>死锁</strong>的手段是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 用 PV 操作管理共享资源</li>
+                            <li>B. 使进程<strong>互斥</strong>地使用共享资源</li>
+                            <li>C. 采用资源静态分配策略</li>
+                            <li>D. 定时运行<strong>死锁检测</strong>程序</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-8-answer')">查看答案</button>
+                            <div id="q2-8-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：PV操作不能<strong>破坏</strong><strong>死锁</strong>条件，反而可能加强<strong>互斥</strong>和占有并等待条件。B项同理。C项可以<strong>破坏</strong><strong>请求并保持</strong>条件。D项只能在系统出现<strong>死锁</strong>时<strong>检测</strong>，却不能防止系统出现<strong>死锁</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目9：</h4>
+                        <p><strong>某系统中有三个并发进程都需要四个同类资源，则该系统必然不会发生<strong>死锁</strong>的最少资源是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 9</li>
+                            <li>B. 10</li>
+                            <li>C. 11</li>
+                            <li>D. 12</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-9-answer')">查看答案</button>
+                            <div id="q2-9-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：资源数为9时，存在三个进程都占有三个资源，为<strong>死锁</strong>；资源数为10时，必然存在一个进程能拿到4个资源，然后可以顺利执行完其他进程。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目10：</h4>
+                        <p><strong>某系统中共有 11 台磁带机，X 个进程共享这些磁带机设备，每个进程最多请求使用 3 台，则系统必然不会<strong>死锁</strong>的最大 X 值是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 4</li>
+                            <li>B. 5</li>
+                            <li>C. 6</li>
+                            <li>D. 7</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-10-answer')">查看答案</button>
+                            <div id="q2-10-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：考虑一下极端情况：每个进程已经分配了两台磁带机，那么其中任何一个进程只要再分配一台磁带机即可满足它的最大需求，该进程总能运行下去直到结束，然后将磁带机归还给系统再分配给其他进程使用。因此，系统中只要满足2X+1=11这个条件即可认为系统不会<strong>死锁</strong>，解得X=5，也就是说，系统中最多可以并发5个这样的进程是不会<strong>死锁</strong>的。或者，根据<strong>死锁</strong>公式，资源数大于进程个数乘以"每个进程需要的最大资源数减1"就不会发生<strong>死锁</strong>，即m>n×(w-1)，其中m是磁带机的数量，n是进程的数量，w是每个进程最多请求的磁带机数量。代入可得11>n×(3-1)，即n<5.5，n是正整数，因此系统必然不会<strong>死锁</strong>的最大n值是5。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目11：</h4>
+                        <p><strong>若系统中有 5 个某类资源供若干进程共享，则不会引起<strong>死锁</strong>的情况是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 有 6 个进程，每个进程需 1 个资源</li>
+                            <li>B. 有 5 个进程，每个进程需 2 个资源</li>
+                            <li>C. 有 4 个进程，每个进程需 3 个资源</li>
+                            <li>D. 有 3 个进程，每个进程需 4 个资源</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-11-answer')">查看答案</button>
+                            <div id="q2-11-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：A项的每个进程只申请一个资源，<strong>破坏</strong>了<strong>请求并保持</strong>条件，必然不会发生<strong>死锁</strong>。或者，根据<strong>死锁</strong>公式，假设系统共有m个资源，n个进程，每个进程需要k个资源，若满足m>n×(k-1)，则系统一定不会发生<strong>死锁</strong>，代入公式可知B、C、D项均可能发生<strong>死锁</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目12：</h4>
+                        <p><strong>解除<strong>死锁</strong>通常不采用的方法是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 终止一个<strong>死锁</strong>进程</li>
+                            <li>B. 终止所有<strong>死锁</strong>进程</li>
+                            <li>C. 从<strong>死锁</strong>进程处抢夺资源</li>
+                            <li>D. 从非<strong>死锁</strong>进程处抢夺资源</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-12-answer')">查看答案</button>
+                            <div id="q2-12-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：解除<strong>死锁</strong>的方法有：①剥夺资源法：挂起某些<strong>死锁</strong>进程，并抢夺占它的资源，将这些资源分配给其他的<strong>死锁</strong>进程；②撤销进程法：强制撤销部分甚至全部<strong>死锁</strong>进程并剥夺这些进程的资源。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目13：</h4>
+                        <p><strong>采用资源剥夺法可以解除<strong>死锁</strong>，还可以采用（ ）方法解除<strong>死锁</strong>。</strong></p>
+                        <ul>
+                            <li>A. 执行并行操作</li>
+                            <li>B. 撤销进程</li>
+                            <li>C. 拒绝分配新资源</li>
+                            <li>D. 修改信号量</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-13-answer')">查看答案</button>
+                            <div id="q2-13-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：资源剥夺法允许一个进程强行剥夺其他进程所占有的系统资源。而撤销进程强行释放一个进程已占有的系统资源，与资源剥夺法同理，都通过<strong>破坏</strong><strong>死锁</strong>的"请求和保持"条件来解除<strong>死锁</strong>。拒绝分配新资源只能维持<strong>死锁</strong>的现状，无法解除<strong>死锁</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目14：</h4>
+                        <p><strong>在下列<strong>死锁</strong>的解决方法中，属于<strong>死锁预防</strong>策略的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>银行家算法</strong></li>
+                            <li>B. 资源有序分配算法</li>
+                            <li>C. <strong>死锁检测</strong>算法</li>
+                            <li>D. <strong>资源分配图</strong>化简法</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-14-answer')">查看答案</button>
+                            <div id="q2-14-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：其中，<strong>银行家算法</strong>为<strong>死锁避免</strong>算法，<strong>死锁检测</strong>算法和<strong>资源分配图</strong>化法为<strong>死锁检测</strong>。根据排除法可以得出资源有序分配算法为<strong>死锁预防</strong>策略。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目15：</h4>
+                        <p><strong>三个进程共享四个同类资源，这些资源的分配与释放只能一次一个。已知每个进程最多需要两个同类资源，则该系统（ ）。</strong></p>
+                        <ul>
+                            <li>A. 有些进程可能永远得不到该类资源</li>
+                            <li>B. 必然有<strong>死锁</strong></li>
+                            <li>C. 进程请求该类资源必然能得到</li>
+                            <li>D. 必然是<strong>死锁</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-15-answer')">查看答案</button>
+                            <div id="q2-15-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：不会发生<strong>死锁</strong>。因为每个进程都分得一个资源时，还有一个资源可以让任意一个进程满足，这样这个进程可以顺利运行完成进而释放它的资源。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目16：</h4>
+                        <p><strong>以下有关<strong>资源分配图</strong>的描述中，正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 有向边包括进程指向资源类的分配边和资源类指向进程中请边两类</li>
+                            <li>B. 矩形框表示进程，其中圆点表示申请同一类资源的各个进程</li>
+                            <li>C. 圆圆节点表示资源类</li>
+                            <li>D. <strong>资源分配图</strong>是一个有向图，用于表示某时刻系统资源与进程之间的状态</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-16-answer')">查看答案</button>
+                            <div id="q2-16-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：进程指向资源的有向边称为申请边，资源指向进程的有向边称为分配边，A选项张冠李戴；矩形框表示资源，其中的圆点表示资源的数目，选项B错；圆圈节点表示进程，选项C错；选项D的说法是正确的。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目17：</h4>
+                        <p><strong><strong>死锁</strong>的四个必要条件中，无法<strong>破坏</strong>的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 环路等待资源</li>
+                            <li>B. <strong>互斥</strong>使用资源</li>
+                            <li>C. 占有且等待资源</li>
+                            <li>D. <strong>非剥夺</strong>式分配</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-17-answer')">查看答案</button>
+                            <div id="q2-17-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：所谓<strong>破坏</strong><strong>互斥</strong>使用资源，是指允许多个进程同时访问资源，但有些资源根本不能同时访问，如打印机只能<strong>互斥</strong>使用。因此，<strong>破坏</strong><strong>互斥</strong>条件而<strong>预防</strong><strong>死锁</strong>的方法不太可行，而且在有的场合应该保护这种<strong>互斥</strong>性。其他三个条件都可以实现。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目18：</h4>
+                        <p><strong><strong>死锁</strong>与<strong>安全状态</strong>的关系是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>死锁</strong>状态有可能是<strong>安全状态</strong></li>
+                            <li>B. <strong>安全状态</strong>有可能成为<strong>死锁</strong>状态</li>
+                            <li>C. 不<strong>安全状态</strong>就是<strong>死锁</strong>状态</li>
+                            <li>D. <strong>死锁</strong>状态一定是不<strong>安全状态</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-18-answer')">查看答案</button>
+                            <div id="q2-18-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：如下图所示，并非所有不<strong>安全状态</strong>都是<strong>死锁</strong>状态，但当系统进入不<strong>安全状态</strong>后，便可能进入<strong>死锁</strong>状态；反之，只要系统处于<strong>安全状态</strong>，系统便可<strong>避免</strong>进入<strong>死锁</strong>状态；<strong>死锁</strong>状态必定是不<strong>安全状态</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目19：</h4>
+                        <p><strong><strong>死锁检测</strong>时检验的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 资源有向图</li>
+                            <li>B. 前趋图</li>
+                            <li>C. 搜索树</li>
+                            <li>D. 安全图</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-19-answer')">查看答案</button>
+                            <div id="q2-19-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：<strong>死锁检测</strong>一般采用两种方法：资源有向图法和资源矩阵法。前驱图只是说明进程之间的同步关系，搜索树用于数据结构的分析，安全图并不存在。注意<strong>死锁避免</strong>和<strong>死锁检测</strong>的区别：<strong>死锁避免</strong>是指<strong>避免</strong><strong>死锁</strong>发生，即<strong>死锁</strong>没有发生；<strong>死锁检测</strong>是指<strong>死锁</strong>已出现，要把它<strong>检测</strong>出来。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目20：</h4>
+                        <p><strong>某个系统采用下列资源分配策略。若一个进程提出资源请求得不满足，而此时没有由于等待资源而被阻塞的进程，则自己就被阻塞。而当此时已有等待资源而被阻塞的进程，则检查所有由于等待资源而被阻塞的进程。若它们中有申请进程所需要的资源，则将这些资源取出并分配给申请进程。这种分配策略会导致（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>死锁</strong></li>
+                            <li>B. 颠簸</li>
+                            <li>C. 回退</li>
+                            <li>D. 饥饿</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-20-answer')">查看答案</button>
+                            <div id="q2-20-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：某个进程主动释放资源不会导致<strong>死锁</strong>，因为<strong>破坏</strong>了<strong>请求并保持</strong>条件，选项A错。颠簸也就是抖动，这是请求分页系统中页面调度不当而导致的现象，是下一章讨论的问题，这里权且断定选项B是错的。回退是指从此时刻的状态回到一分钟之前的状态，假如一分钟之前拥有资源X，它有可能释放了资源X，那就不称回到一分钟之前的状态，也就不是回退，选项C错。由于进程过于"慷慨"，不断把自己已得到的资源送给别人，导致自己长期无法完成，所以是饥饿，选项D对。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目21：</h4>
+                        <p><strong>系统的<strong>资源分配图</strong>在下列情况下，无法判断是否处于<strong>死锁</strong>状态的有（ ）。</strong></p>
+                        <p><strong>I. 出现了环路</strong></p>
+                        <p><strong>II. 没有环路</strong></p>
+                        <p><strong>III. 每种资源只有一个，并出现环路</strong></p>
+                        <p><strong>IV. 每个进程节点至少有一条请求边</strong></p>
+                        <ul>
+                            <li>A. I、II、III、IV</li>
+                            <li>B. I、III、IV</li>
+                            <li>C. I、IV</li>
+                            <li>D. 以上答案都不正确</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-21-answer')">查看答案</button>
+                            <div id="q2-21-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：出现了环路，只是满足了<strong>循环等待</strong>的必要条件，而满足必要条件不一定会导致<strong>死锁</strong>，I对；没有环路，<strong>破坏</strong>了<strong>循环等待</strong>条件，一定不会发生<strong>死锁</strong>，II错；每种资源只有一个，又出现了环路，这是<strong>死锁</strong>的充分条件，可以确定是否有<strong>死锁</strong>，III错；即使每个进程至少有一条请求边，若资源足够，则不会发生<strong>死锁</strong>，但若资源不充足，则有发生<strong>死锁</strong>的可能，IV对。综上所述，选择选项C。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目22：</h4>
+                        <p><strong>下列关于<strong>死锁</strong>的说法中，正确的有（ ）。</strong></p>
+                        <p><strong>I. <strong>死锁</strong>状态一定是不<strong>安全状态</strong></strong></p>
+                        <p><strong>II. 产生<strong>死锁</strong>的根本原因是系统资源分配不足和进程推进顺序非法</strong></p>
+                        <p><strong>III. 资源的有序分配策略可以<strong>破坏</strong><strong>死锁</strong>的<strong>循环等待</strong>条件</strong></p>
+                        <p><strong>IV. 采用资源剥夺法可以解除<strong>死锁</strong>，还可以采用撤销进程方法解除<strong>死锁</strong></strong></p>
+                        <ul>
+                            <li>A. I、III</li>
+                            <li>B. II</li>
+                            <li>C. IV</li>
+                            <li>D. 四个说法都对</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-22-answer')">查看答案</button>
+                            <div id="q2-22-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：I正确：见16题答案解析图。II正确：这是产生<strong>死锁</strong>的两大原因。III正确：在对资源进行有序分配时，进程间不可能出现环链，即不会出现<strong>循环等待</strong>。IV正确：资源剥夺法允许一个进程强行剥夺其他进程占有的系统资源。而撤销进程强行释放一个进程已占有的系统资源，与资源剥夺法同理，都通过<strong>破坏</strong><strong>死锁</strong>的"请求和保持"条件来解除<strong>死锁</strong>，所以选D。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目23：</h4>
+                        <p><strong>下面是并发进程的程序代码，正确的是（ ）。</strong></p>
+                        <pre><code>Semaphore x1=x2=y=1;
+int c1=c2=0;
+
+P1() {
+    while(1) {
+        P(x1);
+        if (++c1==1) P(y);
+        V(x1);
+    
+
+P2() {
+    while(1) {
+        P(x2);
+        if (++c2==1) P(y);
+        V(x2);
+    
+}</code></pre>
+                        <ul>
+                            <li>A. 进程不会<strong>死锁</strong>，也不会"饥饿"</li>
+                            <li>B. 进程不会<strong>死锁</strong>，但是会"饥饿"</li>
+                            <li>C. 进程会<strong>死锁</strong>，但是不会"饥饿"</li>
+                            <li>D. 进程会<strong>死锁</strong>，也会"饥饿"</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-23-answer')">查看答案</button>
+                            <div id="q2-23-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：遇到这种问题千万不要慌张，下面我们来慢慢分析，给读者一个清晰的解题过程：仔细考察程序代码，可以看出这是一个扩展的单行线问题。也就是说，某单行线只允许单方向的车辆通过，在单行线的入口设置信号量y，在告示牌上显示某一时刻各方来车的数量c1和c2，要修改告示牌上的车辆数量必须<strong>互斥</strong>进行，为此设置信号量x1和x2。若某方向的车辆需要通过时，首先先将该方向来车数量c1或c2增加1，并查看自己是否是第一个进入单行线的车辆，若是，则获取单行线的信号量y，并进入单行线。通过此路段以后出单行线时，将该方向的车辆数c1或c2减1（当然是利用x1或x2来<strong>互斥</strong>修改），并查看自己是否是最后一辆车，若是，则释放单行线的<strong>互斥</strong>量y，否则保留信号量y，让后继车辆继续通过。双方的操作如出一辙。考虑到现有一个极端情况，即当某方向的车辆首先占据单行线并后来者络绎不绝时，另一个方向的车辆就再也没有机会通过该单行线了。而这种情况是由于算法本身的缺陷造成的，不属于因为特殊序列造成的饥饿，所以它是真正的饥饿现象。由于有信号量的控制，因此<strong>死锁</strong>的可能性没有了（双方同时进入单行线，在中间相遇，造成双方均无法通过的情形）。①假设P₁进程稍快，P₂进程稍慢，同时运行；②P₁进程首先进入if条件语句，因此获得了y的<strong>互斥</strong>访问权，P₂被阻塞；③在第一个P₁进程未释放y之前，又有另一个P₁进入，c1的值变成2，当第一个P₁离开时，P₂仍然被阻塞，这种情形不断发生；④在这种情况下会发生什么事？P₁顺利执行，P₂很郁闷，长期被阻塞。综上所述，不会发生<strong>死锁</strong>，但会出现饥饿现象。因此选B。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目24：</h4>
+                        <p><strong>有两个并发进程，对于如下这段程序的运行，正确的说法是（ ）。</strong></p>
+                        <pre><code>P1() {
+    while(1) {
+        x=1;
+        y=0;
+        if (x>=1) then y=y+1;
+        z=y;
+    
+
+P2() {
+    while(1) {
+        x=0;
+        t=0;
+        if (x<=1) then t=t+2;
+        u=t;
+    
+}</code></pre>
+                        <ul>
+                            <li>A. 程序能正确运行，结果唯一</li>
+                            <li>B. 程序不能正确运行，可能有两种结果</li>
+                            <li>C. 程序不能正确运行，结果不确定</li>
+                            <li>D. 程序不能正确运行，可能会<strong>死锁</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-24-answer')">查看答案</button>
+                            <div id="q2-24-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：本题中两个进程不能正确地工作，运行结果的可能性详见下面的说明。</p>
+                                <p>1. x = 1;</p>
+                                <p>2. y = 0;</p>
+                                <p>3. If x >= 1 then y = y + 1;</p>
+                                <p>4. z = y;</p>
+                                <p>5. x = 0;</p>
+                                <p>6. t = 0;</p>
+                                <p>7. if x <= 1 then t = t + 2;</p>
+                                <p>8. u = t;</p>
+                                <p>不确定的原因是由于使用了公共变量x，考查程序中与变量x有关的语句共四处，执行的顺序是1→2→3→4→5→6→7→8时，结果是y=1, z=1, t=2, u=2, x=0；并发执行过程是1→2→5→6→3→4→7→8时，结果是y=0, z=0, t=2, u=2, x=0；执行的顺序是5→6→7→8→1→2→3→4时，结果是y=1, z=1, t=2, u=2, x=1；执行的顺序是5→6→1→2→7→8→3→4时，结果是y=1, z=1, t=2, u=2, x=1。可见结果有多种可能性。</p>
+                                <p>很明显，无论执行顺序如何，x的结果只能是0或1，因此语句7的条件一定成立，即t=u=2的结果是一定的。而y=z必定成立，只可能出现x=1,y=z=0的情况，所以总共只有3种结果（答案中的3种）。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目25：</h4>
+                        <p><strong>一个进程在获得资源后，只能在使用完资源后由自己释放。这属于<strong>死锁</strong>必要条件中的（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>互斥</strong>条件</li>
+                            <li>B. 请求和释放条件</li>
+                            <li>C. 不剥夺条件</li>
+                            <li>D. 防止系统进入不<strong>安全状态</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-25-answer')">查看答案</button>
+                            <div id="q2-25-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：一个进程在获得资源后，只能在使用完资源后由自己释放，即它的资源不能被系统剥夺，答案为C选项。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目26：</h4>
+                        <p><strong>假设有 5 个进程的进程集合 P = {P₀, P₁, P₂, P₃, P₄}，系统中有三类资源 A, B, C，假设在某时刻有如下状态，见下表。</strong></p>
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th colspan="3">Allocation</th>
+                                <th colspan="3">Max</th>
+                                <th colspan="3">Available</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>P₀</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>x</td>
+                                <td>y</td>
+                                <td>z</td>
+                            </tr>
+                            <tr>
+                                <td>P₁</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>7</td>
+                                <td>5</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>P₂</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>P₃</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>6</td>
+                                <td>4</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>P₄</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <p><strong>请问当 x,y,z 取下列哪些值时，系统是处于<strong>安全状态</strong>的？</strong></p>
+                        <p><strong>I. 1,4,0</strong></p>
+                        <p><strong>II. 0,6,2</strong></p>
+                        <p><strong>III. 1,1,1</strong></p>
+                        <p><strong>IV. 0,4,7</strong></p>
+                        <ul>
+                            <li>A. I、II、IV</li>
+                            <li>B. I、II</li>
+                            <li>C. 仅 I</li>
+                            <li>D. I、III</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-26-answer')">查看答案</button>
+                            <div id="q2-26-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：</p>
+                                <p>$$
+\text{Need} = \text{Max} - \text{Allocation} =
+\begin{bmatrix}
+0 & 0 & 4 \\
+1 & 7 & 5 \\
+2 & 3 & 5 \\
+0 & 6 & 4 \\
+0 & 6 & 5
+\end{bmatrix}
+\begin{bmatrix}
+0 & 0 & 3 \\
+1 & 3 & 5 \\
+1 & 3 & 5 \\
+0 & 0 & 2 \\
+0 & 0 & 1
+\end{bmatrix}
+
+\begin{bmatrix}
+0 & 0 & 1 \\
+0 & 4 & 0 \\
+1 & 0 & 0 \\
+0 & 6 & 2 \\
+0 & 6 & 4
+\end{bmatrix}
+$$</p>
+                                <p>I: 根据need矩阵可知，当Available为(1, 4, 0)时，可满足P₂的需求；P₂结束后释放资源，Available为(2, 7, 5)可以满足P₀、P₁、P₃、P₄中任意一个进程的需求，所以系统不会出现<strong>死锁</strong>，处于<strong>安全状态</strong>。II: 当Available为(0, 6, 2)时，仅可以满足进程4的需求；P₄结束并释放后，这两个进程结束后释放资源，Available为(0, 6, 7)，此时不能满足余下任意一个进程的需求，因此当前处在非<strong>安全状态</strong>。III: 当Available为(1, 1, 1)时，可以满足进程P₀、P₃的需求；这两个进程结束后释放资源，Available为(2, 4, 9)，此时不能满足余下任意一个进程的需求，处于非<strong>安全状态</strong>。IV: 当Available为(0, 4, 7)时，可以满足P₀的需求，进程结束后释放资源，Available为(0, 4, 10)，此时不能满足余下任意一个进程的需求，处于非<strong>安全状态</strong>。综上分析：只有I处于<strong>安全状态</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目27：</h4>
+                        <p><strong><strong>死锁</strong>定理是用于处理<strong>死锁</strong>的（ ）方法。</strong></p>
+                        <ul>
+                            <li>A. <strong>预防</strong><strong>死锁</strong></li>
+                            <li>B. <strong>避免</strong><strong>死锁</strong></li>
+                            <li>C. <strong>检测</strong><strong>死锁</strong></li>
+                            <li>D. 解除<strong>死锁</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-27-answer')">查看答案</button>
+                            <div id="q2-27-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>死锁</strong>定理是用于<strong>检测</strong><strong>死锁</strong>的方法。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目28：</h4>
+                        <p><strong>某系统有 m 个同类资源供 n 个进程共享，若每个进程最多申请 k 个资源(k>1)，采用<strong>银行家算法</strong>分配资源，为保证系统不发生<strong>死锁</strong>，则各进程的最大需求量之和应（ ）。</strong></p>
+                        <ul>
+                            <li>A. 等于 m</li>
+                            <li>B. 等于 m+n</li>
+                            <li>C. 小于 m+n</li>
+                            <li>D. 大于 m+n</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-28-answer')">查看答案</button>
+                            <div id="q2-28-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：按照<strong>银行家算法</strong>，只要保证系统中进程申请的最大资源数小于或等于m，就一定存在一个安全序列。考虑最极端的情况，假如有n-1个进程都申请了1个资源，剩下一个进程申请了m个资源，则各进程的最大需求量之和为m+n-1，此时能保证一定不会发生<strong>死锁</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目29：</h4>
+                        <p><strong>采用<strong>银行家算法</strong>可以<strong>避免</strong><strong>死锁</strong>的发生，这是因为该算法（ ）。</strong></p>
+                        <ul>
+                            <li>A. 可以抢先分配资源</li>
+                            <li>B. 能及时为各进程分配资源</li>
+                            <li>C. 任何时刻都能保证每个进程可以得到所需的资源</li>
+                            <li>D. 任何时刻都能保证至少有一个进程可以得到所需的全部资源</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-29-answer')">查看答案</button>
+                            <div id="q2-29-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：任何时刻都能保证至少有一个进程可以得到所需的全部资源，这意味着<strong>银行家算法</strong>可以保证系统中至少存在一个安全序列，使每个进程都能按该顺序得到所需的全部资源并正常结束，不会出现<strong>死锁</strong>的情况。这也是<strong>银行家算法</strong><strong>避免</strong><strong>死锁</strong>的核心思想。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目30：</h4>
+                        <p><strong>用<strong>银行家算法</strong><strong>避免</strong><strong>死锁</strong>时，<strong>检测</strong>到（ ）时才分配资源。</strong></p>
+                        <ul>
+                            <li>A. 进程首次申请资源时对资源的最大需求超过系统现存的资源量</li>
+                            <li>B. 进程已占有的资源数与本次申请的资源数之和超过对资源的最大需求量</li>
+                            <li>C. 进程已占有的资源数与本次申请的资源数之和不超过对资源的最大需求量，且现存资源量能满足尚需的最大资源量</li>
+                            <li>D. 进程已占有的资源数与本次申请的资源数之和不超过对资源的最大需求量，且现存资源量能满足本次申请量，但不能满足尚需的最大资源量</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-30-answer')">查看答案</button>
+                            <div id="q2-30-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>银行家算法</strong>要求，进程运行之前先声明它对各类资源的最大需求数，并保证它在任何时刻对每类资源的请求量不超过它所声明的最大需求数量。当进程已占有的资源数与本次申请的资源数之和不超过对资源的最大需求数量，且现存资源量能满足尚需的最大资源量时，才分配资源。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目31：</h4>
+                        <p><strong>下列各种方法中，可用于解除已发生<strong>死锁</strong>的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 撤销部分或全部<strong>死锁</strong>进程</li>
+                            <li>B. 剥夺部分或全部<strong>死锁</strong>进程的资源</li>
+                            <li>C. 降低部分或全部<strong>死锁</strong>进程的优先级</li>
+                            <li>D. A 和 B 都可以</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-31-answer')">查看答案</button>
+                            <div id="q2-31-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：解除<strong>死锁</strong>的方法有两种：撤销<strong>死锁</strong>进程和剥夺<strong>死锁</strong>进程的资源。降低<strong>死锁</strong>进程的优先级是无效的方法，因为它不能改变<strong>死锁</strong>进程对资源的需求和占有，也不能打破<strong>循环等待</strong>条件。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目32：</h4>
+                        <p><strong>【2009 统考真题】某计算机系统中有 8 台打印机，由 K 个进程竞争使用，每个进程最多需要 3 台打印机。该系统可能会发生<strong>死锁</strong>的 K 的最小值是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 2</li>
+                            <li>B. 3</li>
+                            <li>C. 4</li>
+                            <li>D. 5</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-32-answer')">查看答案</button>
+                            <div id="q2-32-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：这类题可用到组合数学中鸽巢原理的思想。考虑最极端的情况，因为每个进程最多需要3台打印机，若每个进程已经占有了2台打印机，则还要有多的打印机，总能满足一个进程达到3台的条件，然后顺利执行，所以可以将8台打印机给K个进程，每个进程有2台打印机，这个情况就是极端情况，K为4。或者，假设M是打印机的数量，K是进程的数量，R是每个进程最多需要打印机的数量。根据<strong>死锁</strong>公式式推可得，若M≤K×(R-1)，则系统可能发生<strong>死锁</strong>。将本题的数据代入，得到8≤K×(3-1)，即K≥4，因此系统可能发生<strong>死锁</strong>的K的最小值是4。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目33：</h4>
+                        <p><strong>【2011 统考真题】某时刻进程的资源使用情况见下表，此时的安全序列是（ ）。</strong></p>
+                        <table>
+                            <tr>
+                                <th>进程</th>
+                                <th colspan="3">已分配资源</th>
+                                <th colspan="3">尚需分配</th>
+                                <th colspan="3">可用资源</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>P₁</td>
+                                <td>P₂</td>
+                                <td>P₃</td>
+                                <td>P₁</td>
+                                <td>P₂</td>
+                                <td>P₃</td>
+                                <td>P₁</td>
+                                <td>P₂</td>
+                                <td>P₃</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <ul>
+                            <li>A. P₁, P₂, P₃, P₄</li>
+                            <li>B. P₁, P₃, P₂, P₄</li>
+                            <li>C. P₁, P₄, P₃, P₂</li>
+                            <li>D. 不存在</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-33-answer')">查看答案</button>
+                            <div id="q2-33-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：本题应采用排除法，逐个代入分析。剩余资源分配给P₁，待P₁执行完后，可用资源数为(2, 2, 1)，此时仅能满足P₄的需求，排除选项A、B；接着分配给P₄，待P₄执行完后，可用资源数为(2, 2, 2)，此时已无法满足任何进程的需求，排除选项C。此外，本题还可以使用<strong>银行家算法</strong>来解（对选择题来说显得过于复杂）。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目34：</h4>
+                        <p><strong>【2012 统考真题】假设 5 个进程 P₀, P₁, P₂, P₃, P₄ 共享三类资源 R₁, R₂, R₃，这些资源总数分别为 18, 6, 22。T₀ 时刻的资源分配情况如下表所示，此时存在的一个安全序列是（ ）。</strong></p>
+                        <table>
+                            <tr>
+                                <th>进程</th>
+                                <th colspan="3">已分配资源</th>
+                                <th colspan="3">资源最大需求</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>R₁</td>
+                                <td>R₂</td>
+                                <td>R₃</td>
+                                <td>R₁</td>
+                                <td>R₂</td>
+                                <td>R₃</td>
+                            </tr>
+                            <tr>
+                                <td>P₀</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>P₁</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>5</td>
+                                <td>3</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>P₂</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>0</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>P₃</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>P₄</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>2</td>
+                                <td>4</td>
+                            </tr>
+                        </table>
+                        <ul>
+                            <li>A. P₀, P₂, P₄, P₁, P₃</li>
+                            <li>B. P₁, P₀, P₃, P₄, P₂</li>
+                            <li>C. P₂, P₁, P₀, P₃, P₄</li>
+                            <li>D. P₃, P₄, P₂, P₁, P₀</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-34-answer')">查看答案</button>
+                            <div id="q2-34-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：首先求得各进程的需求矩阵Need与可利用资源向量Available：</p>
+                                <p>进程 R₁ R₂ R₃</p>
+                                <p>------ ---- ---- ----</p>
+                                <p>P₀ 2 3 7</p>
+                                <p>P₁ 1 3 3</p>
+                                <p>P₂ 0 0 6</p>
+                                <p>P₃ 2 2 1</p>
+                                <p>P₄ 1 1 0</p>
+                                <p>Available R₁ R₂ R₃</p>
+                                <p>----------- ---- ---- ----</p>
+                                <p>2 3 3</p>
+                                <p>比较Need和Available发现，初始时进程P₁与P₃可满足需求，排除选项A、C。尝试给P₁分配资源时，P₁完成后Available将变为(6, 3, 6)，无法满足P₀的需求，排除选项B。尝试给P₃分配资源时，P₃完成后Available将变为(4, 3, 7)，该向量能满足其他所有进程的需求。因此，以P₃开头的序列都是安全序列。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目35：</h4>
+                        <p><strong>【2013 统考真题】下列关于<strong>银行家算法</strong>的叙述中，正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>银行家算法</strong>可以<strong>预防</strong><strong>死锁</strong></li>
+                            <li>B. 当系统处于<strong>安全状态</strong>时，系统中一定无<strong>死锁</strong>进程</li>
+                            <li>C. 当系统处于不<strong>安全状态</strong>时，系统中一定会出现<strong>死锁</strong>进程</li>
+                            <li>D. <strong>银行家算法</strong><strong>破坏</strong>了<strong>死锁</strong>必要条件中的"请求和保持"条件</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-35-answer')">查看答案</button>
+                            <div id="q2-35-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>银行家算法</strong>是<strong>避免</strong><strong>死锁</strong>的方法，选项A、D错。根据下图，选项B对，选项C错。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目36：</h4>
+                        <p><strong>【2014 统考真题】某系统有 n 台<strong>互斥</strong>使用的同类设备，三个并发进程分别需要 3, 4, 5 台设备。可确保系统不发生<strong>死锁</strong>的设备数 n 最小为（ ）。</strong></p>
+                        <ul>
+                            <li>A. 9</li>
+                            <li>B. 10</li>
+                            <li>C. 11</li>
+                            <li>D. 12</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-36-answer')">查看答案</button>
+                            <div id="q2-36-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：根据<strong>死锁</strong>公式，当资源数量大于各个进程所需资源数-1的总和时，不发生<strong>死锁</strong>，三个进程分别需要3, 4, 5台设备，即当资源数量大于(3-1)+(4-1)+(5-1)=9时，不发生<strong>死锁</strong>。而当系统中只有9台设备时，第一个进程分配2台，第二个进程分配3台，第三个进程分配4台，这种情况下，三个进程均无法继续执行下去，发生<strong>死锁</strong>。当系统再增加1台设备，最后1台设备分配给任意一个进程都可以顺利执行完成，因此保证系统不发生<strong>死锁</strong>的最小设备数为10。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目37：</h4>
+                        <p><strong>【2015 统考真题】若系统 S₁ 采用<strong>死锁避免</strong>方法，S₂ 采用<strong>死锁检测</strong>方法。下列叙述中，正确的是（ ）。</strong></p>
+                        <p><strong>I. S₁ 是限制用户申请资源的顺序，而 S₂ 不会</strong></p>
+                        <p><strong>II. S₁ 需要进程运行所需的资源总量信息，而 S₂ 不需要</strong></p>
+                        <p><strong>III. S₁ 不会给可能导致<strong>死锁</strong>的进程分配资源，而 S₂ 会</strong></p>
+                        <ul>
+                            <li>A. 仅 I、II</li>
+                            <li>B. 仅 II、III</li>
+                            <li>C. 仅 I、III</li>
+                            <li>D. I、II、III</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-37-answer')">查看答案</button>
+                            <div id="q2-37-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>死锁</strong>的处理采用三种策略：<strong>死锁预防</strong>、<strong>死锁避免</strong>、<strong>死锁检测</strong>和解除。</p>
+                                <p><strong>死锁预防</strong>采用<strong>破坏</strong>产生<strong>死锁</strong>的4个必要条件中的一个或几个来防止发生<strong>死锁</strong>。其中之一的"<strong>破坏</strong><strong>循环等待</strong>条件"，一般采用顺序资源分配法，即限制了用户申请资源的顺序，因此I的前半句属于<strong>死锁预防</strong>的范畴。此外，<strong>银行家算法</strong>虽然会通过<strong>检测</strong>是否存在安全序列来判断申请资源的请求是否合法，但安全序列并不是唯一的，也不是固定的，它只是一种可能的方案，而不是一种必须遵循的规则，<strong>银行家算法</strong>并没有给出固定的申请资源的顺序，因此I错误。</p>
+                                <p><strong>银行家算法</strong>是最著名的<strong>死锁避免</strong>算法，其中的最大需求矩阵Max定义了每个进程对m类资源的最大需求数量，系统在执行安全性算法中都会检查此次资源试分配后，系统是否处于<strong>安全状态</strong>，若不安全则将本次的试探分配作废。在<strong>死锁检测</strong>和解除中，系统为进程分配资源时不采取任何措施，但提供<strong>死锁检测</strong>和解除的手段，一旦<strong>检测</strong>到系统发生<strong>死锁</strong>，就立即采取措施来解除<strong>死锁</strong>，因此不用关心进程所需的总资源量。II、III正确。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目38：</h4>
+                        <p><strong>【2016 统考真题】系统中有 3 个同类资源 R₁, R₂ 和 R₃，被 4 个进程 P₁, P₂, P₃, P₄ 共享。各进程对资源的需求为：P₁ 申请 R₁ 和 R₂，P₂ 申请 R₂ 和 R₃，P₃ 申请 R₁ 和 R₃，P₄ 申请 R₃。若系统出现<strong>死锁</strong>，则处于<strong>死锁</strong>状态的进程数至少是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 1</li>
+                            <li>B. 2</li>
+                            <li>C. 3</li>
+                            <li>D. 4</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-38-answer')">查看答案</button>
+                            <div id="q2-38-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：对于本题，需先画出如下所示的<strong>资源分配图</strong>。若系统出现<strong>死锁</strong>，则必然出现<strong>循环等待</strong>的情况。</p>
+                                <p>P₁ ──┐</p>
+                                <p>│</p>
+                                <p>R₁ ───┘</p>
+                                <p>│</p>
+                                <p>P₃ ──┤</p>
+                                <p>│</p>
+                                <p>R₂ ───┘</p>
+                                <p>│</p>
+                                <p>P₂ ──┤</p>
+                                <p>│</p>
+                                <p>R₃ ───┘</p>
+                                <p>│</p>
+                                <p>P₁ ──┘</p>
+                                <p>从图中可以看出，若出现<strong>循环等待</strong>的情况，则至少有P₁、P₂、P₃三个进程在<strong>循环等待</strong>环中，在该图中不可能出现两个进程发生<strong>循环等待</strong>的情况。现在考察P₁、P₂、P₃三个进程形成环路的情况，若此时P₁、P₂、P₃三个进程分别拥有R₁、R₂和R₃，则会形成P₁等待P₂释放R₂，P₂等待P₃释放R₃，P₃等待P₁释放R₁的<strong>循环等待</strong>情况。P₁、P₂、P₃三个进程分别拥有R₂、R₃和R₁的情况的分析类似。以上两种情况都会形成<strong>循环等待</strong>情况，至少有三个进程陷入<strong>死锁</strong>状态。若P₄事先已获取R₂，成功运行，则<strong>死锁</strong>进程数为3；若P₄尚未获取R₂，未运行，则<strong>死锁</strong>进程数为4。故若系统出现<strong>死锁</strong>，则处于<strong>死锁</strong>状态的进程至少是3个。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目39：</h4>
+                        <p><strong>【2018 统考真题】假设系统中有 4 个同类资源，进程 P₁, P₂ 和 P₃ 需要的资源数分别为 4, 3 和 1，P₁, P₂ 和 P₃ 已申请到的资源数分别为 2, 1 和 0，则执行安全性<strong>检测</strong>算法的结果是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 不存在安全序列，系统处于不<strong>安全状态</strong></li>
+                            <li>B. 存在多个安全序列，系统处于<strong>安全状态</strong></li>
+                            <li>C. 存在唯一安全序列 P₃, P₁, P₂，系统处于<strong>安全状态</strong></li>
+                            <li>D. 存在唯一安全序列 P₃, P₂, P₁，系统处于<strong>安全状态</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-39-answer')">查看答案</button>
+                            <div id="q2-39-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：由题意可知，仅剩最后一个同类资源，若将其分给P₁或P₂，则均无法正常执行；若分给P₃，则P₃正常执行完成后，释放的这一个资源仍无法使P₁、P₂正常执行，因此不存在安全序列。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目40：</h4>
+                        <p><strong>【2019 统考真题】下列关于<strong>死锁</strong>的叙述中，正确的有（ ）。</strong></p>
+                        <p><strong>I. 可以通过剥夺进程资源解除<strong>死锁</strong></strong></p>
+                        <p><strong>II. <strong>死锁预防</strong>方法能确保系统不发生<strong>死锁</strong></strong></p>
+                        <p><strong>III. <strong>银行家算法</strong>可以判断系统是否处于<strong>死锁</strong>状态</strong></p>
+                        <p><strong>IV. 当系统出现<strong>死锁</strong>时，必然有两个或两个以上的进程处于阻塞态</strong></p>
+                        <ul>
+                            <li>A. 仅 I、III</li>
+                            <li>B. 仅 I、II、IV</li>
+                            <li>C. 仅 I、II、III</li>
+                            <li>D. 仅 I、III、IV</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-40-answer')">查看答案</button>
+                            <div id="q2-40-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：</p>
+                                <p>剥夺进程资源，将其分配给其他<strong>死锁</strong>进程，可以解除<strong>死锁</strong>，I正确。</p>
+                                <p><strong>死锁预防</strong>是<strong>死锁</strong>处理策略（<strong>死锁预防</strong>、<strong>死锁避免</strong>、<strong>死锁检测</strong>和解除）中最为严苛的一种策略，<strong>破坏</strong><strong>死锁</strong>产生的4个必要条件之一，可以确保系统不发生<strong>死锁</strong>，II正确。</p>
+                                <p><strong>银行家算法</strong>是一种<strong>死锁避免</strong>算法，用于计算动态资源分配的安全性以<strong>避免</strong>系统进入<strong>死锁</strong>状态，不能用于判断系统是否处于<strong>死锁</strong>，III错误。</p>
+                                <p>通过简化<strong>资源分配图</strong>可以<strong>检测</strong>系统是否为<strong>死锁</strong>状态，当系统出现<strong>死锁</strong>时，<strong>资源分配图</strong>不可完全简化，只有两个或两个以上的进程才会出现"环"而不能被简化，IV正确。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目41：</h4>
+                        <p><strong>【2020 统考真题】某系统中有 A、B 两类资源各 6 个，t 时刻的资源分配及需求情况如下表所示。</strong></p>
+                        <table>
+                            <tr>
+                                <th>进程</th>
+                                <th>A 已分配量</th>
+                                <th>B 已分配量</th>
+                                <th>A 需求总量</th>
+                                <th>B 需求总量</th>
+                            </tr>
+                            <tr>
+                                <td>P₁</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>P₂</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>P₃</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                        </table>
+                        <p><strong>t 时刻安全性<strong>检测</strong>结果是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 存在安全序列 P₁, P₂, P₃</li>
+                            <li>B. 存在安全序列 P₂, P₁, P₃</li>
+                            <li>C. 存在安全序列 P₂, P₃, P₁</li>
+                            <li>D. 不存在安全序列</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-41-answer')">查看答案</button>
+                            <div id="q2-41-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：首先求出需求矩阵：</p>
+                                <p>$$
+\text{Need} = \text{Max} - \text{Allocation} =
+\begin{bmatrix}
+4 & 4 \\
+3 & 1 \\
+3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+2 & 3 \\
+2 & 1 \\
+1 & 2
+\end{bmatrix}
+
+\begin{bmatrix}
+2 & 1 \\
+1 & 0 \\
+2 & 2
+\end{bmatrix}
+$$</p>
+                                <p>由Allocation得当前Available为(1, 0)。由需求矩阵可知，初始只能满足P₂的需求，A错误。P₂释放资源后Available变为(3, 1)，此时仅能满足P₁的需求，C错误。P₁释放资源后Available变为(5, 4)，可以满足P₃的需求，得到的安全序列为P₂、P₁、P₃，B正确，D错误。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目42：</h4>
+                        <p><strong>【2021 统考真题】若系统中有 n (n≥2) 个进程，每个进程均需要使用某类临界资源 2 个，则系统不会发生<strong>死锁</strong>所需的该类资源总数至少是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 2</li>
+                            <li>B. n</li>
+                            <li>C. n+1</li>
+                            <li>D. 2n</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-42-answer')">查看答案</button>
+                            <div id="q2-42-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：考虑极端情况，当临界资源数为n时，每个进程都拥有1个临界资源并等待另一个资源，会发生<strong>死锁</strong>。当临界资源数为n+1时，则n个进程中至少有一个进程可以获得2个临界资源，顺利运行完后释放自己的临界资源，使得其他进程也能顺利运行，不会产生<strong>死锁</strong>。或者，根据<strong>死锁</strong>公式m > n×(r-1)，其中m是系统中临界资源的总数，n是并发进程的个数，r是每个进程所需临界资源的个数。如果这个不等式成立，那么系统不发生<strong>死锁</strong>。将本题的数据代入，得到m > n×(2-1)，即只要系统中临界资源的总数至少是n+1，就可<strong>避免</strong><strong>死锁</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目43：</h4>
+                        <p><strong>【2022 统考真题】系统中有三个进程 P₀、P₁、P₂ 及三类资源 A、B、C。若某时刻系统分配资源的情况如下表所示，则此时系统中存在的安全序列的个数为（ ）。</strong></p>
+                        <table>
+                            <tr>
+                                <th>进程</th>
+                                <th colspan="3">已分配资源数</th>
+                                <th colspan="3">尚需资源数</th>
+                                <th colspan="3">可用资源数</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>P₀</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>P₁</td>
+                                <td>0</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>P₂</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <ul>
+                            <li>A. 1</li>
+                            <li>B. 2</li>
+                            <li>C. 3</li>
+                            <li>D. 4</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-43-answer')">查看答案</button>
+                            <div id="q2-43-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：初始时系统中的可用资源数为&lt;1, 3, 2&gt;，只能满足P₀的需求&lt;0, 2, 1&gt;，所以安全序列第一个只能是P₀。将资源分配给P₀后，P₀执行完释放所占资源，可用资源数变为&lt;1, 3, 2&gt; + &lt;0, 2, 1&gt; = &lt;1, 5, 3&gt;。此时可用资源既能满足P₁，又能满足P₂，可以先分配给P₁，P₁执行完释放资源再分配给P₂；也可以先分配给P₂，P₂执行完释放资源再分配给P₁。所以安全序列可以是①P₀、P₁、P₂或②P₀、P₂、P₁。</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>2.2 填空题</summary>
+                    <div>
+                        <h4>题目1：</h4>
+                        <p>进程的基本状态包括<strong>____</strong>、<strong>____</strong>和<strong>____</strong>三种。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-1-answer')">查看答案</button>
+                            <div id="q2-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：运行态、就绪态、阻塞态</strong></p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p>进程控制块的英文缩写是<strong>____</strong>，它是<strong>____</strong>存在的唯一标志。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q2-2-answer')">查看答案</button>
+                            <div id="q2-2-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：PCB、进程</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>2.3 简答题</summary>
+                    <div>
+                        <h4>题目1：</h4>
+                        <p><strong>简述进程的三种基本状态及其转换关系。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-1-answer')">查看答案</button>
+                            <div id="q3-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p>进程的三种基本状态：</p>
+                                <ol>
+                                    <li><strong>运行态：</strong>进程占有处理器正在运行</li>
+                                    <li><strong>就绪态：</strong>进程具备运行条件，等待系统分配处理器以便运行</li>
+                                    <li><strong>阻塞态：</strong>进程由于等待某个事件而暂时无法运行</li>
+                                </ol>
+                                <p>状态转换关系：</p>
+                                <ul>
+                                    <li>运行态→就绪态：时间片用完或被更高优先级进程抢占</li>
+                                    <li>运行态→阻塞态：进程等待某事件发生（如I/O操作）</li>
+                                    <li>阻塞态→就绪态：等待的事件已完成</li>
+                                    <li>就绪态→运行态：进程被调度程序选中</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>什么是临界区？如何解决临界区问题？</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-2-answer')">查看答案</button>
+                            <div id="q3-2-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p><strong>临界区：</strong>在进程中涉及到共享变量的那些程序段称为临界区。</p>
+                                <p><strong>解决临界区问题的方法：</strong></p>
+                                <ol>
+                                    <li><strong>空闲让进：</strong>当无进程在临界区时，允许一个进程进入</li>
+                                    <li><strong>忙则等待：</strong>当有进程在临界区时，其他进程必须等待</li>
+                                    <li><strong>有限等待：</strong>对要求访问临界资源的进程，应在有限时间内予以满足</li>
+                                    <li><strong>让权等待：</strong>进程等待进入临界区时，应立即释放处理机，以免陷入忙等状态</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>2.4 应用题</summary>
+                    <div>
+                        <h4>题目1：</h4>
+                        <p><strong>设有两个并发执行的进程A和B，它们共享一个缓冲区。进程A负责向缓冲区写入数据，进程B负责从缓冲区读取数据。请用信号量机制实现这两个进程的同步。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q4-1-answer')">查看答案</button>
+                            <div id="q4-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <pre><code>// 定义信号量
+semaphore empty = 1;  // 缓冲区为空的数量
+semaphore full = 0;   // 缓冲区为满的数量
+semaphore mutex = 1;  // <strong>互斥</strong>信号量
+
+// 进程A（写进程）
+do {
+    produce an item in nextp;
+    wait(empty);      // 申请空缓冲区
+    wait(mutex);      // 申请<strong>互斥</strong>锁
+    add nextp to buffer;
+    signal(mutex);    // 释放<strong>互斥</strong>锁
+    signal(full);     // 增加满缓冲区数量
+} while (true);
+
+// 进程B（读进程）
+do {
+    wait(full);       // 申请满缓冲区
+    wait(mutex);      // 申请<strong>互斥</strong>锁
+    remove an item from buffer to nextc;
+    signal(mutex);    // 释放<strong>互斥</strong>锁
+    signal(empty);    // 增加空缓冲区数量
+    consume the item in nextc;
+} while (true);</code></pre>
+                                <p>解析：这是一个经典的生产者-消费者问题。使用三个信号量：empty表示空缓冲区数量，full表示满缓冲区数量，mutex用于<strong>互斥</strong>访问缓冲区。</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="key-points">
+                <h3>重点回顾</h3>
+                <ul>
+                    <li>进程的概念和特征</li>
+                    <li>进程的状态及转换</li>
+                    <li>进程同步与<strong>互斥</strong></li>
+                    <li>经典同步问题</li>
+                    <li>进程调度算法</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 王道操作系统考研复习指导 - 习题练习</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>

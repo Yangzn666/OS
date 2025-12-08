@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025王道操作系统考研复习指导</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>2025王道操作系统考研复习指导</h1>
+            <p>系统掌握操作系统核心知识点</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="chapter1.html">第1章 计算机系统概述</a></li>
+                <li><a href="chapter2.html">第2章 进程管理</a></li>
+                <li><a href="chapter3.html">第3章 内存管理</a></li>
+                <li><a href="chapter4.html">第4章 文件管理</a></li>
+                <li><a href="chapter5.html">第5章 设备管理</a></li>
+                <li><a href="exercises1.html">第1章习题</a></li>
+                <li><a href="exercises2.html">第2章习题</a></li>
+                <li><a href="exercises3.html">第3章习题</a></li>
+                <li><a href="exercises4.html">第4章习题</a></li>
+                <li><a href="exercises5.html">第5章习题</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="mindmap-section">
+            <h2>全书知识体系思维导图</h2>
+            <div class="mermaid-container">
+                <div class="mermaid">
+mindmap
+  root((操作系统))
+    第1章<br/>计算机系统概述
+      基本特征
+        并发
+        共享
+        虚拟
+        异步
+      发展历程
+        手工操作
+        批处理
+        分时系统
+        实时系统
+      系统结构
+        微内核
+        宏内核
+        模块化
+      运行环境
+        CPU状态
+        中断异常
+        系统调用
+    第2章<br/>进程管理
+      进程概念
+        进程状态
+        进程控制块
+      进程控制
+        创建终止
+        阻塞唤醒
+      进程同步
+        信号量
+        管程机制
+      经典问题
+        生产者-消费者
+        哲学家进餐
+        读者-写者
+      死锁处理
+        预防避免
+        检测解除
+      调度算法
+        FCFS,SJF
+        RR,优先级
+        多级反馈队列
+    第3章<br/>内存管理
+      管理方式
+        连续分配
+        非连续分配
+      分页管理
+        基本分页
+        快表优化
+        多级页表
+      分段管理
+        段式存储
+        段页结合
+      虚拟内存
+        请求分页
+        页面置换
+        抖动现象
+    第4章<br/>文件管理
+      文件概念
+        逻辑结构
+        物理结构
+      目录系统
+        目录结构
+        路径遍历
+      文件系统
+        磁盘分配
+        空闲管理
+      文件保护
+        访问控制
+        安全机制
+    第5章<br/>设备管理
+      I/O系统
+        软件层次
+        中断处理
+      缓冲技术
+        单双缓冲
+        循环缓冲
+      设备分配
+        分配策略
+        SPOOLing
+      磁盘管理
+        调度算法
+        RAID技术
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 2025王道操作系统考研复习指导. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            mindmap: {
+                useMaxWidth: true,
+                padding: 20,
+                nodeSpacing: 60,
+                rankSpacing: 100
+            },
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryBorderColor: '#764ba2',
+                primaryTextColor: '#ffffff',
+                secondaryColor: '#a8dcfa',
+                secondaryBorderColor: '#8bc4f9',
+                secondaryTextColor: '#333333',
+                tertiaryColor: '#f5f7fa',
+                tertiaryBorderColor: '#e4edf9',
+                tertiaryTextColor: '#333333',
+                lineColor: '#667eea',
+                fontSize: 20
+            }
+        });
+    </script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>

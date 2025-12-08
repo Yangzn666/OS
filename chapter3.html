@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章 内存管理 - 2025王道操作系统考研复习指导</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>第3章 内存管理</h1>
+            <p>2025王道操作系统考研复习指导</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="chapter1.html">第1章</a></li>
+                <li><a href="chapter2.html">第2章</a></li>
+                <li><a href="chapter3.html">第3章</a></li>
+                <li><a href="exercises3.html">第3章习题</a></li>
+                <li><a href="chapter4.html">第4章</a></li>
+                <li><a href="chapter5.html">第5章</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="chapter3" class="chapter">
+            <h2>第3章 内存管理</h2>
+            
+            <!-- 添加章节思维导图 -->
+            <div class="mermaid-container">
+                <div class="mermaid">
+mindmap
+  root((第3章<br/>内存管理))
+    3.1 内存管理基础
+      内存的基本概念
+      地址类型
+        物理地址
+        逻辑地址
+      从写程序到程序运行
+      链接的三种方式
+        静态链接
+        装入时动态链接
+        运行时动态链接
+      装入的三种方式
+        绝对装入
+        可重定位装入
+        动态重定位
+      内存管理的四大功能
+        内存分配
+        内存保护
+        地址映射
+        内存扩充
+    3.2 连续分配管理方式
+      单一连续分配
+      固定分区分配
+      动态分区分配
+      动态分区分配算法
+        首次适应算法
+        最佳适应算法
+        最坏适应算法
+        邻近适应算法
+    3.3 非连续分配管理方式
+      分页存储管理方式
+        基本分页
+        地址变换机构
+          基本地址变换
+          快表地址变换
+          两级页表
+        页表结构
+      分段存储管理方式
+        基本思想
+        地址转换
+      段页式管理方式
+        基本思想
+        地址转换
+    3.4 虚拟内存管理
+      虚拟内存基本概念
+      请求分页管理方式
+      页面置换算法
+        最佳置换算法
+        先进先出算法
+        最近最少使用算法
+        时钟置换算法
+      抖动现象
+      工作集
+    3.5 页面分配策略
+      分配策略
+      调入策略
+      置换策略
+                </div>
+            </div>
+            
+            <div class="content">
+                <details>
+                    <summary>3.1 内存管理基础</summary>
+                    <div>
+                        <h4>3.1.1 内存的基本概念</h4>
+                        <p><strong><strong>内存</strong>的定义：</strong><strong>内存</strong>是用于存放数据的硬件，程序执行前需要先放到<strong>内存</strong>中才能被CPU处理</p>
+                        <p><strong>实例：</strong>就像做饭需要把食材放在灶台上一样，程序运行需要把代码和数据放在内存中。</p>
+                        <p><strong>存储单元：</strong>内存中每个单位就是存储单元</p>
+                        <p><strong>实例：</strong>可以把内存想象成一个有很多格子的药盒，每个格子就是一个存储单元。</p>
+                        <p><strong>编址方式：</strong></p>
+                        <ul>
+                            <li>按字节编址：每个存储单元大小为1字节</li>
+                            <li>按字编址：每个存储单元大小为1个字（每个字大小为16个二进制位）</li>
+                        </ul>
+                        <p><strong>实例：</strong>现代计算机普遍采用按字节编址，就像每间房都有唯一的门牌号。</p>
+                        
+                        <h4>3.1.2 地址类型</h4>
+                        <p><strong><strong>物理地址</strong>（绝对地址）：</strong><strong>内存</strong>中实际的地址</p>
+                        <p><strong>实例：</strong>就像房屋的真实地理位置，如北京市朝阳区某某街道123号。</p>
+                        <p><strong><strong>逻辑地址</strong>（相对地址）：</strong>程序中使用的地址，与<strong>物理地址</strong>不同</p>
+                        <p><strong>实例：</strong>就像楼层平面图上的房间号，如301室、302室。</p>
+                        <p><strong>地址转换关系：</strong>起始地址（基址）+相对地址 = <strong>物理地址</strong></p>
+                        <p><strong>实例：</strong>如果一栋楼的地址是北京市朝阳区某某街道123号，3层的301室的物理地址就是北京市朝阳区某某街道123号301室。</p>
+                        
+                        <h4>3.1.3 从写程序到程序运行</h4>
+                        <p><strong>程序运行过程：</strong></p>
+                        <ol>
+                            <li>编辑源代码文件</li>
+                            <li>编译（将源代码转换为目标代码）</li>
+                            <li>链接（将目标代码与库函数链接）</li>
+                            <li>装入（将可执行文件装入内存）</li>
+                            <li>执行（CPU执行指令）</li>
+                        </ol>
+                        <p><strong>实例：</strong>写作文（编辑）→老师批改（编译）→装订成册（链接）→放到书架上（装入）→阅读（执行）。</p>
+                        
+                        <h4>3.1.4 链接的三种方式</h4>
+                        <p><strong><strong>静态链接</strong>：</strong>在编译时将目标代码与库函数链接，生成可执行文件</p>
+                        <p><strong>实例：</strong>制作静态链接的PDF文档，所有内容都嵌入在一个文件中。</p>
+                        <p><strong><strong>装入时动态链接</strong>：</strong>在装入内存时才链接目标代码与库函数</p>
+                        <p><strong>实例：</strong>Word文档中插入的对象在打开文档时才链接到源文件。</p>
+                        <p><strong><strong>运行时动态链接</strong>：</strong>在程序执行过程中才链接目标代码与库函数</p>
+                        <p><strong>实例：</strong>网页中的JavaScript库在需要时才从CDN加载。</p>
+                        
+                        <h4>3.1.5 装入的三种方式</h4>
+                        <p><strong><strong>绝对装入</strong>：</strong></p>
+                        <ul>
+                            <li>提前知道程序的内存位置</li>
+                            <li>在装入前直接修改程序中的地址</li>
+                            <li>仅适用于单道程序环境</li>
+                        </ul>
+                        <p><strong>实例：</strong>预订酒店时确定房间号，入住时直接去指定房间。</p>
+                        
+                        <p><strong><strong>可重定位装入</strong>（静态重定位）：</strong></p>
+                        <ul>
+                            <li>装入时修改程序中的地址</li>
+                            <li>必须分配其要求的全部内存空间</li>
+                            <li>在运行期间不能移动</li>
+                        </ul>
+                        <p><strong>实例：</strong>搬家时提前测量新家尺寸，购买合适尺寸的家具。</p>
+                        
+                        <p><strong><strong>动态重定位</strong>（动态装入）：</strong></p>
+                        <ul>
+                            <li>装入内存时使用逻辑地址</li>
+                            <li>运行时才转换为物理地址</li>
+                            <li>需要一个重定位寄存器（存放装入起始地址）</li>
+                            <li>允许程序在内存中发生移动</li>
+                        </ul>
+                        <p><strong>实例：</strong>GPS导航系统，实时计算当前位置到目的地的路线。</p>
+                        
+                        <h4>3.1.6 <strong>内存管理</strong>的四大功能</h4>
+                        <ol>
+                            <li><strong>内存分配</strong>：为进程分配内存空间</li>
+                            <li><strong>内存保护</strong>：确保各进程在各自存储空间内运行，互不干扰</li>
+                            <li><strong>地址映射</strong>：将逻辑地址转换为物理地址</li>
+                            <li><strong>内存扩充</strong>：通过虚拟内存技术，从逻辑上扩充内存</li>
+                        </ol>
+                        <p><strong>实例：</strong>物业管理处分配房间（内存分配）、门禁系统防止串门（内存保护）、楼层指示牌指引方向（地址映射）、临时住宿安排（内存扩充）。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.2 连续分配管理方式</summary>
+                    <div>
+                        <h4>3.2.1 单一连续分配</h4>
+                        <p><strong>定义：</strong>内存划分为系统区和用户区，系统区用于存放操作系统，用户区用于存放用户程序</p>
+                        <p><strong>实例：</strong>公寓楼分为物业办公区和住户居住区。</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>每次只允许一个用户程序在内存中运行</li>
+                            <li>系统区：操作系统占用的区域</li>
+                            <li>用户区：用户程序占用的区域</li>
+                        </ul>
+                        <p><strong>实例：</strong>早期的MS-DOS系统就是采用这种方式。</p>
+                        
+                        <p><strong><strong>内部碎片</strong>：</strong>好比房子买来收租的，有个房间没租出去</p>
+                        <p><strong><strong>外部碎片</strong>：</strong>这个小区有房子一直没卖出去</p>
+                        <p><strong>实例：</strong>内部碎片就像一套三居室只住一个人，浪费了其他房间；外部碎片就像小区里有些楼房完全空置。</p>
+                        
+                        <p><strong>优点：</strong>实现简单</p>
+                        <p><strong>缺点：</strong>内存利用率低</p>
+                        <p><strong>实例：</strong>就像独栋别墅虽然舒适但土地利用率低。</p>
+                        
+                        <h4>3.2.2 固定分区分配</h4>
+                        <p><strong>定义：</strong>将内存划分为若干个固定大小的分区</p>
+                        <p><strong>实例：</strong>学生宿舍楼按年级或专业划分楼层。</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>分区大小可以相等（等大小分区）</li>
+                            <li>分区大小可以不等（不等大小分区）</li>
+                            <li>分区数量：由系统决定，运行时不能改变</li>
+                        </ul>
+                        <p><strong>实例：</strong>停车场划分为小车区、大车区、摩托车区。</p>
+                        
+                        <p><strong>优点：</strong>实现简单，无外部碎片</p>
+                        <p><strong>缺点：</strong></p>
+                        <ul>
+                            <li>分区数量限制活跃进程数</li>
+                            <li>小型作业无法有效利用分区</li>
+                            <li>会产生内部碎片（如果分区大小与作业大小不匹配）</li>
+                        </ul>
+                        <p><strong>实例：</strong>标准集装箱虽然便于管理，但小货物装不满会浪费空间。</p>
+                        
+                        <h4>3.2.3 动态分区分配</h4>
+                        <p><strong>定义：</strong>根据进程的大小动态地划分内存空间</p>
+                        <p><strong>实例：</strong>自助餐厅根据客人人数安排合适大小的餐桌。</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>分区大小不固定</li>
+                            <li>分区数量不固定</li>
+                            <li>采用"定制化"方式分配内存</li>
+                        </ul>
+                        <p><strong>实例：</strong>定制服装比标准尺码更合身。</p>
+                        
+                        <p><strong>优点：</strong>内存利用率高</p>
+                        <p><strong>缺点：</strong>会产生外部碎片</p>
+                        <p><strong>实例：</strong>裁缝店按客人身材定制衣服节省布料，但剩余的碎布难以再利用。</p>
+                        
+                        <h4>3.2.4 <strong>动态分区分配算法</strong></h4>
+                        <p><strong><strong>首次适应算法</strong>（First Fit）：</strong></p>
+                        <ul>
+                            <li>从低地址开始查找，找到第一个满足大小要求的空闲分区</li>
+                            <li>优点：实现简单</li>
+                            <li>缺点：低地址区域容易产生大量小碎片</li>
+                        </ul>
+                        <p><strong>实例：</strong>在书店找座位，从入口开始找第一个空位坐下。</p>
+                        
+                        <p><strong><strong>最佳适应算法</strong>（Best Fit）：</strong></p>
+                        <ul>
+                            <li>从所有空闲分区中找出满足大小要求的最小分区</li>
+                            <li>优点：可以充分利用内存</li>
+                            <li>缺点：会产生大量难以利用的小碎片</li>
+                        </ul>
+                        <p><strong>实例：</strong>收拾行李箱时，把小物品放在刚好能装下的小袋子里。</p>
+                        
+                        <p><strong><strong>最坏适应算法</strong>（Worst Fit）：</strong></p>
+                        <ul>
+                            <li>从所有空闲分区中找出满足大小要求的最大分区</li>
+                            <li>优点：保留了较大的空闲分区</li>
+                            <li>缺点：容易产生大量小碎片</li>
+                        </ul>
+                        <p><strong>实例：</strong>大型聚会优先使用最大的会议室。</p>
+                        
+                        <p><strong><strong>邻近适应算法</strong>（Next Fit）：</strong></p>
+                        <ul>
+                            <li>从上次分配的位置开始查找</li>
+                            <li>优点：减少扫描时间</li>
+                            <li>缺点：可能产生更多碎片</li>
+                        </ul>
+                        <p><strong>实例：</strong>在圆形餐桌找座位，从上一个人坐的位置开始顺时针寻找。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.3 非连续分配管理方式</summary>
+                    <div>
+                        <h4>3.3.1 分页存储管理方式</h4>
+                        <p><strong><strong>分页存储管理方式</strong>：</strong></p>
+                        <p><strong>实例：</strong>把一本书按页码分割，每页固定大小，可以分散放在不同的书架上。</p>
+                        <p><strong><strong>页表</strong>：</strong>用于记录逻辑页与物理页框的对应关系</p>
+                        <p><strong>实例：</strong>像地图索引，标明第几页内容在哪个书架上。</p>
+                        <p><strong><strong>页内地址</strong>：</strong>逻辑地址的低部分，表示在页内的偏移量</p>
+                        <p><strong><strong>页号</strong>：</strong>逻辑地址的高部分，表示逻辑页的编号</p>
+                        <p><strong>实例：</strong>书籍的页码由章节号和页内行号组成。</p>
+                        
+                        <div class="visualization">
+                            <h4>分页存储管理地址变换过程</h4>
+                            <pre>
+    逻辑地址(32位)             页表              物理地址
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   页号(20位)   │───▶│  页框号(12位)  │───▶│  物理地址(32位) │
+├─────────────┤    └─────────────┘    └─────────────┘
+│ 页内偏移(12位) │                          │ 页框号×页大小+ │
+└─────────────┘    ┌─────────────┐    │  页内偏移   │
+                   │   页表项    │    └─────────────┘
+                   │ 页框号(20位) │
+                   │   标志位    │
+                   └─────────────┘
+                            </pre>
+                            <p>说明：页号用于索引页表得到页框号，页内偏移保持不变，组合成物理地址</p>
+                        </div>
+                        
+                        <h4>3.3.1.1 地址变换机构</h4>
+                        <p><strong><strong>基本地址变换机构</strong>：</strong></p>
+                        <ul>
+                            <li>逻辑地址 = 页号 + 页内地址</li>
+                            <li>页表地址 = 页号 × 页表项长度 + 页表起始地址</li>
+                            <li>物理地址 = 页框号 × 页大小 + 页内地址</li>
+                        </ul>
+                        <p><strong>实例：</strong>快递地址由省份代码+市内地址组成，通过邮编索引找到具体投递点。</p>
+                        
+                        <p><strong><strong>具有快表的地址变换机构</strong>：</strong></p>
+                        <ul>
+                        <p><strong><strong>快表</strong>（TLB）：</strong>高速缓存，用于存储最近使用的页表项</p>
+                            <li>原理：利用局部性原理，提高地址变换速度</li>
+                            <li><strong>TLB命中</strong>：直接从<strong>快表</strong>中获取页框号</li>
+                            <li><strong>TLB未命中</strong>：需要访问内存中的<strong>页表</strong>，同时将<strong>页表</strong>项存入<strong>快表</strong></li>
+                            <li>特点：当新进程上处理机运行时，快表的内容会被清除</li>
+                        </ul>
+                        <p><strong>实例：</strong>常用联系人保存在手机通讯录首页，不需要每次都翻到最后查找。</p>
+                        
+                        <div class="visualization">
+                            <h4>具有快表的地址变换过程</h4>
+                            <pre>
+    逻辑地址             快表(TLB)           页表              物理地址
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   页号(P)   │───▶│   页号(P)   │    │   页号(P)   │    │  物理地址   │
+├─────────────┤    ├─────────────┤    ├─────────────┤    ├─────────────┤
+│ 页内偏移(d) │    │   页框号(f) │    │   页框号(f) │    │  f × 页大小  │
+└─────────────┘    │   标志位    │    │   标志位    │    │     +d      │
+                   └─────────────┘    └─────────────┘    └─────────────┘
+                         ▲                    │
+                         └─────未命中时查询─────┘
+                            </pre>
+                            <p>说明：TLB命中时直接获取页框号，未命中时需要查询页表并将结果存入TLB</p>
+                        </div>
+                        
+                        <p><strong><strong>两级页表</strong>：</strong></p>
+                        <ul>
+                            <li>为解决大页表占用内存的问题</li>
+                            <li>页表分为两级：外层页表和内层页表</li>
+                            <li>逻辑地址分为三部分：外层页号、内层页号、页内偏移量</li>
+                            <li>优点：减少页表占用内存空间</li>
+                        </ul>
+                        <p><strong>实例：</strong>图书馆索引分为类别索引和具体书目索引两层。</p>
+                        
+                        <h4>3.3.2 分段存储管理方式</h4>
+                        <p><strong><strong>分段存储管理方式</strong>：</strong></p>
+                        <p><strong>实例：</strong>一本书分为目录、正文、附录等不同部分，每部分独立编号。</p>
+                        <p><strong><strong>段表</strong>：</strong>用于记录段的起始地址和长度</p>
+                        <p><strong>实例：</strong>书籍的目录标明各章节的起始页码和页数。</p>
+                        <p><strong><strong>段内地址</strong>：</strong>逻辑地址的低部分，表示在段内的偏移量</p>
+                        <p><strong><strong>段号</strong>：</strong>逻辑地址的高部分，表示段的编号</p>
+                        <p><strong>实例：</strong>学术论文的引用格式：[章节号].[段内编号]。</p>
+                        
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>各个分段是按逻辑功能模块来划分的</li>
+                            <li>段名由用户定义，可读性高</li>
+                            <li>分段行为对用户是可见的</li>
+                            <li>用户知道自己的进程会被分为几个段</li>
+                        </ul>
+                        <p><strong>实例：</strong>软件项目的模块化设计，如用户界面模块、业务逻辑模块、数据访问模块。</p>
+                        
+                        <p><strong>地址转换：</strong></p>
+                        <ul>
+                            <li>逻辑地址 = 段号 + 段内地址</li>
+                            <li>物理地址 = 段基址 + 段内地址</li>
+                        </ul>
+                        <p><strong>实例：</strong>办公楼房间号由楼层号+房间号组成，实际位置=楼层起始位置+房间号。</p>
+                        
+                        <h4>3.3.3 段页式管理方式</h4>
+                        <p><strong><strong>段页式管理方式</strong>：</strong></p>
+                        <p><strong>结构：</strong>将逻辑地址空间先分段，再将每个段分页</p>
+                        <p><strong>实例：</strong>大型书籍先分章节（段），再按页码（页）管理。</p>
+                        
+                        <p><strong>地址转换：</strong></p>
+                        <ul>
+                            <li>逻辑地址 = 段号 + 页号 + 页内偏移量</li>
+                            <li>通过段表找到页表起始地址</li>
+                            <li>通过页表找到物理页框号</li>
+                            <li>物理地址 = 页框号 × 页大小 + 页内偏移量</li>
+                        </ul>
+                        <p><strong>实例：</strong>大学课程编码：[学院代码][课程代码][课时编号]。</p>
+                        
+                        <div class="visualization">
+                            <h4>段页式管理地址变换过程</h4>
+                            <pre>
+    逻辑地址              段表              页表              物理地址
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   段号(S)   │───▶│ 页表始址(L) │───▶│  页框号(f)  │───▶│  物理地址   │
+├─────────────┤    ├─────────────┤    ├─────────────┤    ├─────────────┤
+│   页号(P)   │    │   段长    │    │   标志位    │    │  f × 页大小  │
+├─────────────┤    └─────────────┘    └─────────────┘    │     +d      │
+│ 页内偏移(d) │                                           └─────────────┘
+└─────────────┘
+                            </pre>
+                            <p>说明：段号用于索引段表得到页表起始地址，页号用于索引页表得到页框号，组合成物理地址</p>
+                        </div>
+                        
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>既满足了分段的逻辑性，又满足了分页的物理实现</li>
+                            <li>既解决了外部碎片问题，又保留了逻辑上的分段</li>
+                        </ul>
+                        <p><strong>实例：</strong>现代操作系统如Windows和Linux都采用段页式管理。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.4 虚拟内存管理</summary>
+                    <div>
+                        <h4>3.4.1 虚拟内存的基本概念</h4>
+                        <p><strong><strong>虚拟内存</strong>的基本概念：</strong></p>
+                        <p><strong>实例：</strong>就像云存储让用户感觉拥有无限大的硬盘空间。</p>
+                        <p><strong>目的：</strong>解决内存容量不足的问题</p>
+                        <p><strong>原理：</strong>利用局部性原理，将暂时不用的内存内容交换到外存</p>
+                        <p><strong>实例：</strong>整理衣柜时，把不常穿的衣服放到储物间，需要时再取回来。</p>
+                        
+                        <h4>3.4.2 请求分页管理方式</h4>
+                        <p><strong><strong>请求分页管理方式</strong>：</strong></p>
+                        <p><strong>实例：</strong>在线视频的流媒体播放，边下载边观看。</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>程序运行前不需要将全部页面调入内存</li>
+                            <li>需要页面置换算法</li>
+                            <li>需要请求调页机制</li>
+                        </ul>
+                        <p><strong>实例：</strong>手机应用按需加载功能模块，而不是一次性加载所有功能。</p>
+                        
+                        <p><strong>请求分页的精髓：</strong></p>
+                        <ol>
+                            <li>应该在什么时候请求调页</li>
+                            <li>什么时候进行页面置换</li>
+                            <li>当调页和页面置换完成之后要对哪些数据结构进行修改</li>
+                        </ol>
+                        <p><strong>实例：</strong>图书馆的图书借阅系统，根据读者需求调拨图书，根据库存情况决定归还哪些图书。</p>
+                        
+                        <h4>3.4.3 <strong>页面置换算法</strong></h4>
+                        <p><strong><strong>最佳置换算法</strong>（OPT）：</strong></p>
+                        <ul>
+                            <li>选择永不使用或最长时间内不再被访问的页面予以淘汰</li>
+                            <li>优点：缺页率最低，理论最优</li>
+                            <li>缺点：无法预知未来，实际中不可实现</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像清理衣柜时，把将来最不可能穿的衣服扔掉。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('opt-algorithm-tip')">💡 学习提示</button>
+                            <div id="opt-algorithm-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>OPT（Optimal）</strong> - "最优"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："最佳"、"最优"</li>
+                                    <li>联想记忆：理想主义算法，完美预测未来，现实中不存在</li>
+                                    <li>口诀："最佳置换最理想，可惜未来难预知"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong><strong>先进先出算法</strong>（FIFO）：</strong></p>
+                        <ul>
+                            <li>选择最先进入内存的页面予以淘汰</li>
+                            <li>优点：实现简单</li>
+                            <li>缺点：可能出现Belady现象（分配的物理页面数增加，缺页次数反而增加）</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像快餐店的队列，先排队的先买到食物。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('fifo-algorithm-tip')">💡 学习提示</button>
+                            <div id="fifo-algorithm-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>FIFO（First In First Out）</strong> - "先进先出"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："先进先出"、"队列"</li>
+                                    <li>联想记忆：超市收银台排队，先来的先结账</li>
+                                    <li>口诀："先进先出排好队，实现简单易理解"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong><strong>最近最久未使用算法</strong>（LRU）：</strong></p>
+                        <ul>
+                            <li>选择最近最久未访问的页面予以淘汰</li>
+                            <li>优点：性能较好，接近OPT算法</li>
+                            <li>缺点：实现较为复杂，需要硬件支持</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像图书馆管理员清理书架，把最长时间没人借阅的书移走。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('lru-algorithm-tip')">💡 学习提示</button>
+                            <div id="lru-algorithm-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>LRU（Least Recently Used）</strong> - "最近最少使用"的英文缩写</p>
+                                <ul>
+                                    <li>关键词："最近"、"最少"、"使用"</li>
+                                    <li>联想记忆：遗忘曲线，越久不用越容易忘，越久不访问越可能不再访问</li>
+                                    <li>口诀："最近最少快淘汰，性能接近最佳解"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p><strong><strong>时钟置换算法</strong>（CLOCK）：</strong></p>
+                        <ul>
+                            <li>为每个页面设置一个访问位，将页面连接成一个环形链表</li>
+                            <li>优点：实现相对简单，性能接近LRU</li>
+                            <li>缺点：需要硬件支持访问位</li>
+                        </ul>
+                        <p><strong>实例：</strong>就像时钟的指针，一圈一圈地扫描，找到合适的页面淘汰。</p>
+                        
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('clock-algorithm-tip')">💡 学习提示</button>
+                            <div id="clock-algorithm-tip" class="study-tip-content" style="display:none;">
+                                <h4>记忆方法：</h4>
+                                <p><strong>CLOCK（时钟算法）</strong></p>
+                                <ul>
+                                    <li>关键词："时钟"、"环形"、"指针"</li>
+                                    <li>联想记忆：像时钟指针一样循环扫描页面</li>
+                                    <li>口诀："时钟算法转圈圈，找到目标就淘汰"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>3.4.4 请求分段管理方式</h4>
+                        <p><strong><strong>请求分段管理方式</strong>：</strong></p>
+                        <p><strong>实例：</strong>在线游戏按场景加载地图数据，不在当前场景的地图不加载。</p>
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>段可以部分调入内存</li>
+                            <li>适合逻辑上独立的程序模块</li>
+                            <li>可以提高内存利用率</li>
+                        </ul>
+                        <p><strong>实例：</strong>网站的懒加载技术，只加载用户当前可见的内容。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.5 内存保护</summary>
+                    <div>
+                        <h4>3.5.1 内存保护的必要性</h4>
+                        <p><strong><strong>内存保护</strong>的必要性：</strong></p>
+                        <p><strong>实例：</strong>住宅小区的门禁系统，防止陌生人进入他人家中。</p>
+                        <p><strong>风险：</strong>一个进程可能访问其他进程的内存空间，导致系统崩溃</p>
+                        <p><strong>实例：</strong>银行账户系统如果被非法访问，可能导致资金损失。</p>
+                        
+                        <h4>3.5.2 内存保护的实现方式</h4>
+                        <p><strong><strong>内存保护</strong>的实现方式：</strong></p>
+                        <ul>
+                            <li><strong>上限寄存器</strong>：存放进程的最大地址</li>
+                            <li><strong>下限寄存器</strong>：存放进程的最小地址</li>
+                            <li>每次访问内存时，检查地址是否在界限范围内</li>
+                        </ul>
+                        <p><strong>实例：</strong>身份证的有效期，超出期限就失效。</p>
+                        
+                        <p><strong><strong>重定位寄存器</strong>（基址寄存器）：</strong></p>
+                        <ul>
+                            <li>存放进程的起始地址</li>
+                            <li>逻辑地址 = 重定位寄存器 + 逻辑地址</li>
+                            <li>保护机制：确保逻辑地址在进程的地址空间内</li>
+                        </ul>
+                        <p><strong>实例：</strong>地图上的坐标系原点，所有位置都相对于原点计算。</p>
+                        
+                        <p><strong><strong>段表保护</strong>：</strong></p>
+                        <ul>
+                            <li>在段表中设置段的界限</li>
+                            <li>访问段时检查段内地址是否在界限范围内</li>
+                        </ul>
+                        <p><strong>实例：</strong>文件夹的访问权限设置，防止越级访问。</p>
+                        
+                        <p><strong><strong>页表保护</strong>：</strong></p>
+                        <ul>
+                            <li>在页表中设置页的保护位</li>
+                            <li>访问页时检查是否具有访问权限</li>
+                        </ul>
+                        <p><strong>实例：</strong>操作系统中的用户权限管理，不同用户有不同的文件访问权限。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.6 覆盖与交换</summary>
+                    <div>
+                        <h4>3.6.1 覆盖技术</h4>
+                        <p><strong><strong>覆盖技术</strong>：</strong></p>
+                        <p><strong>实例：</strong>手机应用的插件机制，主程序固定，功能插件按需加载。</p>
+                        <p><strong>工作原理：</strong></p>
+                        <ul>
+                            <li>通常将程序中经常使用的部分（如主程序）放在固定区</li>
+                            <li>将其他部分放在覆盖区</li>
+                            <li>程序执行时，需要时才将覆盖区的内容调入内存</li>
+                        </ul>
+                        <p><strong>实例：</strong>游戏的主程序始终驻留内存，关卡数据按需加载。</p>
+                        
+                        <p><strong>特点：</strong></p>
+                        <ul>
+                            <li>由程序员声明覆盖结构</li>
+                            <li>操作系统完成自动覆盖</li>
+                            <li>对用户不透明</li>
+                            <li>适用于早期操作系统，现在已成为历史</li>
+                        </ul>
+                        <p><strong>实例：</strong>早期DOS游戏使用覆盖技术在有限内存中运行大型游戏。</p>
+                        
+                        <h4>3.6.2 交换技术</h4>
+                        <p><strong><strong>交换技术</strong>：</strong></p>
+                        <p><strong>实例：</strong>酒店的客房调度，空闲房间给新客人，老客人外出时房间可以给其他人使用。</p>
+                        <p><strong>工作原理：</strong></p>
+                        <ul>
+                            <li>当内存不足时，将某些进程从内存换出到外存</li>
+                            <li>当需要运行时，将进程从外存换入内存</li>
+                        </ul>
+                        <p><strong>实例：</strong>手机后台应用冻结机制，释放内存给前台应用使用。</p>
+                        
+                        <p><strong>换出过程：</strong></p>
+                        <ol>
+                            <li>选择要换出的进程</li>
+                            <li>将进程的内存内容写入外存</li>
+                            <li>释放进程占用的内存</li>
+                        </ol>
+                        <p><strong>实例：</strong>酒店客人外出旅行时，行李寄存到保险柜中。</p>
+                        
+                        <p><strong>换入过程：</strong></p>
+                        <ol>
+                            <li>选择要换入的进程</li>
+                            <li>从外存读取进程的内存内容</li>
+                            <li>为进程分配内存</li>
+                        </ol>
+                        <p><strong>实例：</strong>客人返回酒店时，从保险柜取出行李放回房间。</p>
+                        
+                        <p><strong><strong>挂起状态</strong>：</strong></p>
+                        <ul>
+                            <li>暂时换出外存等待的进程状态为挂起状态</li>
+                            <li>挂起态又可以细分为就绪挂起和阻塞挂起</li>
+                            <li>PCB：进程控制块常驻内存，不会被换出外存</li>
+                        </ul>
+                        <p><strong>实例：</strong>学生的学籍保留状态，在服兵役期间学籍挂起，但档案信息仍然保存。</p>
+                        
+                        <h4>3.6.3 覆盖与交换的区别</h4>
+                        <p><strong><strong>覆盖与交换</strong>的区别：</strong></p>
+                        <p><strong>实例：</strong>应用程序的不同功能模块之间的切换。</p>
+                        <p><strong>交换：</strong>不同进程（或作业）之间的操作</p>
+                        <p><strong>实例：</strong>操作系统在多个应用程序之间切换。</p>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>3.7 本章核心考点总结</summary>
+                    <div>
+                        <ol>
+                            <li><strong>内存管理</strong>的四大功能：<strong>内存分配</strong>、<strong>内存保护</strong>、<strong>地址映射</strong>、<strong>内存扩充</strong></li>
+                            <li>连续分配管理方式：
+                                <ul>
+                                    <li>单一连续分配</li>
+                                    <li>固定分区分配</li>
+                                    <li>动态分区分配</li>
+                                    <li><strong>动态分区分配算法</strong>（<strong>首次适应</strong>、<strong>最佳适应</strong>、<strong>最坏适应</strong>、<strong>邻近适应</strong>）</li>
+                                </ul>
+                            </li>
+                            <li>非连续分配管理方式：
+                                <ul>
+                                    <li><strong>分页存储管理方式</strong>（<strong>地址变换</strong>、<strong>快表</strong>、<strong>两级页表</strong>）</li>
+                                    <li>分段存储管理方式</li>
+                                    <li>段页式存储管理方式</li>
+                                </ul>
+                            </li>
+                            <li>虚拟内存管理：
+                                <ul>
+                                    <li>请求分页管理方式</li>
+                                    <li><strong>页面置换算法</strong>（FIFO、OPT、LRU、Clock）</li>
+                                </ul>
+                            </li>
+                            <li>内存保护：
+                                <ul>
+                                    <li><strong>界限寄存器</strong></li>
+                                    <li><strong>重定位寄存器</strong></li>
+                                    <li><strong>段表保护</strong></li>
+                                    <li><strong>页表保护</strong></li>
+                                </ul>
+                            </li>
+                            <li>覆盖与交换：
+                                <ul>
+                                    <li><strong>覆盖技术</strong></li>
+                                    <li><strong>交换技术</strong></li>
+                                </ul>
+                            </li>
+                        </ol>
+                        
+                        <p><strong>实例总结：</strong></p>
+                        <ul>
+                            <li>内存管理就像房地产管理：分配房间（内存分配）、门禁系统（内存保护）、楼层索引（地址映射）、虚拟办公（内存扩充）</li>
+                            <li>分页管理像书籍管理：按页码分页、建立索引、按需查阅</li>
+                            <li>分段管理像文档结构：按章节分段、独立编号、逻辑清晰</li>
+                            <li>虚拟内存像云存储：本地缓存常用数据，云端存储全部数据</li>
+                            <li>页面置换算法像超市管理：先进先出、按需补货、智能推荐</li>
+                        </ul>
+                        
+                        <p><strong>本章重要性：</strong>本章是操作系统的核心内容，也是考研的重点和难点。内存管理涉及多个概念和算法，需要深入理解各种分配方式、地址转换机制和页面置换算法。掌握本章内容，对理解操作系统的工作原理和解决实际问题具有重要意义。</p>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="key-points">
+                <h3>核心考点</h3>
+                <ul>
+                    <li><strong>分页/分段/段页式</strong></li>
+                    <li><strong>页面置换算法</strong>（LRU）</li>
+                    <li><strong>虚拟内存</strong></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 王道操作系统考研复习指导 - 学习网站</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Mermaid.js 支持 -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            mindmap: {
+                useMaxWidth: true,
+                padding: 20,
+                nodeSpacing: 60,
+                rankSpacing: 100
+            },
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryBorderColor: '#764ba2',
+                primaryTextColor: '#ffffff',
+                secondaryColor: '#a8dcfa',
+                secondaryBorderColor: '#8bc4f9',
+                secondaryTextColor: '#333333',
+                tertiaryColor: '#f5f7fa',
+                tertiaryBorderColor: '#e4edf9',
+                tertiaryTextColor: '#333333',
+                lineColor: '#667eea',
+                fontSize: 20
+            }
+        });
+    </script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>

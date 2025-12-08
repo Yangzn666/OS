@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章 内存管理 - 习题练习</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 进度条 -->
+    <div id="progressBar" class="progress-bar"></div>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>第3章 内存管理</h1>
+            <p>习题练习</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰ 菜单</button>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="chapter1.html">第1章</a></li>
+                <li><a href="chapter2.html">第2章</a></li>
+                <li><a href="chapter3.html">第3章</a></li>
+                <li><a href="exercises3.html">第3章习题</a></li>
+                <li><a href="chapter4.html">第4章</a></li>
+                <li><a href="chapter5.html">第5章</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="exercises3" class="chapter">
+            <h2>第3章 内存管理 - 习题练习</h2>
+            
+            <div class="content">
+                <h3>3.1 单项选择题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong><strong>请求分页</strong>存储管理中，若把页面尺寸增大一倍且可容纳的最大页数不变，则在程序顺序执行时<strong>缺页中断</strong>次数会（ ）。</strong></p>
+                        <ul>
+                            <li>A. 增加</li>
+                            <li>B. 减少</li>
+                            <li>C. 不变</li>
+                            <li>D. 可能增加也可能减少</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-1-answer')">查看答案</button>
+                            <div id="q3-1-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>题目：对于顺序执行程序，<strong>缺页中断</strong>的次数等于其访问的<strong>页帧</strong>数。由于页面尺寸增大，存放程序需要的<strong>页帧</strong>数就会减少，因此<strong>缺页中断</strong>的次数也会减少。</p>
+                                <p>解析：页面越大 → 页数越少 → 缺页次数减少（尤其对顺序访问）。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>在运行过程中发生了<strong>缺页中断</strong>，经操作系统处理后，应让它执行（ ）指令。</strong></p>
+                        <ul>
+                            <li>A. 被中断的前一条</li>
+                            <li>B. 被中断的那一条</li>
+                            <li>C. 被中断的后一条</li>
+                            <li>D. 启动时的第一条</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-2-answer')">查看答案</button>
+                            <div id="q3-2-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>题目：<strong>缺页中断</strong>是访指令引起的，说明所要访问的页面不在内存中，进行<strong>缺页中断</strong>处理并调入所需页面后，访指指令显然应该重新执行。</p>
+                                <p>解析：<strong>缺页中断</strong>发生后，必须重试原指令，否则无法继续执行。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目3：</h4>
+                        <p><strong><strong>虚拟存储</strong>技术是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 补充内存物理空间的技术</li>
+                            <li>B. 补充内存逻辑空间的技术</li>
+                            <li>C. 补充外存空间的技术</li>
+                            <li>D. 扩充输入/输出缓冲区的技术</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-3-answer')">查看答案</button>
+                            <div id="q3-3-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>题目：<strong>虚拟存储</strong>技术并未实际扩充内存、外存，而是采用相关技术相对地扩充主存。</p>
+                                <p>解析：<strong>虚拟存储</strong>是"逻辑上"扩充内存，并非物理扩充。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目4：</h4>
+                        <p><strong>下列关于<strong>虚拟存储</strong>器的论述中，正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 作业在运行前，必须全部装入内存，且在运行过程中也一直驻留内存</li>
+                            <li>B. 作业在运行前，不必全部装入内存，但在运行过程中也必须一直驻留内存</li>
+                            <li>C. 作业在运行前，不必全部装入内存，但在运行过程中必须一直驻留内存</li>
+                            <li>D. 作业在运行前，必须全部装入内存，但在运行过程中不必一直驻留内存</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-4-answer')">查看答案</button>
+                            <div id="q3-4-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>题目：在非<strong>虚拟存储</strong>器中，作业必须全部装入内存且在运行过程中也一直驻留内存；在<strong>虚拟存储</strong>器中，作业不必全部装入内存且在运行过程中也不用一直驻留内存。这是两者的主要区别之一。</p>
+                                <p>解析：<strong>请求分页</strong>允许部分加载、按需调入。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目5：</h4>
+                        <p><strong>以下不属于虚拟内存特征的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 一次性</li>
+                            <li>B. 多次性</li>
+                            <li>C. 对换性</li>
+                            <li>D. 虚拟性</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-5-answer')">查看答案</button>
+                            <div id="q3-5-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>题目：多次性、对换性和离散性是虚拟内存的特征，一次性则是传统存储系统的特征。</p>
+                                <p>解析：虚拟内存支持多次调入/调出，不强制一次性装入。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目6：</h4>
+                        <p><strong>为使虚系统有效地发挥其预期的作用，所运行的程序应具有的特性是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 该程序不应含有过多的 I/O 操作</li>
+                            <li>B. 该程序的大小不应超过实际的内存容量</li>
+                            <li>C. 该程序应具有较好的<strong>局部性</strong></li>
+                            <li>D. 该程序的指令相关性不应太多</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-6-answer')">查看答案</button>
+                            <div id="q3-6-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>题目：<strong>虚拟存储</strong>技术基于程序的<strong>局部性</strong>原理。<strong>局部性</strong>越好，<strong>虚拟存储</strong>系统就能更好地发挥作用。</p>
+                                <p>解析：<strong>局部性</strong>是虚拟内存的基础理论依据。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目7：</h4>
+                        <p><strong>（ ）是<strong>请求分页</strong>存储管理方式和基本分页存储管理方式的区别。</strong></p>
+                        <ul>
+                            <li>A. 地址重定向</li>
+                            <li>B. 不必将作业全部装入内存</li>
+                            <li>C. 采用<strong>快表</strong>技术</li>
+                            <li>D. 不必将作业装入连续区域</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-7-answer')">查看答案</button>
+                            <div id="q3-7-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>题目：<strong>请求分页</strong>存储管理方式和基本分页存储管理方式的区别是，前者采用虚拟技术，因此开始运行时，不必将作业全部一次性装入内存，而后者不是。</p>
+                                <p>解析：<strong>请求分页</strong> = 按需调入；基本分页 = 全部装入。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目8：</h4>
+                        <p><strong>通常所说的"<strong>存储保护</strong>"的基本含义是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 防止存储器硬件受损</li>
+                            <li>B. 防止程序在内存丢失</li>
+                            <li>C. 防止程序间相互越界访问</li>
+                            <li>D. 防止程序源码被人偷窃</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-8-answer')">查看答案</button>
+                            <div id="q3-8-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>题目：通常所说的"<strong>存储保护</strong>"的基本含义是防止程序间相互越界访问。<strong>存储保护</strong>可以保证多个程序在共享主存时不相互覆盖或非法访问，从而保证系统的正常运行和安全性。</p>
+                                <p>解析：<strong>存储保护</strong>用于隔离进程空间，防止越界访问。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目9：</h4>
+                        <p><strong>在<strong>页式</strong><strong>虚拟存储</strong>管理中，程序的链接方式必然是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 静态链接</li>
+                            <li>B. 装入时动态链接</li>
+                            <li>C. 运行时动态链接</li>
+                            <li>D. 不确定哪种链接方式</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-9-answer')">查看答案</button>
+                            <div id="q3-9-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>题目：在<strong>页式</strong><strong>虚拟存储</strong>管理中，程序的逻辑地址和<strong>物理地址</strong>是不一致的，而且<strong>物理地址</strong>是在程序运行时才确定的，因此程序的链接也必须在运行时进行，不能在装入时或编译时进行。运行时动态链接是一种在程序执行过程中，根据需要动态地将目标模块装入内存并进行链接的技术。</p>
+                                <p>解析：虚拟内存下，链接只能在运行时完成。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目10：</h4>
+                        <p><strong><strong>虚拟地址</strong>指的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 程序访问内存时使用的地址</li>
+                            <li>B. 访问内存总线上的地址</li>
+                            <li>C. 内存与磁盘交换数据时使用的地址</li>
+                            <li>D. 寄存器的地址</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-10-answer')">查看答案</button>
+                            <div id="q3-10-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>题目：程序访问内存时使用的是<strong>虚拟地址</strong>，操作系统负责将其转换为<strong>物理地址</strong>。</p>
+                                <p>解析：用户程序看到的是<strong>虚拟地址</strong>，由MMU翻译为<strong>物理地址</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目11：</h4>
+                        <p><strong>在采用<strong>页式</strong><strong>虚拟存储</strong>管理和<strong>固定分配</strong><strong>局部置换</strong>策略的系统中，数组采用行优先存储，<strong>页框</strong>大小为512B。某进程中有如下代码段：</strong></p>
+                        <pre><code>int a[128][128];
+for(int i=0; i<128; i++)
+for(int j=0; j<128; j++)
+a[j][i] = 0;</code></pre>
+                        <p><strong>系统为该进程分配的数据区只有1个<strong>页框</strong>，则执行该代码会发生（ ）次<strong>缺页中断</strong>。</strong></p>
+                        <ul>
+                            <li>A. 1</li>
+                            <li>B. 2</li>
+                            <li>C. 128</li>
+                            <li>D. 16384</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-11-answer')">查看答案</button>
+                            <div id="q3-11-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：按列访问 + 行优先存储 → 每次访问新行 → 缺页 → 16384次。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目12：</h4>
+                        <p><strong>假设某个进程分配有4个<strong>页框</strong>，每个<strong>页框</strong>大小为128个字（一个整数占一个字）。进程的代码段正好可以存放在一页中，而且总是占用0号<strong>页框</strong>。数据会在其他3个<strong>页框</strong>中换进或换出。数组X按行优先存储：</strong></p>
+                        <pre><code>int X[64][64];
+for(int j=0; j<64; j++)
+for(int i=0; i<64; i++)
+X[i][j] = 0;</code></pre>
+                        <p><strong>则执行该进程会发生（ ）次<strong>缺页中断</strong>。</strong></p>
+                        <ul>
+                            <li>A. 32</li>
+                            <li>B. 1024</li>
+                            <li>C. 2048</li>
+                            <li>D. 其他都不对</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-12-answer')">查看答案</button>
+                            <div id="q3-12-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：每页放两行 → 每隔两个元素缺页一次 → 4096 / 2 = 2048次。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目13：</h4>
+                        <p><strong>在配置了<strong>TLB</strong>的<strong>页式</strong><strong>虚拟存储</strong>管理的系统中，假设<strong>TLB</strong>的命中率约为75%，忽略访问<strong>TLB</strong>的时间，并且使用<strong>二级</strong><strong>页表</strong>，则每次访存的平均访存次数是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 1.25</li>
+                            <li>B. 1.5</li>
+                            <li>C. 1.75</li>
+                            <li>D. 2</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-13-answer')">查看答案</button>
+                            <div id="q3-13-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>TLB</strong>命中率75%，平均访存时间 = 命中 × 1 + 未命中 × 3。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目14：</h4>
+                        <p><strong>下面关于请求<strong>页式</strong>系统的页面调度算法中，说法错误的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 一个好的页面调度算法应减少和避免<strong>抖动</strong>现象</li>
+                            <li>B. <strong>FIFO</strong>算法基于简单原理，选择最先进入主存储器的页面调出</li>
+                            <li>C. <strong>LRU</strong>算法基于<strong>局部性</strong>原理，首先调出最近一段时间内最长时问未被访问过的页面</li>
+                            <li>D. <strong>CLOCK算法</strong>首先调出一段时间内被访问次数多的页面</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-14-answer')">查看答案</button>
+                            <div id="q3-14-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：CLOCK是近似<strong>LRU</strong>，通过使用位判断是否被访问。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目15：</h4>
+                        <p><strong>考虑<strong>页面置换</strong>算法，系统有m个物理块供调度，初始时空，页面引用串长度为p，包含了n个不同的页号，无论用什么算法，缺页次数不会少于（ ）。</strong></p>
+                        <ul>
+                            <li>A. m</li>
+                            <li>B. p</li>
+                            <li>C. n</li>
+                            <li>D. min(m,n)</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-15-answer')">查看答案</button>
+                            <div id="q3-15-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：至少n次缺页（每个新页一次）。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目16：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理中，若采用<strong>FIFO</strong>页面淘汰算法，则当可供分配的<strong>页帧</strong>数增加时，<strong>缺页中断</strong>的次数（ ）。</strong></p>
+                        <ul>
+                            <li>A. 减少</li>
+                            <li>B. 增加</li>
+                            <li>C. 无影响</li>
+                            <li>D. 可能增加也可能减少</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-16-answer')">查看答案</button>
+                            <div id="q3-16-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：<strong>FIFO</strong>可能出现"反常现象"。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目17：</h4>
+                        <p><strong>设主存容量为1MB，外存容量为400MB，计算机系统的地址寄存器有32位，那么<strong>虚拟存储</strong>器的最大容量是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 1MB</li>
+                            <li>B. 401MB</li>
+                            <li>C. 1MB + 2^32MB</li>
+                            <li>D. 2^32B</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-17-answer')">查看答案</button>
+                            <div id="q3-17-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：地址位数决定虚拟空间上限。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目18：</h4>
+                        <p><strong>一台机器有32位<strong>虚拟地址</strong>和16位<strong>物理地址</strong>，若页面大小为512B，采用<strong>单级</strong><strong>页表</strong>，则<strong>页表</strong>共有（ ）个<strong>页表</strong>项。</strong></p>
+                        <ul>
+                            <li>A. 2^7</li>
+                            <li>B. 2^16</li>
+                            <li>C. 2^23</li>
+                            <li>D. 2^32</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-18-answer')">查看答案</button>
+                            <div id="q3-18-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>页表</strong>大小由<strong>虚拟地址</strong>空间决定。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目19：</h4>
+                        <p><strong>在某分页存储管理的系统中，逻辑地址为16位，页面大小为1KB，页号0,1,2,3号页依次放在3,7,11,10号<strong>页框</strong>中，则逻辑地址0A6FH对应的<strong>物理地址</strong>为（ ）。</strong></p>
+                        <ul>
+                            <li>A. 1E6FH</li>
+                            <li>B. 2E6FH</li>
+                            <li>C. DE6FH</li>
+                            <li>D. EE6FH</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-19-answer')">查看答案</button>
+                            <div id="q3-19-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：页号→<strong>页框</strong>号→计算<strong>物理地址</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目20：</h4>
+                        <p><strong>在决定页面大小时，选择较小的页面是为了减少（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>页表</strong>大小</li>
+                            <li>B. 缺页次数</li>
+                            <li>C. I/O开销</li>
+                            <li>D. <strong>页内碎片</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-20-answer')">查看答案</button>
+                            <div id="q3-20-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：小页面减少内部碎片，但增加<strong>页表</strong>开销。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目21：</h4>
+                        <p><strong><strong>虚拟存储</strong>器的最大容量（ ）。</strong></p>
+                        <ul>
+                            <li>A. 为内外存容量之和</li>
+                            <li>B. 由计算机的地址结构决定</li>
+                            <li>C. 是任意的</li>
+                            <li>D. 由作业的地址空间决定</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-21-answer')">查看答案</button>
+                            <div id="q3-21-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：虚拟空间由地址位数决定，不是内外存之和。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目22：</h4>
+                        <p><strong>某<strong>虚拟存储</strong>系统采用<strong>页式</strong>内存管理，使用<strong>LRU</strong><strong>页面置换</strong>算法，考虑页面访问地址序列：1 8 1 7 8 2 7 2 1 8 3 8 2 1 3 1 7 1 3 7。假定内存容量为4个页面，开始时是空的，则页面失效次数是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 4</li>
+                            <li>B. 5</li>
+                            <li>C. 6</li>
+                            <li>D. 7</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-22-answer')">查看答案</button>
+                            <div id="q3-22-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：模拟<strong>LRU</strong>替换过程，记录每次缺页。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目23：</h4>
+                        <p><strong>导致<strong>LRU</strong>算法实现起来耗费高的原因是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 需要硬件的特殊支持</li>
+                            <li>B. 需要特殊的中断处理程序</li>
+                            <li>C. 需要在<strong>页表</strong>中标明特殊的页类型</li>
+                            <li>D. 需要对所有的页进行排序</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-23-answer')">查看答案</button>
+                            <div id="q3-23-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：<strong>LRU</strong>实现复杂，需维护访问顺序。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目24：</h4>
+                        <p><strong>在<strong>虚拟存储</strong>系统的<strong>页表</strong>项中，决定是否会发生页故障的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>有效位</strong></li>
+                            <li>B. <strong>修改位</strong></li>
+                            <li>C. 页类型</li>
+                            <li>D. 保护码</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-24-answer')">查看答案</button>
+                            <div id="q3-24-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：<strong>有效位</strong>=0 → <strong>缺页中断</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目25：</h4>
+                        <p><strong>在<strong>页面置换</strong>策略中，（ ）策略可能引起<strong>抖动</strong>。</strong></p>
+                        <ul>
+                            <li>A. <strong>FIFO</strong></li>
+                            <li>B. <strong>LRU</strong></li>
+                            <li>C. 没有一种</li>
+                            <li>D. 所有</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-25-answer')">查看答案</button>
+                            <div id="q3-25-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：<strong>抖动</strong>是资源不足导致的，任何算法都可能出现。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目26：</h4>
+                        <p><strong><strong>虚拟存储</strong>管理系统的基础是程序的（ ）理论。</strong></p>
+                        <ul>
+                            <li>A. 动态性</li>
+                            <li>B. 虚拟性</li>
+                            <li>C. <strong>局部性</strong></li>
+                            <li>D. 全局性</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-26-answer')">查看答案</button>
+                            <div id="q3-26-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>虚拟存储</strong>的核心思想是<strong>局部性</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目27：</h4>
+                        <p><strong><strong>请求分页</strong>存储管理的主要特点是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 消除了页内零头</li>
+                            <li>B. 扩充了内存</li>
+                            <li>C. 便于动态链接</li>
+                            <li>D. 便于信息共享</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-27-answer')">查看答案</button>
+                            <div id="q3-27-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：虚拟内存的本质是"以时间换空间"。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目28：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理的<strong>页表</strong>中增加了若干项信息，其中<strong>修改位</strong>和<strong>访问位</strong>供（ ）参考。</strong></p>
+                        <ul>
+                            <li>A. 分配页面</li>
+                            <li>B. 调入页面</li>
+                            <li>C. 置换算法</li>
+                            <li>D. 程序访问</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-28-answer')">查看答案</button>
+                            <div id="q3-28-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：如<strong>LRU</strong>、CLOCK等都依赖这些标志位。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目29：</h4>
+                        <p><strong>下列关于<strong>驻留集</strong>和<strong>工作集</strong>的表述，正确的是（ ）。</strong></p>
+                        <p><strong>I. <strong>驻留集</strong>是进程已装入内存的页面的集合</strong></p>
+                        <p><strong>II. <strong>工作集</strong>是某段时间间隔内，进程运行所需要访问页面的集合</strong></p>
+                        <p><strong>III. <strong>工作集</strong>是<strong>驻留集</strong>的子集</strong></p>
+                        <ul>
+                            <li>A. I</li>
+                            <li>B. II, III</li>
+                            <li>C. I, II</li>
+                            <li>D. I, II, III</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-29-answer')">查看答案</button>
+                            <div id="q3-29-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>工作集</strong>是动态的，<strong>驻留集</strong>是静态分配的。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目30：</h4>
+                        <p><strong>在配置了<strong>TLB</strong>的<strong>页式</strong><strong>虚拟存储</strong>管理的系统中，假设访问内存需要1μs，查询<strong>TLB</strong>需要0.2μs。已知<strong>TLB</strong>和内存的访问是串行的，请问在<strong>TLB</strong>命中率为85%和50%时，系统的平均访问时间分别是多少？（ ）</strong></p>
+                        <ul>
+                            <li>A. 1.5μs, 1.8μs</li>
+                            <li>B. 1.35μs, 1.7μs</li>
+                            <li>C. 1.6μs, 1.7μs</li>
+                            <li>D. 1.35μs, 1.8μs</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-30-answer')">查看答案</button>
+                            <div id="q3-30-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：注意单位统一，计算正确。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目31：</h4>
+                        <p><strong>下列选项中，（ ）不是<strong>页面置换</strong>换出效率的影响因素。</strong></p>
+                        <ul>
+                            <li>A. <strong>页面置换</strong>算法</li>
+                            <li>B. 已修改页面写回磁盘的频率</li>
+                            <li>C. 磁盘数据读入内存的频率</li>
+                            <li>D. CPU与内存交换的速度</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-31-answer')">查看答案</button>
+                            <div id="q3-31-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：硬件速度不影响算法本身效率。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目32：</h4>
+                        <p><strong>允许进程在所有<strong>页框</strong>中选择一个页面替换，而不管该<strong>页框</strong>是否已分配给其他进程的置换方法是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>局部置换</strong></li>
+                            <li>B. <strong>全局置换</strong></li>
+                            <li>C. 进程外置换</li>
+                            <li>D. 进程内置换</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-32-answer')">查看答案</button>
+                            <div id="q3-32-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>全局置换</strong>允许跨进程借用<strong>页框</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目33：</h4>
+                        <p><strong>在<strong>页面置换</strong>算法中，存在<strong>Belady</strong>现象的算法是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 最佳<strong>页面置换</strong>算法（OPT）</li>
+                            <li>B. 先进先出置换算法（<strong>FIFO</strong>）</li>
+                            <li>C. 最近最久未使用算法（<strong>LRU</strong>）</li>
+                            <li>D. 最近未使用算法（NRU）</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-33-answer')">查看答案</button>
+                            <div id="q3-33-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：只有<strong>FIFO</strong>有反常现象。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目34：</h4>
+                        <p><strong><strong>页式</strong><strong>虚拟存储</strong>管理的主要特点是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 不要求将作业装入主存的连续区域</li>
+                            <li>B. 不要求将作业同时全部装入主存的连续区域</li>
+                            <li>C. 不要求进行<strong>缺页中断</strong>处理</li>
+                            <li>D. 不要求进行<strong>页面置换</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-34-answer')">查看答案</button>
+                            <div id="q3-34-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：离散分配是关键特征。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目35：</h4>
+                        <p><strong>提供<strong>虚拟存储</strong>技术的存储管理方法有（ ）。</strong></p>
+                        <ul>
+                            <li>A. 动态分区存储管理</li>
+                            <li>B. <strong>页式</strong>存储管理</li>
+                            <li>C. <strong>请求分页</strong>存储管理</li>
+                            <li>D. 存储覆盖技术</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-35-answer')">查看答案</button>
+                            <div id="q3-35-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：必须支持<strong>缺页中断</strong>和请求调页。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目36：</h4>
+                        <p><strong><strong>内存映射</strong>文件可以将一个文件映射到进程的<strong>虚拟地址</strong>空间的某个区域，实现文件磁盘地址和进程<strong>虚拟地址</strong>空间的映射关系，下列说法中正确的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. <strong>内存映射</strong>文件是将整个文件内容一次性加载到内存中的一种方式</li>
+                            <li>B. <strong>内存映射</strong>文件只适用于读取文件，不支持对文件进行写操作</li>
+                            <li>C. <strong>内存映射</strong>文件可以通过修改内存中的数据来实现对文件的写操作</li>
+                            <li>D. 由于进程的<strong>虚拟地址</strong>空间是独立的，<strong>内存映射</strong>文件不支持多进程映射到同一文件</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-36-answer')">查看答案</button>
+                            <div id="q3-36-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：无需全加载，支持并发访问。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目37：</h4>
+                        <p><strong>在虚拟分页存储管理系统中，若进程访问的页面不在主存中，且主存中没有可用的空闲帧时，系统正确的处理顺序为（ ）。</strong></p>
+                        <ul>
+                            <li>A. 决定淘汰页→页面调出→<strong>缺页中断</strong>→页面调入</li>
+                            <li>B. <strong>缺页中断</strong>→页面调出→<strong>缺页中断</strong>→页面调入</li>
+                            <li>C. <strong>缺页中断</strong>→决定淘汰页→页面调出→页面调入</li>
+                            <li>D. <strong>缺页中断</strong>→决定淘汰页→页面调入→页面调出</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-37-answer')">查看答案</button>
+                            <div id="q3-37-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：标准流程，不可颠倒。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目38：</h4>
+                        <p><strong>已知系统为32位实地址，采用48位<strong>虚拟地址</strong>，页大小为4KB，<strong>页表</strong>项大小为8B。假设系统使用纯<strong>页式</strong>存储，则要采用（ ）级<strong>页表</strong>，页内偏移（ ）位。</strong></p>
+                        <ul>
+                            <li>A. 3, 12</li>
+                            <li>B. 3, 14</li>
+                            <li>C. 4, 12</li>
+                            <li>D. 4, 14</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-38-answer')">查看答案</button>
+                            <div id="q3-38-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>多级</strong><strong>页表</strong>设计。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目39：</h4>
+                        <p><strong>下列说法中，正确的是（ ）。</strong></p>
+                        <p><strong>I. 先进先出（<strong>FIFO</strong>）<strong>页面置换</strong>算法会产生<strong>Belady</strong>现象</strong></p>
+                        <p><strong>II. 最近最少使用（<strong>LRU</strong>）<strong>页面置换</strong>算法会产生<strong>Belady</strong>现象</strong></p>
+                        <p><strong>III. 在进程运行时，若其<strong>工作集</strong>页面都在<strong>虚拟存储</strong>器内，则能够使该进程有效地运行，否则会出现频繁的页面调入/调出现象</strong></p>
+                        <p><strong>IV. 在进程运行时，若其<strong>工作集</strong>页面都在主存储器内，则能够使该进程有效地运行，否则会出现频繁的页面调入/调出现象</strong></p>
+                        <ul>
+                            <li>A. I, III</li>
+                            <li>B. I, IV</li>
+                            <li>C. II, III</li>
+                            <li>D. II, IV</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-39-answer')">查看答案</button>
+                            <div id="q3-39-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：I、IV正确，选B。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目40：</h4>
+                        <p><strong>测得某个采用按需调页的计算机系统的部分状态数据为：CPU利用率为20%，用于交换空间的磁盘利用率为97.7%，其他设备的利用率为50%。由此判断系统出现异常，这种情况下（ ）能提高系统性能。</strong></p>
+                        <ul>
+                            <li>A. 安装一个更快的硬盘</li>
+                            <li>B. 通过扩大硬盘容量增加交换空间</li>
+                            <li>C. 增加运行进程数</li>
+                            <li>D. 加内存条来增加物理内存容量</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-40-answer')">查看答案</button>
+                            <div id="q3-40-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：磁盘繁忙 → 缺页频繁 → 加内存最有效。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目41：</h4>
+                        <p><strong>假定有一个<strong>请求分页</strong>存储管理系统，测得系统各相关设备的利用率为：CPU的利用率为10%，磁盘交换区的利用率为99.7%，其他I/O设备的利用率为5%。下面（ ）措施将可能改进CPU的利用率。</strong></p>
+                        <ul>
+                            <li>A. 加快磁盘速度</li>
+                            <li>B. 增加磁盘交换区容量</li>
+                            <li>C. 减少运行的进程数</li>
+                            <li>D. 增加物理内存</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-41-answer')">查看答案</button>
+                            <div id="q3-41-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：I（增内存）、III（减进程）可行。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目42：</h4>
+                        <p><strong>在<strong>请求分页</strong>系统中，<strong>LRU</strong>算法是指（ ）。</strong></p>
+                        <ul>
+                            <li>A. 最早进入内存的页先淘汰</li>
+                            <li>B. 近期最长时间以来没被访问的页先淘汰</li>
+                            <li>C. 近期被访问次数最少的页先淘汰</li>
+                            <li>D. 以后再也不用的页先淘汰</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-42-answer')">查看答案</button>
+                            <div id="q3-42-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：两种方法都能提升<strong>TLB</strong>性能。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目43：</h4>
+                        <p><strong>在段<strong>页式</strong>存储管理系统中，段表和<strong>页表</strong>的结构分别是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 段表是二维的，<strong>页表</strong>是一维的</li>
+                            <li>B. 段表是一维的，<strong>页表</strong>是二维的</li>
+                            <li>C. 段表和<strong>页表</strong>都是一维的</li>
+                            <li>D. 段表和<strong>页表</strong>都是二维的</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-43-answer')">查看答案</button>
+                            <div id="q3-43-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：所有操作都可能发生。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目44：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理系统中，<strong>页表</strong>项中设置<strong>访问位</strong>的目的是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 实现地址变换</li>
+                            <li>B. 实现程序共享</li>
+                            <li>C. 实现<strong>页面置换</strong></li>
+                            <li>D. 实现<strong>内存保护</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-44-answer')">查看答案</button>
+                            <div id="q3-44-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：对换大小不影响<strong>抖动</strong>本质。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目45：</h4>
+                        <p><strong>在<strong>虚拟存储</strong>系统中，若进程在内存中占3块（开始时为空），采用先进先出页面淘汰算法，当执行访问序列：2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2时，将产生（ ）次<strong>缺页中断</strong>。</strong></p>
+                        <ul>
+                            <li>A. 9</li>
+                            <li>B. 10</li>
+                            <li>C. 8</li>
+                            <li>D. 7</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-45-answer')">查看答案</button>
+                            <div id="q3-45-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<strong>虚拟存储</strong>基于非连续分配技术（分页/分段）。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目46：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理中，若使用<strong>二级</strong><strong>页表</strong>，则每次访问内存数据至少需要访问内存（ ）次。</strong></p>
+                        <ul>
+                            <li>A. 1</li>
+                            <li>B. 2</li>
+                            <li>C. 3</li>
+                            <li>D. 4</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-46-answer')">查看答案</button>
+                            <div id="q3-46-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：缺页时可能需要置换页、分配<strong>页框</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目47：</h4>
+                        <p><strong>在<strong>虚拟存储</strong>系统中，相联存储器（<strong>TLB</strong>）的作用是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 存储文件信息</li>
+                            <li>B. 存储空闲内存块信息</li>
+                            <li>C. 加速地址变换过程</li>
+                            <li>D. 存储<strong>页表</strong></li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-47-answer')">查看答案</button>
+                            <div id="q3-47-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：二者均能减少查找延迟。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目48：</h4>
+                        <p><strong>在<strong>段式</strong>存储管理中，（ ）。</strong></p>
+                        <ul>
+                            <li>A. 以段为单位分配，每段是一个连续存储区</li>
+                            <li>B. 段与段之间必定不连续</li>
+                            <li>C. 段与段之间必定连续</li>
+                            <li>D. 每段是等长的</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-48-answer')">查看答案</button>
+                            <div id="q3-48-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：经典考点。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目49：</h4>
+                        <p><strong>在段<strong>页式</strong>存储管理中，内存地址结构是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 段号 + 页号 + 页内地址</li>
+                            <li>B. 页号 + 段号 + 页内地址</li>
+                            <li>C. 段号 + 段内地址</li>
+                            <li>D. 页号 + 页内地址</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-49-answer')">查看答案</button>
+                            <div id="q3-49-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>固定分配</strong> + <strong>全局置换</strong> → 不匹配。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目50：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理中，若把页面尺寸增加一倍，在程序顺序执行时，则一般<strong>缺页中断</strong>次数会（ ）。</strong></p>
+                        <ul>
+                            <li>A. 增加</li>
+                            <li>B. 减少</li>
+                            <li>C. 不变</li>
+                            <li>D. 可能增加也可能减少</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-50-answer')">查看答案</button>
+                            <div id="q3-50-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：模拟访问序列，找出最久未使用页。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目51：</h4>
+                        <p><strong>在<strong>请求分页</strong>系统中，不能与其它页面共享的页面是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 代码段页面</li>
+                            <li>B. 数据段页面</li>
+                            <li>C. 系统程序页面</li>
+                            <li>D. 程序库页面</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-51-answer')">查看答案</button>
+                            <div id="q3-51-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：优先淘汰未访问未修改页。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目52：</h4>
+                        <p><strong>在<strong>页式</strong>存储管理中，<strong>页表</strong>的始址存放在（ ）。</strong></p>
+                        <ul>
+                            <li>A. 内存</li>
+                            <li>B. 存储页面表</li>
+                            <li>C. 联想存储器</li>
+                            <li>D. 寄存器</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-52-answer')">查看答案</button>
+                            <div id="q3-52-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：<strong>工作集</strong>是最近访问的不同页集合。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目53：</h4>
+                        <p><strong>在<strong>请求分页</strong>管理中，已修改过的页面再次装入时应来自（ ）。</strong></p>
+                        <ul>
+                            <li>A. 磁盘文件区</li>
+                            <li>B. 磁盘对换区</li>
+                            <li>C. 后备作业区</li>
+                            <li>D. I/O缓冲区</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-53-answer')">查看答案</button>
+                            <div id="q3-53-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：注意是"置换次数"，不是缺页次数。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目54：</h4>
+                        <p><strong>在<strong>段式</strong>分配中，CPU每次从内存中取一次数据需要（ ）次访问内存。</strong></p>
+                        <ul>
+                            <li>A. 1</li>
+                            <li>B. 3</li>
+                            <li>C. 2</li>
+                            <li>D. 4</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-54-answer')">查看答案</button>
+                            <div id="q3-54-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：缺页率、磁盘I/O、内存访问、CPU时间都有关。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目55：</h4>
+                        <p><strong>在<strong>请求分页</strong>存储管理系统中，<strong>页表</strong>项中设置状态位是为了（ ）。</strong></p>
+                        <ul>
+                            <li>A. 实现<strong>LRU</strong>置换算法</li>
+                            <li>B. 实现<strong>FIFO</strong>置换算法</li>
+                            <li>C. 判断页面是否在内存中</li>
+                            <li>D. 判断页面是否需要写回</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-55-answer')">查看答案</button>
+                            <div id="q3-55-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：<strong>页表</strong>项缺失 → <strong>缺页中断</strong> → 调入 → 得到<strong>物理地址</strong>。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目56：</h4>
+                        <p><strong>在固定分区分配中，每个分区的大小是（ ）。</strong></p>
+                        <ul>
+                            <li>A. 相同</li>
+                            <li>B. 随作业长度变化</li>
+                            <li>C. 可以不同但预先固定</li>
+                            <li>D. 可以不同但根据作业长度变化</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-56-answer')">查看答案</button>
+                            <div id="q3-56-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：A</strong></p>
+                                <p>解析：有空闲<strong>页框</strong> → 直接调入，无需置换。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目57：</h4>
+                        <p><strong>在可变分区存储管理中，最佳适应算法要求将空闲区按（ ）顺序排列。</strong></p>
+                        <ul>
+                            <li>A. 容量递增</li>
+                            <li>B. 容量递减</li>
+                            <li>C. 地址递增</li>
+                            <li>D. 地址递减</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-57-answer')">查看答案</button>
+                            <div id="q3-57-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：页缓冲影响I/O效率，不影响缺页频率。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目58：</h4>
+                        <p><strong>在分页存储管理系统中，从页号到物理块号的地址映射是通过（ ）实现的。</strong></p>
+                        <ul>
+                            <li>A. 段表</li>
+                            <li>B. <strong>页表</strong></li>
+                            <li>C. PCB</li>
+                            <li>D. JCB</li>
+                        </ul>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-58-answer')">查看答案</button>
+                            <div id="q3-58-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：D</strong></p>
+                                <p>解析：核心考点！</p>
+                                <p>A 正确：每个进程独立虚拟空间</p>
+                                <p>B 正确：malloc返回<strong>虚拟地址</strong></p>
+                                <p>C 正确：代码段、数据段权限可不同</p>
+                                <p>D 错误：虚拟空间大小由地址位数决定，不是由内存+硬盘决定</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>3.2 填空题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p>在分页存储管理中，页面的大小是<strong>____</strong>的，而段的长度是<strong>____</strong>的。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-1-fill-answer')">查看答案</button>
+                            <div id="q3-1-fill-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：固定、可变</strong></p>
+                                <p>解析：页面大小固定，段的长度可变。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p>在<strong>请求分页</strong>存储管理中，<strong>页面置换</strong>算法包括<strong>____</strong>、<strong>____</strong>和<strong>____</strong>等。</p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-2-fill-answer')">查看答案</button>
+                            <div id="q3-2-fill-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：最佳置换算法(OPT)、先进先出置换算法(<strong>FIFO</strong>)、最近最久未使用置换算法(<strong>LRU</strong>)</strong></p>
+                                <p>解析：常见的<strong>页面置换</strong>算法。</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>3.3 简答题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong>简述程序<strong>局部性</strong>原理及其表现形式。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-1-short-answer')">查看答案</button>
+                            <div id="q3-1-short-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p>程序<strong>局部性</strong>原理是指程序在执行时呈现出<strong>局部性</strong>规律，即在一段时间内，程序的执行仅局限于程序的某一部分。</p>
+                                <p><strong>表现形式：</strong></p>
+                                <ol>
+                                    <li><strong>时间<strong>局部性</strong>：</strong>如果程序中的某条指令一旦执行，则不久之后该指令可能再次执行；如果某数据被访问，则不久之后该数据可能再次被访问。</li>
+                                    <li><strong>空间<strong>局部性</strong>：</strong>一旦程序访问了某个存储单元，在不久之后，其附近的存储单元也将被访问。</li>
+                                </ol>
+                                <p><strong>局部性</strong>原理是<strong>虚拟存储</strong>器得以实现的理论基础。</p>
+                            </div>
+                        </div>
+                        
+                        <h4>题目2：</h4>
+                        <p><strong>什么是<strong>抖动</strong>现象？产生的原因是什么？</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-2-short-answer')">查看答案</button>
+                            <div id="q3-2-short-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p><strong><strong>抖动</strong>现象：</strong>在<strong>请求分页</strong>存储管理中，如果分配给进程的物理页面数太少，不能满足进程正常运行的要求，致使进程在运行过程中频繁地发生<strong>缺页中断</strong>，这种现象称为<strong>抖动</strong>或颠簸。</p>
+                                <p><strong>产生原因：</strong></p>
+                                <ul>
+                                    <li>分配给进程的物理页面数太少</li>
+                                    <li><strong>页面置换</strong>算法不合理</li>
+                                    <li>进程数量太多，导致每个进程分配的页面数过少</li>
+                                </ul>
+                                <p>解决方法包括增加物理内存、改进<strong>页面置换</strong>算法、控制并发进程数量等。</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                <h3>3.4 应用题</h3>
+                <div>
+                        <h4>题目1：</h4>
+                        <p><strong>在一个<strong>请求分页</strong>系统中，假如一个作业的页面走向为4, 3, 2, 1, 4, 3, 5, 4, 3, 2, 1, 5，目前它还没有任何页装入内存，当分配给该作业的物理块数为3时，请分别计算采用<strong>FIFO</strong>和<strong>LRU</strong>算法的缺页次数和缺页率。</strong></p>
+                        <div class="study-tip-container">
+                            <button class="study-tip-btn" onclick="toggleStudyTip('q3-1-long-answer')">查看答案</button>
+                            <div id="q3-1-long-answer" class="study-tip-content" style="display:none;">
+                                <p><strong>答案：</strong></p>
+                                <p><strong><strong>FIFO</strong>算法：</strong></p>
+                                <pre><code>页面走向: 4  3  2  1  4  3  5  4  3  2  1  5
+物理块1: 4  4  4  1  1  1  5  5  5  2  2  2
+物理块2: -  3  3  3  4  4  4  4  4  4  1  1
+物理块3: -  -  2  2  2  3  3  3  3  3  3  5
+<strong>缺页中断</strong>: Y  Y  Y  Y  Y  Y  Y  -  -  Y  Y  Y</code></pre>
+                                <p>缺页次数：9次，缺页率 = 9/12 = 75%</p>
+                                
+                                <p><strong><strong>LRU</strong>算法：</strong></p>
+                                <pre><code>页面走向: 4  3  2  1  4  3  5  4  3  2  1  5
+物理块1: 4  4  4  1  1  1  5  5  5  2  2  2
+物理块2: -  3  3  3  4  4  4  4  4  4  1  1
+物理块3: -  -  2  2  2  3  3  3  3  3  3  5
+<strong>缺页中断</strong>: Y  Y  Y  Y  Y  Y  Y  -  -  Y  Y  Y</code></pre>
+                                <p>缺页次数：9次，缺页率 = 9/12 = 75%</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="key-points">
+                <h3>重点回顾</h3>
+                <ul>
+                    <li>内存管理的基本概念</li>
+                    <li>连续分配方式</li>
+                    <li>分页存储管理</li>
+                    <li>分段存储管理</li>
+                    <li>虚拟内存技术</li>
+                    <li><strong>页面置换</strong>算法</li>
+                </ul>
+                
+                <h4>核心内容</h4>
+                <ul>
+                    <li><strong>虚拟存储</strong>：基于<strong>局部性</strong>原理，逻辑扩充内存</li>
+                    <li><strong>页式</strong>管理：分页、<strong>页表</strong>、<strong>TLB</strong>、<strong>缺页中断</strong></li>
+                    <li><strong>页面置换</strong>：<strong>FIFO</strong>、<strong>LRU</strong>、<strong>Clock</strong>、<strong>Belady</strong>异常</li>
+                    <li><strong>工作集</strong>：近期访问的页面集合，避免<strong>抖动</strong></li>
+                    <li><strong>TLB</strong>：快速<strong>地址转换</strong>，命中率影响性能</li>
+                    <li><strong>内存映射</strong>：文件映射到<strong>虚拟地址</strong>空间，支持共享</li>
+                </ul>
+                
+                <h4>建议复习方法</h4>
+                <ul>
+                    <li>重点掌握 <strong>LRU</strong>、<strong>FIFO</strong>、<strong>Clock</strong> 算法模拟</li>
+                    <li>理解 <strong>缺页中断</strong>处理流程</li>
+                    <li>掌握 <strong>虚拟地址</strong> → <strong>物理地址</strong> 的转换</li>
+                    <li>多做真题，尤其是 2010~2023年统考真题</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 王道操作系统考研复习指导 - 习题练习</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top">↑</button>
+</body>
+</html>
