@@ -52,7 +52,7 @@
                             <button class="study-tip-btn" onclick="toggleStudyTip('q2-1-answer')">查看答案</button>
                             <div id="q2-1-answer" class="study-tip-content" style="display:none;">
                                 <p><strong>答案：C</strong></p>
-                                <p>解析：引起<strong>死锁</strong>的四个必要条件是：<strong>互斥</strong>、占有并等待、<strong>非剥夺</strong>和<strong>循环等待</strong>。本题中出现了<strong>循环等待</strong>现象，意味着可能导致<strong>死锁</strong>。进程释放资源不会导致<strong>死锁</strong>，进程自己进入死循环只能产生"饥饿"，不涉及其他进程。共享型设备允许多个进程申请使用，因此不会造成<strong>死锁</strong>。再次提醒，<strong>死锁</strong>一定要有两个或两个以上的进程才会导致，而饥饿可能由一个进程导致。</p>
+                                <p>解析：<span class="highlight">信号量机制</span>能确保<span class="highlight">临界资源</span>的<span class="highlight">互斥</span>访问，不能完全<span class="highlight">避免</span><span class="highlight">死锁</span>，A错误。<span class="highlight">同时检查两支筷子是否可用</span>的方法可以<span class="highlight">预防</span><span class="highlight">死锁</span>，但是会导致<span class="highlight">资源浪费</span>，因为可能有一些<span class="highlight">空闲的筷子</span>无法使用，但拿到筷子的哲学家用完餐后，<span class="highlight">释放筷子</span>，其他哲学家就可以正常用餐，因此不会导致<span class="highlight">饥饿现象</span>，B错误。若<span class="highlight">限制允许拿起筷子的哲学家数量</span>，则不被允许的哲学家<span class="highlight">左边的哲学家</span>一定可以拿到两边的筷子，从而<span class="highlight">破坏</span>"<span class="highlight">循环等待</span>"条件，C正确。对哲学家<span class="highlight">顺序编号</span>，<span class="highlight">奇数号哲学家</span>先拿<span class="highlight">左筷子</span>，然后拿<span class="highlight">右筷子</span>，而<span class="highlight">偶数号哲学家</span>刚好相反，则<span class="highlight">相邻的哲学家</span>总有一个可以拿起两边的筷子，但这<span class="highlight">破坏</span>的是"<span class="highlight">循环等待</span>"条件，而不是"<span class="highlight">互斥</span>"条件，D错误。</p>
                             </div>
                         </div>
                         
@@ -211,8 +211,8 @@
                         <div class="study-tip-container">
                             <button class="study-tip-btn" onclick="toggleStudyTip('q2-11-answer')">查看答案</button>
                             <div id="q2-11-answer" class="study-tip-content" style="display:none;">
-                                <p><strong>答案：A</strong></p>
-                                <p>解析：A项的每个进程只申请一个资源，<strong>破坏</strong>了<strong>请求并保持</strong>条件，必然不会发生<strong>死锁</strong>。或者，根据<strong>死锁</strong>公式，假设系统共有m个资源，n个进程，每个进程需要k个资源，若满足m>n×(k-1)，则系统一定不会发生<strong>死锁</strong>，代入公式可知B、C、D项均可能发生<strong>死锁</strong>。</p>
+                                <p><strong>答案：C</strong></p>
+                                <p>解析：A项可以<span class="highlight">破坏</span><span class="highlight">请求并保持</span>条件，必然不会发生<span class="highlight">死锁</span>。或者，根据<span class="highlight">死锁</span>公式，假设系统共有m个资源，n个进程，每个进程需要k个资源，若满足m>n×(k-1)，则系统一定不会发生<span class="highlight">死锁</span>，代入公式可知B、C、D项均可能发生<span class="highlight">死锁</span>。</p>
                             </div>
                         </div>
                         
@@ -228,7 +228,7 @@
                             <button class="study-tip-btn" onclick="toggleStudyTip('q2-12-answer')">查看答案</button>
                             <div id="q2-12-answer" class="study-tip-content" style="display:none;">
                                 <p><strong>答案：D</strong></p>
-                                <p>解析：解除<strong>死锁</strong>的方法有：①剥夺资源法：挂起某些<strong>死锁</strong>进程，并抢夺占它的资源，将这些资源分配给其他的<strong>死锁</strong>进程；②撤销进程法：强制撤销部分甚至全部<strong>死锁</strong>进程并剥夺这些进程的资源。</p>
+                                <p>解析：解除<span class="highlight">死锁</span>的方法有：①剥夺资源法：挂起某些<span class="highlight">死锁</span>进程，并抢夺占它的资源，将这些资源分配给其他的<span class="highlight">死锁</span>进程；②撤销进程法：强制撤销部分甚至全部<span class="highlight">死锁</span>进程并剥夺这些进程的资源。</p>
                             </div>
                         </div>
                         

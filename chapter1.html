@@ -13,7 +13,7 @@
     <header>
         <div class="container">
             <h1>第1章 计算机系统概述</h1>
-            <p>2025王道操作系统考研复习指导</p>
+            <p>2025王道<strong>操作系统</strong>考研复习指导</p>
         </div>
     </header>
 
@@ -97,11 +97,11 @@ mindmap
             
             <div class="content">
                 <details>
-                    <summary>1.1 操作系统的基本概念</summary>
+                    <summary>1.1 <strong>操作系统</strong>的基本概念</summary>
                     <div>
                         <h4>1.1.1 操作系统的概念</h4>
-                        <p><strong>定义：</strong><strong>操作系统</strong>是控制和管理整个计算机系统的硬件与软件资源，合理地组织、调度计算机的工作与资源的分配，进而为用户和其他软件提供方便接口与环境的程序集合，是计算机系统中最基本的<strong>系统软件</strong>。</p>
-                        <p><strong>实例：</strong>常见的<strong>操作系统</strong>有Windows、macOS、Linux、Android、iOS等。它们都是用来管理计算机资源并为用户和应用程序提供服务的<strong>系统软件</strong>。</p>
+                        <p><strong>定义：</strong><strong>操作系统</strong>是控制和管理整个<span class="highlight">计算机系统</span>的<span class="highlight">硬件</span>与<span class="highlight">软件资源</span>，合理地组织、调度<span class="highlight">计算机</span>的工作与<span class="highlight">资源</span>的分配，进而为<span class="highlight">用户</span>和<span class="highlight">其他软件</span>提供方便<span class="highlight">接口</span>与<span class="highlight">环境</span>的程序集合，是<span class="highlight">计算机系统</span>中最基本的<span class="highlight">系统软件</span>。</p>
+                        <p><strong>实例：</strong>常见的<strong>操作系统</strong>有Windows、macOS、Linux、Android、iOS等。它们都是用来管理<strong>计算机资源</strong>并为<strong>用户</strong>和<strong>应用程序</strong>提供服务的<strong>系统软件</strong>。</p>
                         <p><strong>本质：</strong>是<strong>系统软件</strong>（一整套程序构成，如UNIX由上千个模块构成）</p>
                         <p><strong>核心作用：</strong></p>
                         <ol>
@@ -111,7 +111,7 @@ mindmap
                         </ol>
                         
                         <h4>1.1.2 操作系统的特征</h4>
-                        <p><strong>操作系统</strong>有四个基本特征，其中<strong>并发</strong>和<strong>共享</strong>是最基本的特征，二者互为存在条件（没有<strong>并发</strong>和<strong>共享</strong>，就没有<strong>虚拟</strong>和<strong>异步</strong>）：</p>
+                        <p><span class="highlight">操作系统</span>有四个基本特征，其中<span class="highlight">并发</span>和<span class="highlight">共享</span>是最基本的特征，二者互为存在条件（没有<span class="highlight">并发</span>和<span class="highlight">共享</span>，就没有<span class="highlight">虚拟</span>和<span class="highlight">异步</span>）：</p>
                         
                         <div class="study-tip-container">
                             <button class="study-tip-btn" onclick="toggleStudyTip('feature-tip')">💡 学习提示</button>
@@ -119,16 +119,16 @@ mindmap
                                 <h4>记忆方法：</h4>
                                 <p><strong>联想记忆法：</strong>可以把操作系统四个特征想象成一个高效的团队：</p>
                                 <ul>
-                                    <li><strong>并发（Concurrency）</strong> - 团队成员可以同时处理多项任务</li>
-                                    <li><strong>共享（Sharing）</strong> - 团队成员共享办公设备如打印机、会议室</li>
-                                    <li><strong>虚拟（Virtual）</strong> - 通过虚拟化技术，让一个物理设备看起来像多个设备</li>
-                                    <li><strong>异步（Asynchronism）</strong> - 任务完成时间不确定，可能快可能慢</li>
+                                    <li><span class="highlight">并发（Concurrency）</span> - 团队成员可以同时处理多项任务</li>
+                                    <li><span class="highlight">共享（Sharing）</span> - 团队成员共享办公设备如打印机、会议室</li>
+                                    <li><span class="highlight">虚拟（Virtual）</span> - 通过虚拟化技术，让一个物理设备看起来像多个设备</li>
+                                    <li><span class="highlight">异步（Asynchronism）</span> - 任务完成时间不确定，可能快可能慢</li>
                                 </ul>
                                 <p><strong>口诀记忆：</strong>"并共虚异"，可以联想为"并肩共享虚幻异议"</p>
                             </div>
                         </div>
                         
-                        <p><strong>1. <strong>并发</strong>：</strong></p>
+                        <p><strong>1. <span class="highlight">并发</span>（Concurrent）：</strong></p>
                         <ul>
                             <li>宏观上同时发生，微观上交替发生</li>
                             <li>操作系统的并发性：计算机系统"同时"运行着多个程序，宏观上看是同时运行的，微观上看是交替运行的</li>
@@ -136,7 +136,7 @@ mindmap
                             <li>实例：当你在听音乐的同时浏览网页，实际上是CPU在多个任务之间快速切换，给人同时运行的感觉。</li>
                         </ul>
                         
-                        <p><strong>2. <strong>共享</strong>：</strong></p>
+                        <p><strong>2. <span class="highlight">共享</span>（Sharing）：</strong></p>
                         <ul>
                             <li>指系统中的资源供内存中多个并发执行的进程共同使用</li>
                             <li>互斥共享方式：资源被多个进程依次使用（如打印机）</li>
@@ -145,7 +145,7 @@ mindmap
                             <li>实例：多个用户可以同时访问同一个网站，这就是资源共享的体现；多个程序可以同时使用硬盘存储数据。</li>
                         </ul>
                         
-                        <p><strong>3. <strong>虚拟</strong>：</strong></p>
+                        <p><strong>3. <span class="highlight">虚拟</span>（Virtual）：</strong></p>
                         <ul>
                             <li>将一个物理上的实体变为若干个逻辑上的对应物</li>
                             <li>物理实体是实际存在的，而逻辑上的对应物是用户感受到的</li>
@@ -154,7 +154,7 @@ mindmap
                             <li>实例：虚拟机软件（如VMware、VirtualBox）可以在一台物理机器上运行多个操作系统；云计算中的虚拟服务器。</li>
                         </ul>
                         
-                        <p><strong>4. <strong>异步</strong>：</strong></p>
+                        <p><strong>4. <span class="highlight">异步</span>（Asynchronous）：</strong></p>
                         <ul>
                             <li>多道程序环境下，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进</li>
                             <li>每个程序什么时候执行、向前推进速度快慢，由执行的现场决定</li>
@@ -177,10 +177,10 @@ mindmap
                         <ol>
                             <li>作为计算机系统资源的管理者：
                                 <ul>
-                                    <li><strong>处理机管理</strong>：<strong>进程调度</strong>、<strong>进程控制</strong>、<strong>进程同步</strong>与<strong>通信</strong></li>
-                                    <li><strong>存储器管理</strong>：<strong>内存分配</strong><strong>回收</strong>、<strong>内存保护</strong>、<strong>地址映射</strong>、<strong>内存扩展</strong></li>
-                                    <li><strong>文件管理</strong>：<strong>文件存储空间</strong>的管理、<strong>文件操作</strong>的一般管理、<strong>目录管理</strong>、<strong>文件</strong>的<strong>读写管理</strong>和<strong>存取控制</strong></li>
-                                    <li><strong>设备管理</strong>：<strong>设备</strong>的<strong>分配</strong>与<strong>回收</strong>、<strong>设备驱动程序</strong>、<strong>设备无关性</strong>、<strong>缓冲区管理</strong></li>
+                                    <li><span class="highlight">处理机管理</span>：<span class="highlight">进程调度</span>、<span class="highlight">进程控制</span>、<span class="highlight">进程同步</span>与<span class="highlight">通信</span></li>
+                                    <li><span class="highlight">存储器管理</span>：<span class="highlight">内存分配</span>、<span class="highlight">回收</span>、<span class="highlight">内存保护</span>、<span class="highlight">地址映射</span>、<span class="highlight">内存扩展</span></li>
+                                    <li><span class="highlight">文件管理</span>：<span class="highlight">文件存储空间</span>的管理、<span class="highlight">文件操作</span>的一般管理、<span class="highlight">目录管理</span>、<span class="highlight">文件</span>的<span class="highlight">读写管理</span>和<span class="highlight">存取控制</span></li>
+                                    <li><span class="highlight">设备管理</span>：<span class="highlight">设备</span>的<span class="highlight">分配</span>与<span class="highlight">回收</span>、<span class="highlight">设备驱动程序</span>、<span class="highlight">设备无关性</span>、<span class="highlight">缓冲区管理</span></li>
                                 </ul>
                             </li>
                             <li>作为用户与计算机硬件系统之间的接口：
@@ -203,7 +203,7 @@ mindmap
                 </details>
                 
                 <details>
-                    <summary>1.2 操作系统的发展历程</summary>
+                    <summary>1.2 <strong>操作系统</strong>的发展历程</summary>
                     <div>
                         <h4>1.2.1 手工操作阶段（无操作系统）</h4>
                         <p><strong>特点：</strong>用户直接操作计算机，没有操作系统</p>
@@ -216,7 +216,7 @@ mindmap
                         <p><strong>实例：</strong>早期的大型计算机需要操作员手动加载程序卡片，每张卡片代表一条指令，非常低效。</p>
                         
                         <h4>1.2.2 批处理阶段（操作系统开始出现）</h4>
-                        <p><strong>单道批处理系统：</strong></p>
+                        <p><strong>单道<strong>批处理系统</strong>：</strong></p>
                         <ul>
                             <li>内存中始终只存放一个作业</li>
                             <li>优点：提高了CPU利用率</li>
@@ -224,7 +224,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>IBM的早期批处理系统，将一批作业预先准备好，然后一次性处理。</p>
                         
-                        <p><strong>多道批处理系统：</strong></p>
+                        <p><strong>多道<strong>批处理系统</strong>：</strong></p>
                         <ul>
                             <li>允许多个程序同时进入内存并允许它们在CPU中交替运行</li>
                             <li>优点：资源利用率高，系统吞吐量大</li>
@@ -285,10 +285,10 @@ mindmap
                 </details>
                 
                 <details>
-                    <summary>1.3 操作系统运行环境</summary>
+                    <summary>1.3 <strong>操作系统</strong>运行环境</summary>
                     <div>
                         <h4>1.3.1 处理器运行模式</h4>
-                        <p><strong>内核态</strong>（核心态、管态）：</p>
+                        <p><span class="highlight">内核态</span>（核心态、管态、<span class="highlight">Kernel Mode</span>）：</p>
                         <ul>
                             <li>CPU执行特权指令时的状态</li>
                             <li>可以访问所有系统资源和执行所有指令</li>
@@ -296,7 +296,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>当程序需要访问硬件设备或执行关键系统操作时，必须切换到内核态。</p>
                         
-                        <p><strong>用户态</strong>（目态）：</p>
+                        <p><span class="highlight">用户态</span>（目态、<span class="highlight">User Mode</span>）：</p>
                         <ul>
                             <li>CPU执行非特权指令时的状态</li>
                             <li>只能访问有限的系统资源和执行非特权指令</li>
@@ -304,12 +304,12 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>用户编写的普通应用程序（如文本编辑器、浏览器）都在用户态运行。</p>
                         
-                        <p><strong>状态转换</strong>：</p>
+                        <p><span class="highlight">状态转换</span>：</p>
                         <ul>
-                            <li>内核态→用户态：执行一条特权指令，修改PSW的标志位变为"用户态"，操作系统主动让出CPU使用权</li>
-                            <li>用户态→内核态：触发中断信号，操作系统强行夺回CPU使用权</li>
+                            <li><span class="highlight">内核态</span>→<span class="highlight">用户态</span>：执行一条特权指令，修改PSW的标志位变为"用户态"，<span class="highlight">操作系统</span>主动让出<span class="highlight">CPU</span>使用权</li>
+                            <li><span class="highlight">用户态</span>→<span class="highlight">内核态</span>：触发<span class="highlight">中断</span>信号，<span class="highlight">操作系统</span>强行夺回<span class="highlight">CPU</span>使用权</li>
                         </ul>
-                        <p><strong>实例：</strong>当你在浏览器中点击打印按钮时，浏览器（用户态）会发起系统调用，CPU切换到内核态执行打印操作，完成后返回用户态继续运行浏览器。</p>
+                        <p><strong>实例：</strong>当你在浏览器中点击打印按钮时，浏览器（<span class="highlight">用户态</span>）会发起<span class="highlight">系统调用</span>，<span class="highlight">CPU</span>切换到<span class="highlight">内核态</span>执行打印操作，完成后返回<span class="highlight">用户态</span>继续运行浏览器。</p>
                         
                         <div class="visualization">
                             <h4>CPU运行模式转换图</h4>
@@ -323,16 +323,16 @@ mindmap
                         </div>
                         
                         <h4>1.3.2 中断和异常的概念</h4>
-                        <p><strong><strong>中断</strong>：</strong></p>
+                        <p><strong><span class="highlight">中断</span>（Interrupt）：</strong></p>
                         <ul>
                             <li>外部事件引起的处理器暂停当前任务，转而执行中断处理程序</li>
                         </ul>
                         <p><strong>实例：</strong>当你按下键盘按键时，会产生键盘中断，CPU暂停当前任务去处理按键输入。</p>
                         
-                        <p><strong>分类：</strong></p>
+                        <p><strong>分类（Classification）：</strong></p>
                         <ul>
-                            <li><strong>内中断</strong>（<strong>异常</strong>）：与当前执行的指令有关（如<strong>除零错误</strong>、<strong>缺页中断</strong>）</li>
-                            <li><strong>外中断</strong>（狭义上的<strong>中断</strong>）：与当前执行的指令无关（如<strong>键盘输入</strong>、<strong>定时器中断</strong>）</li>
+                            <li><span class="highlight">内中断</span>（<span class="highlight">异常</span>、<span class="highlight">Exception</span>）：与当前执行的指令有关（如<span class="highlight">除零错误</span>、<span class="highlight">缺页中断</span>、<span class="highlight">Page Fault</span>）</li>
+                            <li><span class="highlight">外中断</span>（狭义上的<span class="highlight">中断</span>、<span class="highlight">Hardware Interrupt</span>）：与当前执行的指令无关（如<span class="highlight">键盘输入</span>、<span class="highlight">定时器中断</span>）</li>
                         </ul>
                         <p><strong>实例：</strong>程序试图除以零时会发生除零异常（内中断）；网卡接收到数据包时会产生网络中断（外中断）。</p>
                         
@@ -353,11 +353,11 @@ mindmap
                             </div>
                         </div>
                         
-                        <p><strong>中断的作用：</strong></p>
+                        <p><span class="highlight">中断的作用</span>：</p>
                         <ul>
-                            <li>让用户态变回内核态的唯一方式</li>
-                            <li>让操作系统强行夺回CPU的控制权</li>
-                            <li>没有中断就没有并发</li>
+                            <li>让<span class="highlight">用户态</span>变回<span class="highlight">内核态</span>的<span class="highlight">唯一方式</span></li>
+                            <li>让<span class="highlight">操作系统</span>强行夺回<span class="highlight">CPU</span>的<span class="highlight">控制权</span></li>
+                            <li>没有<span class="highlight">中断</span>就没有<span class="highlight">并发</span></li>
                         </ul>
                         <p><strong>实例：</strong>系统调用通过软中断实现从用户态到内核态的切换。</p>
                         
@@ -407,7 +407,7 @@ mindmap
                         <p><strong>定义：</strong>操作系统提供给应用程序的接口，用于请求操作系统服务</p>
                         <p><strong>实例：</strong>C语言中的printf()函数底层会调用系统提供的write()系统调用来输出字符到屏幕。</p>
                         
-                        <p><strong><strong>系统调用</strong>的实现：</strong></p>
+                        <p><strong><span class="highlight">系统调用</span>（System Call）的实现：</strong></p>
                         <ol>
                             <li>用户程序调用系统调用指令</li>
                             <li>触发中断，CPU切换到内核态</li>
@@ -415,7 +415,7 @@ mindmap
                             <li>返回结果给用户程序</li>
                             <li>恢复用户程序执行</li>
                         </ol>
-                        <p><strong>实例：</strong>当你在程序中调用fopen()打开文件时，实际是通过系统调用请求操作系统打开指定文件。</p>
+                        <p><strong>实例：</strong>当你在程序中调用fopen()打开文件时，实际是通过<span class="highlight">系统调用</span>请求<span class="highlight">操作系统</span>打开指定文件。</p>
                         
                         <div class="visualization">
                             <h4>系统调用实现过程图</h4>
@@ -443,22 +443,22 @@ mindmap
                             </pre>
                         </div>
                         
-                        <p><strong><strong>系统调用</strong>的分类：</strong></p>
+                        <p><strong><span class="highlight">系统调用</span>的分类：</strong></p>
                         <ul>
-                            <li>进程控制：创建、终止、挂起、恢复</li>
-                            <li>文件操作：打开、关闭、读、写</li>
-                            <li>设备管理：读、写、控制</li>
-                            <li>信息维护：获取时间、设置时间</li>
-                            <li>通信：消息传递、共享内存</li>
+                            <li><span class="highlight">进程控制</span>：创建、终止、挂起、恢复</li>
+                            <li><span class="highlight">文件操作</span>：打开、关闭、读、写</li>
+                            <li><span class="highlight">设备管理</span>：读、写、控制</li>
+                            <li><span class="highlight">信息维护</span>：获取时间、设置时间</li>
+                            <li><span class="highlight">通信</span>：消息传递、共享内存</li>
                         </ul>
                         <p><strong>实例：</strong>fork()用于创建进程，read()/write()用于文件读写，socket()用于网络通信。</p>
                     </div>
                 </details>
                 
                 <details>
-                    <summary>1.4 操作系统结构</summary>
+                    <summary>1.4 <strong>操作系统</strong>结构</summary>
                     <div>
-                        <p><strong>分层结构：</strong></p>
+                        <p><span class="highlight">分层结构</span>（Layered Structure）：</p>
                         <ul>
                             <li>将操作系统分为若干层，每层仅依赖于下一层</li>
                             <li>优点：结构清晰，易于开发和维护</li>
@@ -466,7 +466,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>THE操作系统是典型的分层结构，分为硬件层、处理器分配层、存储器和I/O设备管理层等。</p>
                         
-                        <p><strong>模块化结构：</strong></p>
+                        <p><span class="highlight">模块化结构</span>（Modular Structure）：</p>
                         <ul>
                             <li>将操作系统分解为若干功能模块</li>
                             <li>模块间通过接口通信</li>
@@ -475,7 +475,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>现代操作系统通常采用模块化设计，如Linux内核的不同功能模块。</p>
                         
-                        <p><strong><strong>宏内核</strong>：</strong></p>
+                        <p><strong><span class="highlight">宏内核</span>（Monolithic Kernel）：</strong></p>
                         <ul>
                             <li>整个操作系统作为一个大内核</li>
                             <li>优点：运行效率高</li>
@@ -483,7 +483,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>传统的UNIX系统和Linux内核都属于宏内核结构。</p>
                         
-                        <p><strong><strong>微内核</strong>：</strong></p>
+                        <p><strong><span class="highlight">微内核</span>（Microkernel）：</strong></p>
                         <ul>
                             <li>仅将最核心的功能（进程管理、内存管理）放在内核中</li>
                             <li>其他功能（文件系统、设备驱动）作为用户级服务</li>
@@ -492,7 +492,7 @@ mindmap
                         </ul>
                         <p><strong>实例：</strong>Windows NT、macOS XNU内核、QNX等采用了微内核或混合内核设计。</p>
                         
-                        <p><strong><strong>外核</strong>：</strong></p>
+                        <p><strong><span class="highlight">外核</span>（Exokernel）：</strong></p>
                         <ul>
                             <li>将操作系统分为内核和外核</li>
                             <li>外核负责资源管理，内核负责执行</li>
@@ -504,9 +504,9 @@ mindmap
                 </details>
                 
                 <details>
-                    <summary>1.5 操作系统引导</summary>
+                    <summary>1.5 <strong>操作系统</strong>引导</summary>
                     <div>
-                        <p><strong>引导过程</strong>：</p>
+                        <p><strong>引导过程（Boot Process）</strong>：</p>
                         <ol>
                             <li>CPU上电后，执行ROM中的BIOS引导程序</li>
                             <li>BIOS引导程序指示CPU将磁盘中的MBR（主引导记录）读入内存</li>
@@ -516,7 +516,7 @@ mindmap
                             <li>CPU找到C盘根目录中的启动管理器程序，读入主存并执行</li>
                             <li>启动管理器完成操作系统初始化工作</li>
                         </ol>
-                        <p><strong>实例：</strong>当你按下电脑电源按钮时，计算机会依次执行上述步骤来启动Windows或Linux系统。</p>
+                        <p><strong>实例：</strong>当你按下电脑电源按钮时，计算机会依次执行上述步骤来启动<span class="highlight">Windows</span>或<span class="highlight">Linux</span>系统。</p>
                         
                         <div class="visualization">
                             <h4>操作系统引导过程图</h4>
@@ -553,23 +553,23 @@ mindmap
                         
                         <p><strong>关键概念</strong>：</p>
                         <ul>
-                            <li><strong>MBR</strong>：磁盘开头的位置留出的区域，用于存储引导程序</li>
-                            <li><strong>分区表</strong>：数据结构，说明磁盘中每个分区的大小和地址范围</li>
-                            <li><strong>ROM</strong>：只读存储器，断电数据不丢失，存储<strong>BIOS</strong></li>
-                            <li><strong>RAM</strong>：随机存取存储器，断电数据丢失，存储<strong>操作系统</strong></li>
+                            <li><span class="highlight">MBR</span>（<span class="highlight">Master Boot Record</span>）：<span class="highlight">磁盘开头</span>的位置留出的区域，用于存储<span class="highlight">引导程序</span></li>
+                            <li><span class="highlight">分区表</span>（<span class="highlight">Partition Table</span>）：<span class="highlight">数据结构</span>，说明磁盘中每个<span class="highlight">分区</span>的大小和地址范围</li>
+                            <li><span class="highlight">ROM</span>（<span class="highlight">Read-Only Memory</span>）：<span class="highlight">只读存储器</span>，<span class="highlight">断电数据不丢失</span>，存储<span class="highlight">BIOS</span>（<span class="highlight">Basic Input/Output System</span>）</li>
+                            <li><span class="highlight">RAM</span>（<span class="highlight">Random Access Memory</span>）：<span class="highlight">随机存取存储器</span>，<span class="highlight">断电数据丢失</span>，存储<span class="highlight">操作系统</span></li>
                         </ul>
-                        <p><strong>实例：</strong>使用DiskGenius等工具可以查看和编辑磁盘的MBR和分区表信息。</p>
+                        <p><strong>实例：</strong>使用<span class="highlight">DiskGenius</span>等工具可以查看和编辑磁盘的<span class="highlight">MBR</span>和<span class="highlight">分区表</span>信息。</p>
                     </div>
                 </details>
                 
                 <details>
-                    <summary>1.6 虚拟机</summary>
+                    <summary>1.6 <strong>虚拟机</strong>（Virtual Machine）</summary>
                     <div>
                         <h4>1.6.1 虚拟机的基本概念</h4>
-                        <p><strong>虚拟机：</strong>通过软件模拟的计算机系统，具有完整的硬件功能</p>
-                        <p><strong>实例：</strong>VMware Workstation、Oracle VirtualBox、Microsoft Hyper-V等软件可以创建和运行虚拟机。</p>
+                        <p><strong>虚拟机</strong>（<strong>Virtual Machine</strong>）：通过软件模拟的<strong>计算机系统</strong>，具有完整的<strong>硬件</strong>功能</p>
+                        <p><strong>实例：</strong><span class="highlight">VMware Workstation</span>、<span class="highlight">Oracle VirtualBox</span>、<span class="highlight">Microsoft Hyper-V</span>等软件可以创建和运行虚拟机。</p>
                         
-                        <p><strong><strong>虚拟机</strong>管理程序（<strong>VMM</strong>）：</strong></p>
+                        <p><strong><span class="highlight">虚拟机</span>管理程序（<span class="highlight">Virtual Machine Monitor</span>，<span class="highlight">VMM</span>）：</strong></p>
                         <ul>
                             <li>第一类VMM：直接运行在硬件上，没有宿主操作系统
                                 <ul>
@@ -584,9 +584,9 @@ mindmap
                                 </ul>
                             </li>
                         </ul>
-                        <p><strong>实例：</strong>VMware ESXi是第一类VMM；VMware Workstation是第二类VMM。</p>
+                        <p><strong>实例：</strong><span class="highlight">VMware ESXi</span>是第一类<span class="highlight">VMM</span>；<span class="highlight">VMware Workstation</span>是第二类<span class="highlight">VMM</span>。</p>
                         
-                        <p><strong><strong>虚拟化</strong>原理：</strong></p>
+                        <p><strong><span class="highlight">虚拟化</span>原理：</strong></p>
                         <ul>
                             <li>通过VMM将物理资源（CPU、内存、I/O设备）抽象为虚拟资源</li>
                             <li>每个虚拟机看到的是虚拟的硬件</li>
@@ -600,61 +600,61 @@ mindmap
                             <li>安全性高：虚拟机之间相互隔离</li>
                             <li>管理便捷：可以快速创建、删除、迁移虚拟机</li>
                         </ul>
-                        <p><strong>实例：</strong>云计算服务商使用虚拟机技术为用户提供弹性计算服务，如AWS EC2、阿里云ECS。</p>
+                        <p><strong>实例：</strong>云计算服务商使用虚拟机技术为用户提供弹性计算服务，如<span class="highlight">AWS EC2</span>、<span class="highlight">阿里云ECS</span>。</p>
                     </div>
                 </details>
                 
                 <details>
                     <summary>1.7 本章疑难点</summary>
                     <div>
-                        <p><strong><strong>并发</strong>与<strong>并行</strong>的区别：</strong></p>
+                        <p><strong><span class="highlight">并发</span>（Concurrent）与<span class="highlight">并行</span>（Parallel）的区别：</strong></p>
                         <ul>
                             <li>并发：宏观上同时发生，微观上交替发生</li>
                             <li>并行：同一时刻同时发生</li>
                         </ul>
-                        <p><strong>实例：</strong>单核CPU上的多任务是并发执行；多核CPU上同时运行多个任务是并行执行。</p>
+                        <p><strong>实例：</strong>单核<span class="highlight">CPU</span>上的多任务是<span class="highlight">并发</span>执行；多核<span class="highlight">CPU</span>上同时运行多个任务是<span class="highlight">并行</span>执行。</p>
                         
-                        <p><strong><strong>共享</strong>的两种方式：</strong></p>
+                        <p><strong><span class="highlight">共享</span>（Sharing）的两种方式：</strong></p>
                         <ul>
                             <li>互斥共享：资源被多个进程依次使用</li>
                             <li>同时共享：宏观上"同时"，微观上交替地对资源进行访问</li>
                         </ul>
-                        <p><strong>实例：</strong>打印机是互斥共享资源；内存是同时共享资源。</p>
+                        <p><strong>实例：</strong><span class="highlight">打印机</span>是<span class="highlight">互斥共享</span>资源；<span class="highlight">内存</span>是<span class="highlight">同时共享</span>资源。</p>
                         
-                        <p><strong><strong>虚拟</strong>与实际的区别：</strong></p>
+                        <p><strong><span class="highlight">虚拟</span>（Virtual）与实际的区别：</strong></p>
                         <ul>
                             <li>虚拟：用户感受到的逻辑上的资源</li>
                             <li>实际：物理存在的资源</li>
                         </ul>
-                        <p><strong>实例：</strong>虚拟内存是用户感受到的大于实际物理内存的存储空间。</p>
+                        <p><strong>实例：</strong><span class="highlight">虚拟内存</span>是用户感受到的大于实际<span class="highlight">物理内存</span>的存储空间。</p>
                         
-                        <p><strong><strong>中断</strong>与<strong>异常</strong>的区别：</strong></p>
+                        <p><strong><span class="highlight">中断</span>（Interrupt）与<span class="highlight">异常</span>（Exception）的区别：</strong></p>
                         <ul>
                             <li>内中断（异常）：与当前执行的指令有关</li>
                             <li>外中断：与当前执行的指令无关</li>
                         </ul>
-                        <p><strong>实例：</strong>程序执行除零操作引发异常；键盘按键产生外部中断。</p>
+                        <p><strong>实例：</strong>程序执行除零操作引发<span class="highlight">异常</span>；<span class="highlight">键盘</span>按键产生<span class="highlight">外部中断</span>。</p>
                         
-                        <p><strong><strong>操作系统</strong>引导过程：</strong></p>
+                        <p><strong><span class="highlight">操作系统</span>引导过程（Boot Process）：</strong></p>
                         <p>从ROM引导程序到BIOS，再到MBR，再到PBR，最后到启动管理器</p>
-                        <p><strong>实例：</strong>UEFI启动过程替代了传统的BIOS+MBR方式，提供了更快更安全的启动体验。</p>
+                        <p><strong>实例：</strong><span class="highlight">UEFI</span>启动过程替代了传统的<span class="highlight">BIOS</span>+<span class="highlight">MBR</span>方式，提供了更快更安全的启动体验。</p>
                         
-                        <p><strong><strong>操作系统</strong>结构：</strong></p>
+                        <p><strong><span class="highlight">操作系统</span>结构（Architecture）：</strong></p>
                         <p>分层结构、模块化结构、宏内核、微内核、外核的优缺点比较</p>
-                        <p><strong>实例：</strong>Linux采用宏内核但模块化设计；Windows NT采用混合内核设计。</p>
+                        <p><strong>实例：</strong><span class="highlight">Linux</span>采用<span class="highlight">宏内核</span>但<span class="highlight">模块化</span>设计；<span class="highlight">Windows NT</span>采用<span class="highlight">混合内核</span>设计。</p>
                         
                         <p><strong>本章重要性：</strong></p>
-                        <p>本章是操作系统知识体系的基础，涵盖了操作系统的基本概念、发展历程、运行环境、结构和引导过程，为后续章节的学习奠定基础。理解本章内容对掌握操作系统的核心思想和基本原理至关重要。</p>
+                        <p>本章是<strong>操作系统</strong>知识体系的基础，涵盖了<strong>操作系统</strong>的基本概念、发展历程、运行环境、结构和引导过程，为后续章节的学习奠定基础。理解本章内容对掌握<strong>操作系统</strong>的核心思想和基本原理至关重要。</p>
                     </div>
                 </details>
             </div>
             
             <div class="key-points">
-                <h3>核心考点</h3>
+                <h3 class="highlight">核心考点（Key Points）</h3>
                 <ul>
-                    <li><strong>操作系统</strong>特征</li>
-                    <li><strong>CPU</strong>运行模式</li>
-                    <li><strong>系统调用</strong></li>
+                    <li><span class="highlight">操作系统</span>特征（Features）</li>
+                    <li><span class="highlight">CPU</span>运行模式（Operating Modes）</li>
+                    <li><span class="highlight">系统调用</span>（System Calls）</li>
                 </ul>
             </div>
         </section>
@@ -662,7 +662,7 @@ mindmap
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 王道操作系统考研复习指导 - 学习网站</p>
+            <p>&copy; 2025 王道<strong>操作系统</strong>考研复习指导 - 学习网站</p>
         </div>
     </footer>
 

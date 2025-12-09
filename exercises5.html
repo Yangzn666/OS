@@ -48,7 +48,7 @@
                             <button class="study-tip-btn" onclick="toggleStudyTip('q5-1-answer')">查看答案</button>
                             <div id="q5-1-answer" class="study-tip-content" style="display:none;">
                                 <p><strong>答案：B</strong></p>
-                                <p>解析：<strong>文件系统</strong>可以存在于磁盘、U盘、闪存、网络存储等多种媒介；但通常我们讨论的是"<strong>在磁盘上</strong>的<strong>文件系统</strong>"；<strong>文件系统</strong>包括<strong>元数据</strong>（如目录、inode）、<strong>数据块</strong>等，这些都存储在磁盘中；因此，<strong>文件系统</strong>≠整个磁盘，也不是必须依赖磁盘；但本题强调"<strong>组织信息</strong>放在磁盘上"，所以B正确。<br>
+                                <p>解析：<span class="highlight">文件系统</span>可以存在于磁盘、U盘、闪存、网络存储等多种媒介；但通常我们讨论的是"<span class="highlight">在磁盘上</span>的<span class="highlight">文件系统</span>"；<span class="highlight">文件系统</span>包括<span class="highlight">元数据</span>（如目录、inode）、<span class="highlight">数据块</span>等，这些都存储在磁盘中；因此，<span class="highlight">文件系统</span>≠整个磁盘，也不是必须依赖磁盘；但本题强调"<span class="highlight">组织信息</span>放在磁盘上"，所以B正确。<br>
                                 ❌A错：<strong>文件系统</strong>可存在其他存储设备；<br>
                                 ❌C错：<strong>文件系统</strong>只是磁盘的一部分；<br>
                                 ❌D错：两者有关联。</p>
@@ -66,8 +66,8 @@
                         <div class="study-tip-container">
                             <button class="study-tip-btn" onclick="toggleStudyTip('q5-2-answer')">查看答案</button>
                             <div id="q5-2-answer" class="study-tip-content" style="display:none;">
-                                <p><strong>答案：D</strong></p>
-                                <p>解析：<strong>磁盘</strong>是<strong>可共享设备</strong>（即允许多个进程请求访问）；但<strong>同一时刻</strong>只能有一个进程使用（<strong>独占访问</strong>）；这是因为<strong>磁头</strong>只能在一个位置读写；所以"<strong>至多能由一个</strong>"作业启动它。<br>
+                                <p><strong>答案：B</strong></p>
+                                <p>解析：<span class="highlight">磁盘</span>是<span class="highlight">可共享设备</span>（即允许多个进程请求访问）；但<span class="highlight">同一时刻</span>只能有一个进程使用（<span class="highlight">独占访问</span>）；这是因为<span class="highlight">磁头</span>只能在一个位置读写；所以"<span class="highlight">至多能由一个</span>"作业启动它。<br>
                                 ✅选D</p>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <button class="study-tip-btn" onclick="toggleStudyTip('q5-3-answer')">查看答案</button>
                             <div id="q5-3-answer" class="study-tip-content" style="display:none;">
                                 <p><strong>答案：B</strong></p>
-                                <p>解析：<strong>光盘</strong>：支持<strong>随机访问</strong>（CD-ROM/RW），可跳转到任意扇区→✅支持<strong>顺序</strong>+<strong>随机</strong>；<strong>磁带</strong>：只能<strong>顺序读写</strong>，不能<strong>随机</strong>→❌不支持；<strong>U盘</strong>：基于<strong>闪存</strong>，支持<strong>随机读写</strong>→✅；<strong>磁盘</strong>：支持<strong>随机读写</strong>→✅；<br>
+                                <p>解析：<strong>光盘</strong>：支持<span class="highlight">随机访问</span>（CD-ROM/RW），可跳转到任意扇区→✅支持<span class="highlight">顺序</span>+<span class="highlight">随机</span>；<strong>磁带</strong>：只能<span class="highlight">顺序读写</span>，不能<span class="highlight">随机</span>→❌不支持；<strong>U盘</strong>：基于<span class="highlight">闪存</span>，支持<span class="highlight">随机读写</span>→✅；<strong>磁盘</strong>：支持<span class="highlight">随机读写</span>→✅；<br>
                                 ✅所以选B：I, III, IV</p>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                             <button class="study-tip-btn" onclick="toggleStudyTip('q5-4-answer')">查看答案</button>
                             <div id="q5-4-answer" class="study-tip-content" style="display:none;">
                                 <p><strong>答案：A</strong></p>
-                                <p>解析：<strong>磁盘访问时间</strong>=<strong>寻道时间</strong>+<strong>旋转延迟</strong>+<strong>传输时间</strong>；<strong>磁盘调度算法</strong>主要优化的是<strong>寻道时间</strong>（<strong>磁头</strong>移动）；例如<strong>SSTF</strong>、<strong>SCAN</strong>都是为了减少<strong>磁头</strong>移动距离；<strong>延迟</strong>和<strong>传输时间</strong>由硬件决定，难以通过<strong>调度</strong>优化；<br>
+                                <p>解析：<span class="highlight">磁盘访问时间</span>=<span class="highlight">寻道时间</span>+<span class="highlight">旋转延迟</span>+<span class="highlight">传输时间</span>；<span class="highlight">磁盘调度算法</span>主要优化的是<span class="highlight">寻道时间</span>（<span class="highlight">磁头</span>移动）；例如<span class="highlight">SSTF</span>、<span class="highlight">SCAN</span>都是为了减少<span class="highlight">磁头</span>移动距离；<span class="highlight">延迟</span>和<span class="highlight">传输时间</span>由硬件决定，难以通过<span class="highlight">调度</span>优化；<br>
                                 ✅所以选A</p>
                             </div>
                         </div>

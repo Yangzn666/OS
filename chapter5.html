@@ -98,29 +98,29 @@ mindmap
                         <ol>
                             <li>输入设备：键盘、鼠标、扫描仪</li>
                             <li>输出设备：显示器、打印机、音响</li>
-                            <li>输入输出设备：磁盘、光驱、网络接口卡</li>
-                            <li>存储设备：硬盘、SSD、U盘</li>
+                            <li>输入输出设备：<span class="highlight">磁盘</span>、光驱、网络接口卡</li>
+                            <li>存储设备：<span class="highlight">磁盘</span>、SSD、U盘</li>
                         </ol>
                         
                         <p><strong>按<strong>I/O设备</strong>传输速率分类：</strong></p>
                         <ol>
                             <li>低速设备：键盘、鼠标（传输速率&lt;100KB/s）</li>
                             <li>中速设备：打印机、扫描仪（100KB/s~1MB/s）</li>
-                            <li>高速设备：磁盘、网络设备（&gt;1MB/s）</li>
+                            <li>高速设备：<span class="highlight">磁盘</span>、网络设备（&gt;1MB/s）</li>
                         </ol>
                         
                         <p><strong>按<strong>I/O设备</strong>信息交换方式分类：</strong></p>
                         <ol>
-                            <li>块设备：以块为单位进行数据交换（如磁盘、SSD）</li>
+                            <li>块设备：以块为单位进行数据交换（如<span class="highlight">磁盘</span>、SSD）</li>
                             <li>字符设备：以字符为单位进行数据交换（如键盘、打印机）</li>
                         </ol>
                         
                         <h4>5.1.2 <strong>I/O控制方式</strong></h4>
                         <p><strong><strong>I/O控制方式</strong>之程序控制方式：</strong></p>
                         <ul>
-                            <li>CPU通过执行指令直接控制I/O设备</li>
+                            <li><span class="highlight">CPU</span>通过执行指令直接控制I/O设备</li>
                             <li>优点：实现简单</li>
-                            <li>缺点：CPU利用率低，I/O操作等待时CPU空闲</li>
+                            <li>缺点：<span class="highlight">CPU</span>利用率低，I/O操作等待时<span class="highlight">CPU</span><span class="highlight">空闲</span></li>
                         </ul>
                         
                         <div class="study-tip-container">
@@ -138,9 +138,9 @@ mindmap
                         
                         <p><strong><strong>I/O控制方式</strong>之中断驱动方式：</strong></p>
                         <ul>
-                            <li>I/O设备完成操作后向CPU发送中断请求</li>
-                            <li>优点：CPU可以执行其他任务，提高利用率</li>
-                            <li>缺点：中断频率高，CPU需要频繁处理中断</li>
+                            <li>I/O设备完成操作后向<span class="highlight">CPU</span>发送中断请求</li>
+                            <li>优点：<span class="highlight">CPU</span>可以执行其他任务，提高利用率</li>
+                            <li>缺点：中断频率高，<span class="highlight">CPU</span>需要频繁处理中断</li>
                         </ul>
                         
                         <div class="study-tip-container">
@@ -158,8 +158,8 @@ mindmap
                         
                         <p><strong><strong>I/O控制方式</strong>之DMA（直接内存访问）方式：</strong></p>
                         <ul>
-                            <li>I/O设备直接与内存交换数据，无需CPU参与</li>
-                            <li>优点：CPU利用率高，数据传输速度快</li>
+                            <li>I/O设备直接与<span class="highlight">内存</span>交换数据，无需<span class="highlight">CPU</span>参与</li>
+                            <li>优点：<span class="highlight">CPU</span>利用率高，数据传输速度快</li>
                             <li>缺点：硬件实现复杂</li>
                         </ul>
                         
@@ -179,7 +179,7 @@ mindmap
                         <p><strong><strong>I/O控制方式</strong>之通道控制方式：</strong></p>
                         <ul>
                             <li>通道是一种专门的I/O处理机，可以执行I/O指令</li>
-                            <li>优点：CPU可以同时处理多个I/O操作</li>
+                            <li>优点：<span class="highlight">CPU</span>可以同时处理多个I/O操作</li>
                             <li>缺点：硬件实现复杂，成本高</li>
                         </ul>
                         
@@ -204,9 +204,9 @@ mindmap
                         <h4>5.2.1 <strong>用户层I/O软件</strong></h4>
                         <p><strong><strong>用户层I/O软件</strong>功能：</strong></p>
                         <ul>
-                            <li>提供用户友好的I/O接口</li>
-                            <li>处理用户对I/O操作的请求</li>
-                            <li>实现I/O操作的缓冲和缓存</li>
+                            <li>提供<span class="highlight">用户</span>友好的I/O接口</li>
+                            <li>处理<span class="highlight">用户</span>对I/O操作的请求</li>
+                            <li>实现I/O操作的<span class="highlight">缓冲</span>和<span class="highlight">缓存</span></li>
                         </ul>
                         
                         <p><strong><strong>用户层I/O软件</strong>主要操作：</strong></p>
@@ -222,8 +222,8 @@ mindmap
                         <p><strong><strong>设备无关软件</strong>功能：</strong></p>
                         <ul>
                             <li>提供统一的I/O接口，屏蔽设备差异</li>
-                            <li>实现设备的逻辑操作</li>
-                            <li>管理缓冲区和缓存</li>
+                            <li>实现设备的<span class="highlight">逻辑</span>操作</li>
+                            <li>管理<span class="highlight">缓冲区</span>和<span class="highlight">缓存</span></li>
                         </ul>
                         
                         <p><strong><strong>设备无关软件</strong>主要操作：</strong></p>
@@ -231,14 +231,14 @@ mindmap
                             <li>设备分配与回收</li>
                             <li>设备驱动程序的调用</li>
                             <li>设备错误处理</li>
-                            <li>设备缓冲区管理</li>
+                            <li>设备<span class="highlight">缓冲区</span>管理</li>
                         </ul>
                         
                         <h4>5.2.3 <strong>设备驱动程序</strong></h4>
                         <p><strong><strong>设备驱动程序</strong>功能：</strong></p>
                         <ul>
                             <li>与硬件设备直接交互</li>
-                            <li>实现设备的物理操作</li>
+                            <li>实现设备的<span class="highlight">物理</span>操作</li>
                             <li>处理设备的中断请求</li>
                         </ul>
                         
@@ -246,7 +246,7 @@ mindmap
                         <ul>
                             <li>与设备紧密相关</li>
                             <li>通常由设备制造商提供</li>
-                            <li>需要与操作系统内核紧密结合</li>
+                            <li>需要与<span class="highlight">操作系统</span>内核紧密结合</li>
                         </ul>
                         
                         <h4>5.2.4 <strong>中断处理程序</strong></h4>
@@ -277,11 +277,11 @@ mindmap
                         
                         <p><strong><strong>中断处理程序</strong>工作流程：</strong></p>
                         <ol>
-                            <li>CPU收到中断请求</li>
-                            <li>保存当前进程状态</li>
+                            <li><span class="highlight">CPU</span>收到中断请求</li>
+                            <li>保存当前<span class="highlight">进程</span>状态</li>
                             <li>转到中断处理程序</li>
                             <li>处理中断</li>
-                            <li>恢复被中断进程</li>
+                            <li>恢复被中断<span class="highlight">进程</span></li>
                         </ol>
                     </div>
                 </details>
@@ -291,13 +291,13 @@ mindmap
                     <div>
                         <h4>5.3.1 <strong>SPOOLing技术</strong>的基本概念</h4>
                         <p><strong>定义：</strong><strong>SPOOLing技术</strong>（Simultaneous Peripheral Operations On-Line）是一种假脱机技术</p>
-                        <p><strong>原理：</strong>将I/O操作从实时操作改为离线操作，通过磁盘作为缓冲区</p>
+                        <p><strong>原理：</strong>将I/O操作从实时操作改为离线操作，通过<span class="highlight">磁盘</span>作为<span class="highlight">缓冲区</span></p>
                         
                         <p><strong>优点：</strong></p>
                         <ul>
                             <li>提高设备利用率</li>
-                            <li>减少CPU等待时间</li>
-                            <li>实现多用户共享设备</li>
+                            <li>减少<span class="highlight">CPU</span>等待时间</li>
+                            <li>实现多<span class="highlight">用户</span>共享设备</li>
                         </ul>
                         
                         <h4>5.3.2 <strong>SPOOLing系统</strong>组成</h4>
@@ -309,17 +309,17 @@ mindmap
                         <h4>5.3.3 <strong>SPOOLing技术</strong>在<strong>打印机</strong>管理中的应用</h4>
                         <p><strong><strong>打印机</strong>工作流程：</strong></p>
                         <ol>
-                            <li>用户提交打印任务</li>
-                            <li>系统将打印数据写入输出井</li>
-                            <li>打印机从输出井读取数据</li>
-                            <li>打印机完成打印后，系统通知用户</li>
+                            <li><span class="highlight">用户</span>提交打印任务</li>
+                            <li><span class="highlight">系统</span>将打印数据写入输出井</li>
+                            <li><span class="highlight">打印机</span>从输出井读取数据</li>
+                            <li><span class="highlight">打印机</span>完成打印后，<span class="highlight">系统</span>通知<span class="highlight">用户</span></li>
                         </ol>
                         
                         <p><strong>优点：</strong></p>
                         <ul>
-                            <li>用户无需等待打印完成</li>
-                            <li>多个用户可以同时提交打印任务</li>
-                            <li>打印机利用率高</li>
+                            <li><span class="highlight">用户</span>无需等待打印完成</li>
+                            <li>多个<span class="highlight">用户</span>可以同时提交打印任务</li>
+                            <li><span class="highlight">打印机</span>利用率高</li>
                         </ul>
                         
                         <div class="visualization">
@@ -348,10 +348,10 @@ mindmap
                         <h4>5.4.1 <strong>磁盘</strong>物理结构</h4>
                         <p><strong><strong>磁盘</strong>组成：</strong></p>
                         <ul>
-                            <li>盘片：存储数据的磁性盘片</li>
+                            <li>盘片：存储数据的<span class="highlight">磁性</span>盘片</li>
                             <li>磁头：读写数据的部件</li>
                             <li>磁道：盘片上的一圈同心圆</li>
-                            <li>扇区：磁道上的一段弧长，是磁盘的最小存储单位</li>
+                            <li>扇区：磁道上的一段弧长，是<span class="highlight">磁盘</span>的最小存储单位</li>
                         </ul>
                         <p><strong>实例：</strong>就像黑胶唱片，有唱片面（盘片）、唱针（磁头）、同心圆纹路（磁道）、最小刻度（扇区）。</p>
                         
@@ -421,7 +421,7 @@ SCAN调度(向右):
                         
                         <p><strong>LOOK算法：</strong></p>
                         <ul>
-                            <li>SCAN算法的改进版，<strong>磁头</strong>移动到最远请求位置后反向</li>
+                            <li>SCAN<span class="highlight">算法</span>的改进版，<strong>磁头</strong>移动到最远请求位置后反向</li>
                             <li>优点：减少不必要的<strong>磁头</strong>移动</li>
                             <li>缺点：实现稍复杂</li>
                         </ul>
@@ -463,7 +463,7 @@ SCAN调度(向右):
                         <p><strong><strong>SSD固态硬盘</strong>TRIM命令：</strong>通知SSD哪些数据块已无效</p>
                         <p><strong>实例：</strong>告诉清洁工哪些房间已经退房，可以进行清洁。</p>
                         
-                        <p><strong><strong>SSD固态硬盘</strong>写放大：</strong>实际写入数据量与用户请求写入数据量的比值</p>
+                        <p><strong><strong>SSD固态硬盘</strong>写放大：</strong>实际写入数据量与<span class="highlight">用户</span>请求写入数据量的比值</p>
                         <p><strong>实例：</strong>搬家公司为了保护物品，需要用更多包装材料，增加了总体积。</p>
                     </div>
                 </details>
@@ -472,14 +472,14 @@ SCAN调度(向右):
                     <summary>5.6 <strong>缓冲</strong>与<strong>缓存技术</strong></summary>
                     <div>
                         <h4>5.6.1 <strong>缓冲技术</strong></h4>
-                        <p><strong><strong>缓冲技术</strong>目的：</strong>解决CPU与I/O设备速度不匹配的问题</p>
+                        <p><strong><strong>缓冲技术</strong>目的：</strong>解决<span class="highlight">CPU</span>与I/O设备速度不匹配的问题</p>
                         <p><strong>实例：</strong>水库调节河流水量，旱季供水，雨季蓄水。</p>
                         
                         <p><strong><strong>缓冲技术</strong>缓冲类型：</strong></p>
                         <ul>
-                            <li>单缓冲：一个缓冲区</li>
-                            <li>双缓冲：两个缓冲区交替使用</li>
-                            <li>循环缓冲：多个缓冲区组成循环队列</li>
+                            <li>单<span class="highlight">缓冲</span>：一个<span class="highlight">缓冲区</span></li>
+                            <li>双<span class="highlight">缓冲</span>：两个<span class="highlight">缓冲区</span>交替使用</li>
+                            <li>循环<span class="highlight">缓冲</span>：多个<span class="highlight">缓冲区</span>组成循环队列</li>
                         </ul>
                         <p><strong>实例：</strong>单缓冲像一个水桶；双缓冲像两个水桶交替使用；循环缓冲像传送带。</p>
                         
@@ -489,10 +489,10 @@ SCAN调度(向右):
                         
                         <p><strong><strong>缓存技术</strong>缓存层次：</strong></p>
                         <ul>
-                            <li>L1缓存：CPU内部，速度最快</li>
-                            <li>L2缓存：CPU附近，容量较大</li>
-                            <li>L3缓存：多个CPU核心共享</li>
-                            <li>内存缓存：RAM中缓存磁盘数据</li>
+                            <li>L1<span class="highlight">缓存</span>：<span class="highlight">CPU</span>内部，速度最快</li>
+                            <li>L2<span class="highlight">缓存</span>：<span class="highlight">CPU</span>附近，容量较大</li>
+                            <li>L3<span class="highlight">缓存</span>：多个<span class="highlight">CPU</span>核心共享</li>
+                            <li><span class="highlight">内存</span><span class="highlight">缓存</span>：<span class="highlight">RAM</span>中<span class="highlight">缓存</span><span class="highlight">磁盘</span>数据</li>
                         </ul>
                         <p><strong>实例：</strong>就像学习资料的存放：课本放在书桌上（L1），参考书放在书架上（L2），图书馆资料需要去图书馆取（内存）。</p>
                     </div>
@@ -560,7 +560,7 @@ SCAN调度(向右):
                             <li>SSD管理像物业管理：均衡使用设施、定期维护、优化资源配置</li>
                         </ul>
                         
-                        <p><strong>本章重要性：</strong>本章是操作系统考研的重点章节，涉及设备管理的核心概念和实现机制。理解本章内容，对掌握操作系统中I/O管理的原理和实现具有重要意义。需要特别注意I/O设备分类、I/O控制方式、磁盘调度算法、SSD管理技术等核心知识点，这些是考研中经常出现的考点。</p>
+                        <p><strong>本章重要性：</strong>本章是<span class="highlight">操作系统</span>考研的重点章节，涉及设备管理的核心概念和实现机制。理解本章内容，对掌握<span class="highlight">操作系统</span>中I/O管理的原理和实现具有重要意义。需要特别注意I/O设备分类、I/O控制方式、<span class="highlight">磁盘</span>调度<span class="highlight">算法</span>、SSD管理技术等核心知识点，这些是考研中经常出现的考点。</p>
                     </div>
                 </details>
                 
@@ -616,7 +616,7 @@ SCAN调度(向右):
             <div class="key-points">
                 <h3>核心考点</h3>
                 <ul>
-                    <li><strong>磁盘</strong>调度算法（SCAN/C-SCAN）</li>
+                    <li><strong><span class="highlight">磁盘</span>调度<span class="highlight">算法</span></strong>（SCAN/C-SCAN）</li>
                     <li><strong>SPOOLing技术</strong></li>
                     <li><strong>DMA方式</strong>原理</li>
                 </ul>
