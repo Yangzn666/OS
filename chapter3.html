@@ -284,6 +284,13 @@ mindmap
                         <p><strong><strong>页号</strong>：</strong><span class="highlight">逻辑地址</span>的高部分，表示<span class="highlight">逻辑</span>页的编号</p>
                         <p><strong>实例：</strong>书籍的页码由章节号和页内行号组成。</p>
                         
+                        <!-- 添加实例按钮 -->
+                        <div class="example-buttons">
+                            <button class="example-btn" onclick="openExampleModal('basic-example')">基础地址转换示例</button>
+                            <button class="example-btn" onclick="openExampleModal('tlb-example')">快表地址转换示例</button>
+                            <button class="example-btn" onclick="openExampleModal('two-level-example')">两级页表示例</button>
+                        </div>
+                        
                         <div class="visualization">
                             <h4>分页存储管理地址变换过程</h4>
                             <pre>
@@ -747,5 +754,13 @@ mindmap
     
     <!-- 回到顶部按钮 -->
     <button id="backToTop" class="back-to-top">↑</button>
+    
+    <!-- 示例弹窗 -->
+    <div id="example-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeExampleModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 </body>
 </html>

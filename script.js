@@ -83,12 +83,31 @@ window.addEventListener('scroll', function() {
 // 移动端菜单切换功能
 function toggleMobileMenu() {
     const nav = document.querySelector('nav ul');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // 切换菜单状态
     nav.classList.toggle('mobile-menu-open');
     
     // 添加旋转动画到菜单按钮
-    const menuToggle = document.querySelector('.menu-toggle');
     if (menuToggle) {
         menuToggle.classList.toggle('active');
+    }
+    
+    // 防止菜单在展开状态下点击其他区域导致状态混乱
+    if (nav.classList.contains('mobile-menu-open')) {
+        // 添加点击文档其他区域关闭菜单的功能
+        const closeMenuHandler = function(event) {
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('mobile-menu-open');
+                menuToggle.classList.remove('active');
+                document.removeEventListener('click', closeMenuHandler);
+            }
+        };
+        
+        // 延迟添加事件监听器，防止立即触发
+        setTimeout(() => {
+            document.addEventListener('click', closeMenuHandler);
+        }, 100);
     }
 }
 
@@ -232,6 +251,21 @@ window.addEventListener('resize', function() {
     }
 });
 
+// 页面加载完成后确保导航状态正确
+window.addEventListener('pageshow', function(event) {
+    // 如果是从缓存中加载页面
+    if (event.persisted) {
+        const nav = document.querySelector('nav ul');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (nav && menuToggle) {
+            // 重置导航状态
+            nav.classList.remove('mobile-menu-open');
+            menuToggle.classList.remove('active');
+        }
+    }
+});
+
 // 添加番茄ToDo风格的加载动画
 window.addEventListener('load', function() {
     const sections = document.querySelectorAll('section');
@@ -296,6 +330,177 @@ function toggleStudyTip(tipId) {
         } else {
             tipElement.style.display = 'none';
         }
+    }
+}
+
+// 打开示例弹窗
+function openExampleModal(exampleType) {
+    const modal = document.getElementById('example-modal');
+    const modalBody = document.getElementById('modal-body');
+    
+    // 根据示例类型设置内容
+    switch(exampleType) {
+        case 'basic-example':
+            modalBody.innerHTML = `
+                <h3 class="modal-example-title">基础地址转换示例</h3>
+                <div class="modal-example-content">
+                    <h4>题目描述</h4>
+                    <p>设页面大小为1KB，某进程的页表如下所示，试计算逻辑地址2100对应的物理地址。</p>
+                    
+                    <div class="visualization">
+                        <pre>
+页号  页框号
+ 0     2
+ 1     3
+ 2     1
+ 3     6
+                        </pre>
+                    </div>
+                    
+                    <div class="modal-example-steps">
+                        <h4>转换步骤</h4>
+                        <div class="step-item">
+                            <span class="step-number">1</span>
+                            <strong>计算页号和页内偏移量：</strong>
+                            <p>页面大小为1KB = 1024B</p>
+                            <p>页号 = 逻辑地址 ÷ 页面大小 = 2100 ÷ 1024 = 2（取整）</p>
+                            <p>页内偏移量 = 逻辑地址 mod 页面大小 = 2100 mod 1024 = 52</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">2</span>
+                            <strong>查找页表：</strong>
+                            <p>根据页号2查找页表，得到页框号为1</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">3</span>
+                            <strong>计算物理地址：</strong>
+                            <p>物理地址 = 页框号 × 页面大小 + 页内偏移量</p>
+                            <p>物理地址 = 1 × 1024 + 52 = 1076</p>
+                        </div>
+                    </div>
+                    
+                    <h4>结论</h4>
+                    <p>逻辑地址2100对应的物理地址为1076。</p>
+                </div>
+            `;
+            break;
+            
+        case 'tlb-example':
+            modalBody.innerHTML = `
+                <h3 class="modal-example-title">快表地址转换示例</h3>
+                <div class="modal-example-content">
+                    <h4>题目描述</h4>
+                    <p>设页面大小为4KB，某系统采用快表（TLB）进行地址转换。假设快表的命中率为90%，访问快表的时间为10ns，访问内存的时间为100ns。求平均访问时间。</p>
+                    
+                    <div class="modal-example-steps">
+                        <div class="step-item">
+                            <span class="step-number">1</span>
+                            <strong>TLB命中情况：</strong>
+                            <p>命中率 = 90%</p>
+                            <p>访问时间 = TLB访问时间 + 内存访问时间 = 10ns + 100ns = 110ns</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">2</span>
+                            <strong>TLB未命中情况：</strong>
+                            <p>未命中率 = 10%</p>
+                            <p>访问时间 = TLB访问时间 + 页表访问时间 + 内存访问时间 = 10ns + 100ns + 100ns = 210ns</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">3</span>
+                            <strong>计算平均访问时间：</strong>
+                            <p>平均访问时间 = 命中率 × 命中时间 + 未命中率 × 未命中时间</p>
+                            <p>平均访问时间 = 0.9 × 110ns + 0.1 × 210ns = 99ns + 21ns = 120ns</p>
+                        </div>
+                    </div>
+                    
+                    <h4>结论</h4>
+                    <p>引入快表后的平均访问时间为120ns。</p>
+                    <p>如果没有快表，每次都需要两次内存访问（访问页表+访问数据），总时间为200ns。</p>
+                    <p>使用快表后，虽然增加了硬件成本，但提高了访问效率（从200ns降到120ns）。</p>
+                </div>
+            `;
+            break;
+            
+        case 'two-level-example':
+            modalBody.innerHTML = `
+                <h3 class="modal-example-title">两级页表示例</h3>
+                <div class="modal-example-content">
+                    <h4>题目描述</h4>
+                    <p>某系统采用两级页表，页面大小为4KB，逻辑地址为32位，其中外层页号占10位，内层页号占10位，页内偏移量占12位。试计算：</p>
+                    <ul>
+                        <li>页面大小是多少？</li>
+                        <li>最多有多少个外层页表项？</li>
+                        <li>每个外层页表项对应的页表有多大？</li>
+                        <li>最多能支持多大的进程？</li>
+                    </ul>
+                    
+                    <div class="modal-example-steps">
+                        <div class="step-item">
+                            <span class="step-number">1</span>
+                            <strong>页面大小：</strong>
+                            <p>页内偏移量占12位，所以页面大小 = 2^12 = 4096B = 4KB</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">2</span>
+                            <strong>外层页表项数量：</strong>
+                            <p>外层页号占10位，所以最多有2^10 = 1024个外层页表项</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">3</span>
+                            <strong>内层页表大小：</strong>
+                            <p>内层页号占10位，所以每个内层页表有2^10 = 1024个页表项</p>
+                            <p>假设每个页表项占4字节，则每个内层页表大小 = 1024 × 4B = 4KB</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">4</span>
+                            <strong>最大进程大小：</strong>
+                            <p>逻辑地址为32位，所以最大逻辑地址空间 = 2^32 = 4GB</p>
+                        </div>
+                        
+                        <div class="step-item">
+                            <span class="step-number">5</span>
+                            <strong>两级页表结构：</strong>
+                            <p>外层页表：1024个页表项，每个指向一个内层页表</p>
+                            <p>内层页表：每个包含1024个页表项，每个页表项指向一个物理页框</p>
+                            <p>总共页表项数 = 1024 × 1024 = 1048576个页表项</p>
+                        </div>
+                    </div>
+                    
+                    <h4>结论</h4>
+                    <p>两级页表结构有效地减少了页表占用的内存空间，特别是对于稀疏地址空间的进程。</p>
+                    <p>例如，如果一个进程只需要1MB内存，那么只需要256个页面，使用两级页表只需要少量的页表项，而不是一级页表的全部1048576个页表项。</p>
+                </div>
+            `;
+            break;
+            
+        default:
+            modalBody.innerHTML = '<p>示例内容未找到</p>';
+    }
+    
+    // 显示模态框
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // 防止背景滚动
+}
+
+// 关闭示例弹窗
+function closeExampleModal() {
+    const modal = document.getElementById('example-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // 恢复背景滚动
+}
+
+// 点击模态框外部区域关闭模态框
+window.onclick = function(event) {
+    const modal = document.getElementById('example-modal');
+    if (event.target == modal) {
+        closeExampleModal();
     }
 }
 
